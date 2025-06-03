@@ -10,8 +10,8 @@
 
     public abstract class Grid
     {
-        public abstract Cell[,] NextStep();
-        public abstract Cell[,] BackStep();
+        public abstract int[,] NextStep();
+        public abstract int[,] BackStep();
 
     }
 }

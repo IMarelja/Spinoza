@@ -98,21 +98,24 @@ namespace Models
         }
 
         //definately needs adjusting
-        public override Cell[,] BackStep()
+        public override int[,] BackStep()
         {
+            int[,] data = new int[_columns, _rows];
             for (int y = 0; y < _rows; y++)
             {
                 for (int x = 0; x < _columns; x++)
                 {
-                    _table[x, y].Update();
+                    _table[x, y].Undo();
+                    data[x, y] = _table[x, y].Print();
                 }
             }
-            return _table;
+            return data;
         }
 
         //returns next state of all cells
-        public override Cell[,] NextStep()
+        public override int[,] NextStep()
         {
+            int[,] data = new int[_columns, _rows];
             for (int y = 0; y < _rows; y++)
             {
                 for (int x = 0; x < _columns; x++)
@@ -133,9 +136,10 @@ namespace Models
                 for (int x = 0; x < _columns; x++)
                 {
                     _table[x, y].Update();
+                    data[x, y] = _table[x, y].Print();
                 }
             }
-            return _table;
+            return data;
         }
     }
 

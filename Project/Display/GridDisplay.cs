@@ -7,12 +7,31 @@ namespace Display
         {
             InitializeComponent();
         }
+        int selectedAutomata;
         Grid automata;
-        Cell[,] cells;
+        int[,] cells;
 
         private void btnInitGrid_Click(object sender, EventArgs e)
         {
-            automata = new Forest((int)nudColumns.Value, (int)nudRows.Value, (int)nudTree.Value, (int)nudFire.Value);
+            switch (selectedAutomata)
+            {
+                case 0: 
+                    //intialisation for game of life grid
+                    return;
+                case 1:
+                    //initalisation for brian's brain grid
+                    return; 
+                case 2:
+                    automata = new Forest((int)nudColumns.Value, (int)nudRows.Value, (int)nudTree.Value, (int)nudFire.Value);
+                    return;
+                case 3:
+                    //intialisation for langton's ant grid
+                    return;
+                default:
+                    return;
+            }
+
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -23,7 +42,7 @@ namespace Display
             {
                 for (int y = 0; y < (int)nudRows.Value; y++)
                 {
-                    rtxtDisplay.AppendText(cells[x, y].Print() + "  ");
+                    rtxtDisplay.AppendText(cells[x, y] + "  ");
                 }
                 rtxtDisplay.AppendText(Environment.NewLine);
             }
@@ -37,9 +56,33 @@ namespace Display
             {
                 for (int y = 0; y < (int)nudRows.Value; y++)
                 {
-                    rtxtDisplay.AppendText(cells[x, y].Print() + "  ");
+                    rtxtDisplay.AppendText(cells[x, y] + "  ");
                 }
                 rtxtDisplay.AppendText(Environment.NewLine);
+            }
+        }
+
+        private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            selectedAutomata = cbAutomataSelect.SelectedIndex;
+            if (selectedAutomata == 2)
+            {
+                lblTreeProb.Show();
+                nudTree.Show();
+                lblTreePercent.Show();
+                lblFireProb.Show();
+                nudFire.Show();
+                lblFirePercent.Show();
+            }
+            else
+            {
+                lblTreeProb.Hide();
+                nudTree.Hide();
+                lblTreePercent.Hide();
+                lblFireProb.Hide();
+                nudFire.Hide();
+                lblFirePercent.Hide();
             }
         }
     }

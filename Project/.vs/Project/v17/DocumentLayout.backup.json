@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\models\\abstract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\abstract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,24 +26,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Abstract.cs",
+              "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\Abstract.cs",
+              "RelativeDocumentMoniker": "Models\\Abstract.cs",
+              "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\Abstract.cs",
+              "RelativeToolTip": "Models\\Abstract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T19:45:22.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ForestFire.cs",
               "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\ForestFire.cs",
               "RelativeDocumentMoniker": "Models\\ForestFire.cs",
               "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\ForestFire.cs",
               "RelativeToolTip": "Models\\ForestFire.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwH0AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-25T13:48:52.354Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GridDisplay.cs [Design]",
               "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
               "RelativeDocumentMoniker": "Display\\GridDisplay.cs",
@@ -51,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "GridDisplay.cs",
               "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
               "RelativeDocumentMoniker": "Display\\GridDisplay.cs",
               "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
               "RelativeToolTip": "Display\\GridDisplay.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAkwCcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAUwEQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-25T13:39:25.509Z",
               "EditorCaption": ""
