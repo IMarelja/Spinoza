@@ -44,6 +44,11 @@
             btnNext = new Button();
             btnBack = new Button();
             cbAutomataSelect = new ComboBox();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            colorDialog1 = new ColorDialog();
+            btnGoBackToMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)nudRows).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudColumns).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTree).BeginInit();
@@ -61,7 +66,7 @@
             // 
             // rtxtDisplay
             // 
-            rtxtDisplay.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            rtxtDisplay.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             rtxtDisplay.Location = new Point(293, 0);
             rtxtDisplay.Margin = new Padding(4, 5, 4, 5);
             rtxtDisplay.Name = "rtxtDisplay";
@@ -209,11 +214,46 @@
             cbAutomataSelect.TabIndex = 19;
             cbAutomataSelect.SelectedIndexChanged += cbAutomataSelect_SelectedIndexChanged;
             // 
+            // panel1
+            // 
+            panel1.Location = new Point(11, 374);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(54, 46);
+            panel1.TabIndex = 20;
+            // 
+            // panel2
+            // 
+            panel2.Location = new Point(12, 426);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(54, 46);
+            panel2.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            panel3.Location = new Point(11, 478);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(54, 46);
+            panel3.TabIndex = 21;
+            // 
+            // btnGoBackToMenu
+            // 
+            btnGoBackToMenu.Location = new Point(11, 891);
+            btnGoBackToMenu.Name = "btnGoBackToMenu";
+            btnGoBackToMenu.Size = new Size(274, 54);
+            btnGoBackToMenu.TabIndex = 22;
+            btnGoBackToMenu.Text = "Go back to menu";
+            btnGoBackToMenu.UseVisualStyleBackColor = true;
+            btnGoBackToMenu.Click += btnGoBackToMenu_Click;
+            // 
             // GridDisplay
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1400, 1032);
+            Controls.Add(btnGoBackToMenu);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(cbAutomataSelect);
             Controls.Add(btnBack);
             Controls.Add(btnNext);
@@ -261,5 +301,10 @@
         private Button btnNext;
         private Button btnBack;
         private ComboBox cbAutomataSelect;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private ColorDialog colorDialog1;
+        private Button btnGoBackToMenu;
     }
 }

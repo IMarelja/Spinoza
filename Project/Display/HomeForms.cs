@@ -15,9 +15,12 @@ namespace Display
     {
         public HomeForms()
         {
-            Init();
             InitializeComponent();
+            Init();
+            gd = new GridDisplay(this);
         }
+
+        GridDisplay gd;
 
         private void Init()
         {
@@ -45,30 +48,30 @@ namespace Display
 
         private void btnLangtonsAnt_Click(object sender, EventArgs e)
         {
-            GridDisplay gd = new GridDisplay();
+            this.Hide();
+            gd.setSelectAutomata(3);
             gd.ShowDialog();
-            this.Close();
         }
 
         private void btnForestFire_Click(object sender, EventArgs e)
         {
-            GridDisplay gd = new GridDisplay();
+            this.Hide();
+            gd.setSelectAutomata(2);
             gd.ShowDialog();
-            this.Close();
         }
 
         private void btnBriansBrain_Click(object sender, EventArgs e)
         {
-            GridDisplay gd = new GridDisplay();
+            this.Hide();
+            gd.setSelectAutomata(1);
             gd.ShowDialog();
-            this.Close();
         }
 
         private void btnGameOfLife_Click(object sender, EventArgs e)
         {
-            GridDisplay gd = new GridDisplay();
+            this.Hide();
+            gd.setSelectAutomata(0);
             gd.ShowDialog();
-            this.Close();
         }
     }
 }
