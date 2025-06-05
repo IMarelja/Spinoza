@@ -15,12 +15,12 @@ namespace Display
         {
             switch (selectedAutomata)
             {
-                case 0: 
+                case 0:
                     //intialisation for game of life grid
                     return;
                 case 1:
                     //initalisation for brian's brain grid
-                    return; 
+                    return;
                 case 2:
                     automata = new Forest((int)nudColumns.Value, (int)nudRows.Value, (int)nudTree.Value, (int)nudFire.Value);
                     return;
@@ -31,7 +31,7 @@ namespace Display
                     return;
             }
 
-            
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

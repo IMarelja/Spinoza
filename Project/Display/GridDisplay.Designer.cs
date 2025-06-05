@@ -53,43 +53,48 @@
             // splitter1
             // 
             splitter1.Location = new Point(0, 0);
+            splitter1.Margin = new Padding(4, 5, 4, 5);
             splitter1.Name = "splitter1";
-            splitter1.Size = new Size(208, 619);
+            splitter1.Size = new Size(297, 1032);
             splitter1.TabIndex = 0;
             splitter1.TabStop = false;
             // 
             // rtxtDisplay
             // 
             rtxtDisplay.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            rtxtDisplay.Location = new Point(205, 0);
+            rtxtDisplay.Location = new Point(293, 0);
+            rtxtDisplay.Margin = new Padding(4, 5, 4, 5);
             rtxtDisplay.Name = "rtxtDisplay";
-            rtxtDisplay.Size = new Size(776, 578);
+            rtxtDisplay.Size = new Size(1107, 961);
             rtxtDisplay.TabIndex = 1;
             rtxtDisplay.Text = "";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(7, 57);
+            label1.Location = new Point(11, 97);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(35, 15);
+            label1.Size = new Size(54, 25);
             label1.TabIndex = 4;
             label1.Text = "Rows";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(7, 86);
+            label2.Location = new Point(11, 145);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(55, 15);
+            label2.Size = new Size(82, 25);
             label2.TabIndex = 5;
             label2.Text = "Columns";
             // 
             // btnInitGrid
             // 
-            btnInitGrid.Location = new Point(99, 187);
+            btnInitGrid.Location = new Point(142, 314);
+            btnInitGrid.Margin = new Padding(4, 5, 4, 5);
             btnInitGrid.Name = "btnInitGrid";
-            btnInitGrid.Size = new Size(100, 23);
+            btnInitGrid.Size = new Size(143, 38);
             btnInitGrid.TabIndex = 6;
             btnInitGrid.Text = "Intialise Grid";
             btnInitGrid.UseVisualStyleBackColor = true;
@@ -98,76 +103,85 @@
             // lblTreeProb
             // 
             lblTreeProb.AutoSize = true;
-            lblTreeProb.Location = new Point(7, 128);
+            lblTreeProb.Location = new Point(11, 215);
+            lblTreeProb.Margin = new Padding(4, 0, 4, 0);
             lblTreeProb.Name = "lblTreeProb";
-            lblTreeProb.Size = new Size(86, 15);
+            lblTreeProb.Size = new Size(127, 25);
             lblTreeProb.TabIndex = 7;
             lblTreeProb.Text = "Chance of Tree";
             // 
             // lblFireProb
             // 
             lblFireProb.AutoSize = true;
-            lblFireProb.Location = new Point(7, 157);
+            lblFireProb.Location = new Point(11, 264);
+            lblFireProb.Margin = new Padding(4, 0, 4, 0);
             lblFireProb.Name = "lblFireProb";
-            lblFireProb.Size = new Size(83, 15);
+            lblFireProb.Size = new Size(124, 25);
             lblFireProb.TabIndex = 10;
             lblFireProb.Text = "Chance of Fire";
             // 
             // lblTreePercent
             // 
             lblTreePercent.AutoSize = true;
-            lblTreePercent.Location = new Point(182, 128);
+            lblTreePercent.Location = new Point(261, 215);
+            lblTreePercent.Margin = new Padding(4, 0, 4, 0);
             lblTreePercent.Name = "lblTreePercent";
-            lblTreePercent.Size = new Size(17, 15);
+            lblTreePercent.Size = new Size(27, 25);
             lblTreePercent.TabIndex = 11;
             lblTreePercent.Text = "%";
             // 
             // lblFirePercent
             // 
             lblFirePercent.AutoSize = true;
-            lblFirePercent.Location = new Point(182, 157);
+            lblFirePercent.Location = new Point(261, 264);
+            lblFirePercent.Margin = new Padding(4, 0, 4, 0);
             lblFirePercent.Name = "lblFirePercent";
-            lblFirePercent.Size = new Size(17, 15);
+            lblFirePercent.Size = new Size(27, 25);
             lblFirePercent.TabIndex = 12;
             lblFirePercent.Text = "%";
             // 
             // nudRows
             // 
-            nudRows.Location = new Point(99, 55);
+            nudRows.Location = new Point(142, 94);
+            nudRows.Margin = new Padding(4, 5, 4, 5);
             nudRows.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudRows.Name = "nudRows";
-            nudRows.Size = new Size(100, 23);
+            nudRows.Size = new Size(143, 31);
             nudRows.TabIndex = 13;
             // 
             // nudColumns
             // 
-            nudColumns.Location = new Point(99, 86);
+            nudColumns.Location = new Point(142, 145);
+            nudColumns.Margin = new Padding(4, 5, 4, 5);
             nudColumns.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudColumns.Name = "nudColumns";
-            nudColumns.Size = new Size(100, 23);
+            nudColumns.Size = new Size(143, 31);
             nudColumns.TabIndex = 14;
             // 
             // nudTree
             // 
-            nudTree.Location = new Point(99, 126);
+            nudTree.Location = new Point(142, 212);
+            nudTree.Margin = new Padding(4, 5, 4, 5);
             nudTree.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudTree.Name = "nudTree";
-            nudTree.Size = new Size(77, 23);
+            nudTree.Size = new Size(110, 31);
             nudTree.TabIndex = 15;
             // 
             // nudFire
             // 
-            nudFire.Location = new Point(99, 155);
+            nudFire.Location = new Point(142, 260);
+            nudFire.Margin = new Padding(4, 5, 4, 5);
             nudFire.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudFire.Name = "nudFire";
-            nudFire.Size = new Size(77, 23);
+            nudFire.Size = new Size(110, 31);
             nudFire.TabIndex = 16;
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(893, 584);
+            btnNext.Location = new Point(1276, 973);
+            btnNext.Margin = new Padding(4, 5, 4, 5);
             btnNext.Name = "btnNext";
-            btnNext.Size = new Size(75, 23);
+            btnNext.Size = new Size(107, 38);
             btnNext.TabIndex = 17;
             btnNext.Text = "Next";
             btnNext.UseVisualStyleBackColor = true;
@@ -175,9 +189,10 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(214, 584);
+            btnBack.Location = new Point(306, 973);
+            btnBack.Margin = new Padding(4, 5, 4, 5);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(75, 23);
+            btnBack.Size = new Size(107, 38);
             btnBack.TabIndex = 18;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -187,17 +202,18 @@
             // 
             cbAutomataSelect.FormattingEnabled = true;
             cbAutomataSelect.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbAutomataSelect.Location = new Point(13, 12);
+            cbAutomataSelect.Location = new Point(21, 34);
+            cbAutomataSelect.Margin = new Padding(4, 5, 4, 5);
             cbAutomataSelect.Name = "cbAutomataSelect";
-            cbAutomataSelect.Size = new Size(186, 23);
+            cbAutomataSelect.Size = new Size(264, 33);
             cbAutomataSelect.TabIndex = 19;
             cbAutomataSelect.SelectedIndexChanged += cbAutomataSelect_SelectedIndexChanged;
             // 
             // GridDisplay
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(980, 619);
+            ClientSize = new Size(1400, 1032);
             Controls.Add(cbAutomataSelect);
             Controls.Add(btnBack);
             Controls.Add(btnNext);
@@ -214,6 +230,7 @@
             Controls.Add(label1);
             Controls.Add(rtxtDisplay);
             Controls.Add(splitter1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "GridDisplay";
             Text = "Grid Display";
             ((System.ComponentModel.ISupportInitialize)nudRows).EndInit();
