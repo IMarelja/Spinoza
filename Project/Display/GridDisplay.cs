@@ -33,7 +33,7 @@ namespace Display
                     automata = new Forest((int)nudColumns.Value, (int)nudRows.Value, (int)nudTree.Value, (int)nudFire.Value);
                     return;
                 case 3:
-                    //intialisation for langton's ant grid
+                    automata = new LangtonsGrid((int)nudColumns.Value, (int)nudRows.Value);
                     return;
                 default:
                     return;
@@ -63,6 +63,7 @@ namespace Display
             rtxtDisplay.Text = "";
             int sizeWidth = rtxtDisplay.Size.Width / ((int)nudColumns.Value * 2);
             if (sizeWidth == 0) sizeWidth = 1;
+            else if (sizeWidth > 20) sizeWidth = 20; //we can change this latter
             rtxtDisplay.Font = new Font(rtxtDisplay.Font.FontFamily, sizeWidth);
             cells = automata.NextStep();
             for (int x = 0; x < (int)nudColumns.Value; x++)
