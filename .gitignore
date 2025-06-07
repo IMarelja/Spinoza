@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Project/Display/bin/Debug/net8.0-windows
+/Project/Models/bin/Debug/net8.0
+/Project/Models/obj
