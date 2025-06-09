@@ -5,3 +5,5 @@
 /Project/Display/bin/Debug/net8.0-windows
 /Project/Models/bin/Debug/net8.0
 /Project/Models/obj
+/Project/Display/Display.csproj
+/Project/MiddleWareSimulation/MiddleWareSimulation.csproj
