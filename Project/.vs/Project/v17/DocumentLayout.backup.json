@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\",
+  "WorkspaceRootPath": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\users\\ozdog\\source\\projects\\spinoza\\project\\models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\users\\ozdog\\source\\projects\\spinoza\\project\\models\\langtonsant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\langtonsant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\users\\ozdog\\source\\projects\\spinoza\\project\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\users\\ozdog\\source\\projects\\spinoza\\project\\display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\griddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\models\\abstract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\abstract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|c:\\personal\\university\\paad\\spinoza\\spinoza\\project\\models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{695E28B8-F310-4835-88F5-1EA5BA21283E}|Models\\Models.csproj|solutionrelative:models\\forestfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|c:\\users\\ozdog\\source\\projects\\spinoza\\project\\display\\homeforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9BB38037-0692-4D52-9DA3-62BB388F3661}|Display\\Display.csproj|solutionrelative:display\\homeforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +30,78 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Abstract.cs",
-              "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\Abstract.cs",
-              "RelativeDocumentMoniker": "Models\\Abstract.cs",
-              "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\Abstract.cs",
-              "RelativeToolTip": "Models\\Abstract.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T19:45:22.371Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ForestFire.cs",
-              "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\ForestFire.cs",
-              "RelativeDocumentMoniker": "Models\\ForestFire.cs",
-              "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Models\\ForestFire.cs",
-              "RelativeToolTip": "Models\\ForestFire.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAAzAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T13:48:52.354Z",
+              "WhenOpened": "2025-06-09T17:51:39.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GridDisplay.cs [Design]",
-              "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
-              "RelativeDocumentMoniker": "Display\\GridDisplay.cs",
-              "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs [Design]",
-              "RelativeToolTip": "Display\\GridDisplay.cs [Design]",
+              "Title": "LangtonsAnt.cs",
+              "DocumentMoniker": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\LangtonsAnt.cs",
+              "RelativeDocumentMoniker": "Models\\LangtonsAnt.cs",
+              "ToolTip": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\LangtonsAnt.cs",
+              "RelativeToolTip": "Models\\LangtonsAnt.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T13:57:01.126Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-06-09T17:51:38.786Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GridDisplay.cs",
-              "DocumentMoniker": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
-              "RelativeDocumentMoniker": "Display\\GridDisplay.cs",
-              "ToolTip": "C:\\Personal\\University\\PAAD\\Spinoza\\Spinoza\\Project\\Display\\GridDisplay.cs",
-              "RelativeToolTip": "Display\\GridDisplay.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAUwEQAAAAiAAAAAAAAAA==",
+              "Title": "ForestFire.cs",
+              "DocumentMoniker": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\ForestFire.cs",
+              "RelativeDocumentMoniker": "Models\\ForestFire.cs",
+              "ToolTip": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Models\\ForestFire.cs",
+              "RelativeToolTip": "Models\\ForestFire.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T13:39:25.509Z",
+              "WhenOpened": "2025-06-09T17:51:37.773Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GridDisplay.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Display\\GridDisplay.cs",
+              "RelativeDocumentMoniker": "Display\\GridDisplay.cs",
+              "ToolTip": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Display\\GridDisplay.cs [Design]",
+              "RelativeToolTip": "Display\\GridDisplay.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:49:11.104Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomeForms.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Display\\HomeForms.cs",
+              "RelativeDocumentMoniker": "Display\\HomeForms.cs",
+              "ToolTip": "C:\\Users\\ozdog\\source\\projects\\Spinoza\\Project\\Display\\HomeForms.cs [Design]",
+              "RelativeToolTip": "Display\\HomeForms.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:49:08.992Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
