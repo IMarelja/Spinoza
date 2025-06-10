@@ -70,7 +70,7 @@ namespace Models
                 }
             }
 
-            while (numberOfCell != 0)
+            while (numberOfCell <= 0)
             {
                 int x = rand.Next(squareCenterXTopLeft, squareCenterXTopLeft + squareDimensions);
                 int y = rand.Next(squareCenterYTopLeft, squareCenterYTopLeft + squareDimensions);
@@ -78,6 +78,7 @@ namespace Models
                 if (!(_currentBrainsInTable[x, y].getStatus() != BrainsStatus.On))
                 {
                     _currentBrainsInTable[x, y] = new BrainCell(BrainsStatus.On);
+                    numberOfCell--;
                 }
             }
         }
