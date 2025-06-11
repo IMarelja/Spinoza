@@ -1,4 +1,4 @@
-﻿namespace MiddleWareSimulation.Moduls
+﻿namespace Moduls
 {
     public class AuthLogin
     {
