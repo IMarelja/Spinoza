@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using MiddleWareSimulation.Data;
 using MiddleWareSimulation.Services;
 using Models;
 using System.Data;

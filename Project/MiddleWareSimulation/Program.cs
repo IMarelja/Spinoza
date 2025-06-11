@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using MiddleWareSimulation.Data;
 using MiddleWareSimulation.Services;
 
 var builder = WebApplication.CreateBuilder(args);
