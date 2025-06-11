@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using MiddleWareSimulation.Moduls;
 using MiddleWareSimulation.Services;
 using Models;
 

@@ -1,4 +1,4 @@
-﻿namespace Moduls
+﻿namespace Models
 {
     public class AuthLogin
     {
