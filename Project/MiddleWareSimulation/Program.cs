@@ -18,8 +18,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Edit this file depending on the service
-builder.Services.AddDbContext<SpinozaDBContext>(options =>
-    options.UseSqlServer("Server=IM-SCHOOL-T460S;Database=Spinoza;User Id=sas;Password=SQL;TrustServerCertificate=true;"));
+builder.Services.AddScoped<IAuthService>(provider =>
+    new AuthService("Server=IM-SCHOOL-T460S;Database=Spinoza;User Id=sas;Password=SQL;TrustServerCertificate=true;"));
+
 
 var app = builder.Build();
 

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using MiddleWareSimulation.Models;
+using MiddleWareSimulation.Moduls;
 using MiddleWareSimulation.Services;
+using Models;
 
 namespace MiddleWareSimulation.Controllers
 {
@@ -17,24 +18,31 @@ namespace MiddleWareSimulation.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User loginUser)
+        public async Task<IActionResult> Login([FromBody] AuthLogin loginUser)
         {
-            User user = await _authService.LoginAsync(loginUser);
-            if (user == null)
+            bool success = await _authService.AuthenticateUserAsync(loginUser.username, loginUser.password);
+            if (!success)
                 return Unauthorized("Invalid credentials");
 
-            return Ok(new { message = "Login successful", userId = user.ID });
+            return Ok(new { message = "Login successful" });
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User newUser)
+        public async Task<IActionResult> Register([FromBody] AuthLogin newUser)
         {
-            User user = await _authService.RegisterAsync(newUser);
-            if (user == null)
+            // Check if user already exists
+            var existingUser = await _authService.GetUserByUsernameAsync(newUser.username);
+            if (existingUser != null)
                 return BadRequest("Username already exists");
 
-            return Ok(new { message = "Registration successful", userId = user.ID });
+            User newnewUser = new User
+            {
+                username = newUser.username,
+                passwordHash = _authService.HashPassword(newUser.password)
+            };
+
+            int userId = await _authService.CreateUserAsync(newnewUser);
+            return Ok(new { message = "Registration successful", userId });
         }
     }
-
 }
