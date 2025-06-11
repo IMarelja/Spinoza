@@ -17,8 +17,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Edit this file depending on the service
+//---------------------------------------------------------------------------------------------------------------------------------
+// (!) Configure the "appsettings.json" file NOT HERE for "DefaultConnection" to the SQL server and git ignore any changes to it (!)
+//---------------------------------------------------------------------------------------------------------------------------------
 builder.Services.AddScoped<IAuthService>(provider =>
-    new AuthService("Server=IM-SCHOOL-T460S;Database=Spinoza;User Id=sas;Password=SQL;TrustServerCertificate=true;"));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    return new AuthService(connectionString);
+});
+
 
 
 var app = builder.Build();

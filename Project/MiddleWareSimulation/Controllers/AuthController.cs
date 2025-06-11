@@ -22,7 +22,7 @@ namespace MiddleWareSimulation.Controllers
         {
             bool success = await _authService.AuthenticateUserAsync(loginUser.username, loginUser.password);
             if (!success)
-                return Unauthorized("Invalid credentials");
+                return Unauthorized(new { message = "Invalid credentials" });
 
             return Ok(new { message = "Login successful" });
         }
@@ -33,7 +33,7 @@ namespace MiddleWareSimulation.Controllers
             // Check if user already exists
             var existingUser = await _authService.GetUserByUsernameAsync(newUser.username);
             if (existingUser != null)
-                return BadRequest("Username already exists");
+                return BadRequest(new { message = "Username already exists" });
 
             User newnewUser = new User
             {
