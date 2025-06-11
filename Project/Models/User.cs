@@ -1,4 +1,4 @@
-﻿namespace MiddleWareSimulation.Models
+namespace Models
 {
     public class User
     {

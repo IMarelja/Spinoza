@@ -4,5 +4,14 @@
     <Compile Update="GridDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="HomeForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
