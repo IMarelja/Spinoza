@@ -168,6 +168,19 @@ namespace Models
                 
         }
 
-        
+        public override int[,] CurrentState()
+        {
+            int[,] data = new int[_columns, _rows];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    data[x, y] = _currentBrainsInTable[x, y].Print();
+                }
+            }
+
+            return data;
+        }
     }
 }

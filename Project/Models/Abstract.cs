@@ -10,6 +10,7 @@
 
     public abstract class Grid
     {
+        public abstract int[,] CurrentState();
         public abstract int[,] NextStep();
         public abstract int[,] BackStep();
 
