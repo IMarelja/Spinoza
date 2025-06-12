@@ -33,7 +33,6 @@
             btnBriansBrain = new Button();
             btnForestFire = new Button();
             btnLangtonsAnt = new Button();
-            btnLogin = new Button();
             btnLogOut = new Button();
             label1 = new Label();
             SuspendLayout();
@@ -94,21 +93,10 @@
             btnLangtonsAnt.UseVisualStyleBackColor = true;
             btnLangtonsAnt.Click += btnLangtonsAnt_Click;
             // 
-            // btnLogin
-            // 
-            btnLogin.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            btnLogin.Location = new Point(1243, 40);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(145, 83);
-            btnLogin.TabIndex = 4;
-            btnLogin.Text = "Log In";
-            btnLogin.UseVisualStyleBackColor = true;
-            btnLogin.Click += btnLogin_Click;
-            // 
             // btnLogOut
             // 
             btnLogOut.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            btnLogOut.Location = new Point(1243, 139);
+            btnLogOut.Location = new Point(1243, 27);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(145, 83);
             btnLogOut.TabIndex = 5;
@@ -132,7 +120,6 @@
             ClientSize = new Size(1400, 1032);
             Controls.Add(label1);
             Controls.Add(btnLogOut);
-            Controls.Add(btnLogin);
             Controls.Add(btnLangtonsAnt);
             Controls.Add(btnForestFire);
             Controls.Add(btnBriansBrain);
@@ -149,7 +136,6 @@
         private Button btnBriansBrain;
         private Button btnForestFire;
         private Button btnLangtonsAnt;
-        private Button btnLogin;
         private Button btnLogOut;
         private Label label1;
     }
