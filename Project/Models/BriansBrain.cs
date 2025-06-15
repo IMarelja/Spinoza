@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    enum BrainsStatus { On, Dying, Off }
+    public enum BrainsStatus { On, Dying, Off }
     internal class BrainCell : Cell
     {
         private BrainsStatus _status;
@@ -55,27 +55,28 @@ namespace Models
         private int _columns;
         private int _numberOfCell;
 
-        public Brain(int xAxis, int yAxis, int cell, int squareDimensions, int numberOfCell)
+        public Brain(int xAxis, int yAxis, int squareDimensions, int numberOfCell)
         {
-            int squareCenterXTopLeft = (xAxis / 2) - (squareDimensions / 2);
-            int squareCenterYTopLeft = (yAxis / 2) - (squareDimensions / 2);
-            _currentBrainsInTable = new BrainCell[xAxis, yAxis];
+            _columns = xAxis;
+            _rows = yAxis;
+            int squareCenterXTopLeft = (_columns / 2) - (squareDimensions / 2);
+            int squareCenterYTopLeft = (_rows / 2) - (squareDimensions / 2);
+            _currentBrainsInTable = new BrainCell[_columns, _rows];
             Random rand = new Random();
 
-            for (int y = 0; y < yAxis; y++)
+            for (int y = 0; y < _rows; y++)
             {
-                for (int x = 0; x < xAxis; x++)
+                for (int x = 0; x < _columns; x++)
                 {
                     _currentBrainsInTable[x, y] = new BrainCell(BrainsStatus.Off);
                 }
             }
 
-            while (numberOfCell <= 0)
+            while (numberOfCell > 0)
             {
                 int x = rand.Next(squareCenterXTopLeft, squareCenterXTopLeft + squareDimensions);
                 int y = rand.Next(squareCenterYTopLeft, squareCenterYTopLeft + squareDimensions);
-
-                if (!(_currentBrainsInTable[x, y].getStatus() != BrainsStatus.On))
+                if (_currentBrainsInTable[x, y].getStatus() != BrainsStatus.On)
                 {
                     _currentBrainsInTable[x, y] = new BrainCell(BrainsStatus.On);
                     numberOfCell--;
