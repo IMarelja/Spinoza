@@ -13,5 +13,8 @@
     <Compile Update="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SimulationControls\BriansBrainController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

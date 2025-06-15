@@ -65,8 +65,16 @@ namespace Display
         private void btnBriansBrain_Click(object sender, EventArgs e)
         {
             this.Hide();
+            this.Hide();
+            var homeForm = new GridSimulationForm();
+
+            Cursor.Current = Cursors.Default;
+            homeForm.Closed += (object_sender, EventArgs_e) => this.Close();
+            homeForm.Show();
+            /*
             gd.setSelectAutomata(1);
             gd.ShowDialog();
+            */
         }
 
         private void btnGameOfLife_Click(object sender, EventArgs e)
