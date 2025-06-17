@@ -11,7 +11,7 @@ namespace Models
 
     internal class TreeCell : Cell
     {
-        private ForestStatus _previousStatus;
+        private Stack<ForestStatus> _previousStatus = new();
         private ForestStatus _status;
         private ForestStatus _nextStatus;
         private int _p;
@@ -29,7 +29,7 @@ namespace Models
         //calculates next status
         public override void Update()
         {
-            _previousStatus = _status;
+            _previousStatus.Push(_status);
             _status = _nextStatus;
             if (_status == ForestStatus.Burning)
                 _nextStatus = ForestStatus.Empty;
@@ -44,13 +44,7 @@ namespace Models
         public override void Undo()
         {
             _nextStatus = _status ;
-            _status = _previousStatus;
-            if (_status == ForestStatus.Burning)
-                _previousStatus = ForestStatus.Tree;
-            if (_status == ForestStatus.Tree && ProbabilityCalculation(_p))
-                _previousStatus = ForestStatus.Empty;
-            if (_status == ForestStatus.Empty && ProbabilityCalculation(_f))
-                _previousStatus = ForestStatus.Burning;
+            _status = _previousStatus.Pop();
         }
 
         //check if cell next to is burning
@@ -106,6 +100,19 @@ namespace Models
                 for (int x = 0; x < _columns; x++)
                 {
                     _table[x, y].Undo();
+                    data[x, y] = _table[x, y].Print();
+                }
+            }
+            return data;
+        }
+
+        public override int[,] CurrentState()
+        {
+            int[,] data = new int[_columns, _rows];
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
                     data[x, y] = _table[x, y].Print();
                 }
             }

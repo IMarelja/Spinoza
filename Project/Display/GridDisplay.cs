@@ -7,13 +7,14 @@ namespace Display
         {
             InitializeComponent();
             this.hf = hf;
-            //btnBack.Hide();
-            //btnNext.Hide();
+            btnBack.Hide();
+            btnNext.Hide();
         }
         int selectedAutomata;
         Grid automata;
         int[,] cells;
         HomeForms hf;
+        Panel[,] panels;
         public void setSelectAutomata(int i)
         {
             selectedAutomata = i;
@@ -21,89 +22,148 @@ namespace Display
         }
         private void btnInitGrid_Click(object sender, EventArgs e)
         {
+            flpGrid.Controls.Clear();
+            panels = new Panel[(int)nudColumns.Value, (int)nudRows.Value];
             switch (selectedAutomata)
             {
                 case 0:
                     //intialisation for game of life grid
-                    return;
+                    break;
                 case 1:
                     //initalisation for brian's brain grid
-                    return;
+                    break;
                 case 2:
                     automata = new Forest((int)nudColumns.Value, (int)nudRows.Value, (int)nudTree.Value, (int)nudFire.Value);
-                    return;
+                    break;
                 case 3:
                     automata = new LangtonsGrid((int)nudColumns.Value, (int)nudRows.Value);
-                    return;
+                    break;
                 default:
                     return;
             }
-            //btnBack.Visible= true;
-            //btnNext.Visible = true;
-
-
+            btnBack.Show();
+            btnNext.Show();
+            double sizeWidth = flpGrid.Size.Width / ((int)nudColumns.Value);
+            double sizeHeight = flpGrid.Size.Height / ((int)nudRows.Value);
+            if (sizeWidth == 0) sizeWidth = 1;
+            if (sizeHeight == 0) sizeHeight = 1;
+            for (int i = 0; i < nudRows.Value; i++)
+            {
+                for (int j = 0; j < nudColumns.Value; j++)
+                {
+                    panels[j, i] = new Panel()
+                    {
+                        Size = new Size((int)sizeWidth, (int)sizeHeight),
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Padding = new Padding(0),
+                        Margin = new Padding(0)
+                    };
+                    flpGrid.Controls.Add(panels[j, i]);
+                    panels[j, i].Show();
+                }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            rtxtDisplay.Text = "";
             cells = automata.BackStep();
-            for (int x = 0; x < (int)nudColumns.Value; x++)
+            for (int x = 0; x < nudColumns.Value; x++)
             {
-                for (int y = 0; y < (int)nudRows.Value; y++)
+                for (int y = 0; y < nudRows.Value; y++)
                 {
-                    rtxtDisplay.AppendText(cells[x, y] + "  ");
+                    UpdateBackColor(cells[x, y], panels[x, y]);
                 }
-                rtxtDisplay.AppendText(Environment.NewLine);
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            rtxtDisplay.Text = "";
-            int sizeWidth = rtxtDisplay.Size.Width / ((int)nudColumns.Value * 2);
-            if (sizeWidth == 0) sizeWidth = 1;
-            else if (sizeWidth > 20) sizeWidth = 20; //we can change this latter
-            rtxtDisplay.Font = new Font(rtxtDisplay.Font.FontFamily, sizeWidth);
             cells = automata.NextStep();
-            for (int x = 0; x < (int)nudColumns.Value; x++)
+            for (int y = 0; y < nudRows.Value; y++)
             {
-                for (int y = 0; y < (int)nudRows.Value; y++)
+                for (int x = 0; x < nudColumns.Value; x++)
                 {
-                    rtxtDisplay.AppendText(cells[x, y] + "  ");
+                    UpdateBackColor(cells[x, y], panels[x, y]);
                 }
-                rtxtDisplay.AppendText(Environment.NewLine);
             }
+            
         }
 
         private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             selectedAutomata = cbAutomataSelect.SelectedIndex;
-            if (selectedAutomata == 2)
+            lblTreeProb.Hide();
+            nudTree.Hide();
+            lblTreePercent.Hide();
+            lblFireProb.Hide();
+            nudFire.Hide();
+            lblFirePercent.Hide();
+
+
+            switch (selectedAutomata)
             {
-                lblTreeProb.Show();
-                nudTree.Show();
-                lblTreePercent.Show();
-                lblFireProb.Show();
-                nudFire.Show();
-                lblFirePercent.Show();
+                case 0:
+                    return;
+                case 1:
+                    return;
+                case 2:
+                    ForestFireForm();
+                    return;
+                case 3:
+                    return;
+                default:
+                    return;
             }
-            else
-            {
-                lblTreeProb.Hide();
-                nudTree.Hide();
-                lblTreePercent.Hide();
-                lblFireProb.Hide();
-                nudFire.Hide();
-                lblFirePercent.Hide();
-            }
+        }
+
+        private void ForestFireForm()
+        {
+            lblTreeProb.Show();
+            nudTree.Show();
+            lblTreePercent.Show();
+            lblFireProb.Show();
+            nudFire.Show();
+            lblFirePercent.Show();
+            lblCell1.Text = "Empty";
+            lblCell2.Text = "Tree";
+            lblCell3.Text = "Fire";
+            pnlCell1.BackColor = Color.White;
+            pnlCell2.BackColor = Color.Green;
+            pnlCell3.BackColor = Color.Red;
         }
 
         private void btnGoBackToMenu_Click(object sender, EventArgs e)
         {
             this.Hide();
             hf.Show();
+        }
+
+        private void UpdateBackColor(int num, Panel pnl)
+        {
+            switch (num)
+            {
+                case 0: pnl.BackColor = pnlCell1.BackColor; break;
+                case 1: pnl.BackColor = pnlCell2.BackColor; break;
+                case 2: pnl.BackColor = pnlCell3.BackColor; break;
+            }
+        }
+
+        private void btnSelectColour1_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            pnlCell1.BackColor = colorDialog.Color;
+        }
+
+        private void btnSelectColour2_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            pnlCell2.BackColor = colorDialog.Color;
+        }
+
+        private void btnSelectColour3_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            pnlCell3.BackColor = colorDialog.Color;
         }
     }
 }
