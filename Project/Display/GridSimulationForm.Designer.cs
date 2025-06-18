@@ -41,9 +41,10 @@
             // 
             // btnNextState
             // 
-            btnNextState.Location = new Point(887, 553);
+            btnNextState.Location = new Point(1267, 922);
+            btnNextState.Margin = new Padding(4, 5, 4, 5);
             btnNextState.Name = "btnNextState";
-            btnNextState.Size = new Size(83, 32);
+            btnNextState.Size = new Size(119, 53);
             btnNextState.TabIndex = 17;
             btnNextState.Text = "Next";
             btnNextState.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             // btnBackState
             // 
-            btnBackState.Location = new Point(214, 553);
+            btnBackState.Location = new Point(306, 922);
+            btnBackState.Margin = new Padding(4, 5, 4, 5);
             btnBackState.Name = "btnBackState";
-            btnBackState.Size = new Size(83, 32);
+            btnBackState.Size = new Size(119, 53);
             btnBackState.TabIndex = 18;
             btnBackState.Text = "Back";
             btnBackState.UseVisualStyleBackColor = true;
@@ -61,10 +63,9 @@
             // 
             // btnLogOut
             // 
-            btnLogOut.Location = new Point(8, 551);
-            btnLogOut.Margin = new Padding(2);
+            btnLogOut.Location = new Point(11, 918);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(87, 32);
+            btnLogOut.Size = new Size(124, 53);
             btnLogOut.TabIndex = 22;
             btnLogOut.Text = "Log out";
             btnLogOut.UseVisualStyleBackColor = true;
@@ -72,29 +73,27 @@
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(113, 551);
-            btnExport.Margin = new Padding(2);
+            btnExport.Location = new Point(161, 918);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(87, 32);
+            btnExport.Size = new Size(124, 53);
             btnExport.TabIndex = 23;
             btnExport.Text = "Export";
             btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // panelControls
             // 
             panelControls.BorderStyle = BorderStyle.FixedSingle;
-            panelControls.Location = new Point(7, 72);
-            panelControls.Margin = new Padding(2);
+            panelControls.Location = new Point(10, 120);
             panelControls.Name = "panelControls";
-            panelControls.Size = new Size(193, 477);
+            panelControls.Size = new Size(275, 794);
             panelControls.TabIndex = 24;
             // 
             // btnBackToMenu
             // 
-            btnBackToMenu.Location = new Point(7, 7);
-            btnBackToMenu.Margin = new Padding(2);
+            btnBackToMenu.Location = new Point(10, 12);
             btnBackToMenu.Name = "btnBackToMenu";
-            btnBackToMenu.Size = new Size(192, 36);
+            btnBackToMenu.Size = new Size(274, 60);
             btnBackToMenu.TabIndex = 26;
             btnBackToMenu.Text = "Back to menu";
             btnBackToMenu.UseVisualStyleBackColor = true;
@@ -103,26 +102,28 @@
             // 
             cbAutomataSelect.FormattingEnabled = true;
             cbAutomataSelect.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbAutomataSelect.Location = new Point(7, 47);
+            cbAutomataSelect.Location = new Point(10, 78);
+            cbAutomataSelect.Margin = new Padding(4, 5, 4, 5);
             cbAutomataSelect.Name = "cbAutomataSelect";
-            cbAutomataSelect.Size = new Size(194, 23);
+            cbAutomataSelect.Size = new Size(275, 33);
             cbAutomataSelect.TabIndex = 34;
             cbAutomataSelect.SelectedIndexChanged += cbAutomataSelect_SelectedIndexChanged;
             // 
             // panelSimulationGrid
             // 
             panelSimulationGrid.BorderStyle = BorderStyle.FixedSingle;
-            panelSimulationGrid.Location = new Point(214, 7);
+            panelSimulationGrid.Location = new Point(306, 12);
+            panelSimulationGrid.Margin = new Padding(4, 5, 4, 5);
             panelSimulationGrid.Name = "panelSimulationGrid";
-            panelSimulationGrid.Size = new Size(756, 542);
+            panelSimulationGrid.Size = new Size(1079, 902);
             panelSimulationGrid.TabIndex = 35;
             panelSimulationGrid.Paint += panelSimulationGrid_Paint;
             // 
             // GridSimulationForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(980, 593);
+            ClientSize = new Size(1400, 988);
             Controls.Add(panelSimulationGrid);
             Controls.Add(cbAutomataSelect);
             Controls.Add(btnBackToMenu);
@@ -131,6 +132,7 @@
             Controls.Add(btnLogOut);
             Controls.Add(btnBackState);
             Controls.Add(btnNextState);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "GridSimulationForm";
             Text = "Grid Display";
             ResumeLayout(false);

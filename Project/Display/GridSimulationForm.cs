@@ -34,7 +34,7 @@ namespace Display
         {
             cbAutomataSelect.Items.Add("Brians Brain");
             cbAutomataSelect.Items.Add("Forest Fire");
-            cbAutomataSelect.Items.Add("Langtons Ants");
+            cbAutomataSelect.Items.Add("Langtons Ant");
             cbAutomataSelect.Items.Add("Game of Life");
         }
 
@@ -69,7 +69,7 @@ namespace Display
                 brainControl.PropertyChanged += OnUserControlPropertyChanged;
                 simulationController = brainControl;
             }
-            else if ((String)cbAutomataSelect.SelectedItem == "Forest Fire")
+            else if ((String)cbAutomataSelect.SelectedItem == "Langtons Ant")
             {
                 // Add your own
             }
@@ -138,19 +138,39 @@ namespace Display
                 return;
 
 
-            if (gridLayoutFromUserControl is Brain)
-            {
-                InitBrainTable(sender, e);
-            }
-            else if(gridLayoutFromUserControl is Forest)
-            {
+            //if (gridLayoutFromUserControl is Brain)
+            //{
+            //    InitBrainTable(sender, e);
+            //}
+            //else if(gridLayoutFromUserControl is Forest)
+            //{
 
-            }
-            else if (gridLayoutFromUserControl is LangtonsGrid)
-            {
+            //}
+            //else if (gridLayoutFromUserControl is LangtonsGrid)
+            //{
 
+            //}
+
+            switch (gridLayoutFromUserControl)
+            {
+                case Brain brain:
+                    InitBrainTable(sender, e);
+                    break;
+
+                case Forest forest:
+                    // TODO: Add Forest-specific logic here
+                    break;
+
+                case LangtonsGrid langtons:
+                    InitLangtonsAnt(sender, e);
+                    break;
+
+                default:
+                    // Optional: handle unknown type
+                    break;
             }
-            
+
+
         }
 
         private void InitBrainTable(object sender, PaintEventArgs e)
@@ -192,6 +212,55 @@ namespace Display
                     g.DrawRectangle(Pens.Gray, rect); // Optional: draw grid lines
                 }
             }
+        }
+
+        private void InitLangtonsAnt(object sender, PaintEventArgs e)
+        {
+            int[,] data = gridLayoutFromUserControl.CurrentState();
+
+            Graphics g = e.Graphics;
+            int rows = data.GetLength(0);
+            int cols = data.GetLength(1);
+
+            int cellWidth = panelSimulationGrid.Width / cols;
+            int cellHeight = panelSimulationGrid.Height / rows;
+
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < cols; y++)
+                {
+                    Rectangle rect = new Rectangle(y * cellWidth, x * cellHeight, cellWidth, cellHeight);
+                    Color color;
+
+                    if (data[x, y] == -1)
+                    {
+                        // Ant position
+                        color = Color.Red;
+                    }
+                    else if (data[x, y] == 0)
+                    {
+                        // White cell
+                        color = Color.White;
+                    }
+                    else
+                    {
+                        // Black cell
+                        color = Color.Black;
+                    }
+
+                    using (Brush brush = new SolidBrush(color))
+                    {
+                        g.FillRectangle(brush, rect);
+                    }
+
+                    g.DrawRectangle(Pens.Gray, rect); // Optional grid lines
+                }
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
