@@ -2,6 +2,7 @@ using Display.SimulationControls;
 using Models;
 using System.Collections;
 using System.ComponentModel;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 namespace Display
 {
@@ -10,7 +11,7 @@ namespace Display
 
         private Grid gridLayoutFromUserControl;
         private UserControl simulationController;
-
+        private int currentStep = 0;
         public GridSimulationForm()
         {
             InitializeComponent();
@@ -50,6 +51,8 @@ namespace Display
             {
 
             }
+            if (currentStep > 0)
+                currentStep--;
 
         }
 
@@ -57,7 +60,7 @@ namespace Display
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-
+            currentStep++;
         }
 
         private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,6 +178,7 @@ namespace Display
 
         private void InitBrainTable(object sender, PaintEventArgs e)
         {
+            currentStep = 0;
             int[,] data = gridLayoutFromUserControl.CurrentState();
 
             Graphics g = e.Graphics;
@@ -216,6 +220,7 @@ namespace Display
 
         private void InitLangtonsAnt(object sender, PaintEventArgs e)
         {
+            currentStep = 0;
             int[,] data = gridLayoutFromUserControl.CurrentState();
 
             Graphics g = e.Graphics;
@@ -260,7 +265,37 @@ namespace Display
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            // 1. Capture panelSimulationGrid as Bitmap
+            Bitmap bmp = new Bitmap(panelSimulationGrid.Width, panelSimulationGrid.Height);
+            panelSimulationGrid.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
 
+            // 2. Prepare PrintDocument
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (s, ev) =>
+            {
+                // Draw step number
+                Font font = new Font("Arial", 16);
+                string stepText = $"Simulation Step: {currentStep}";
+                ev.Graphics.DrawString(stepText, font, Brushes.Black, new PointF(100, 50));
+
+                // Draw the bitmap
+                ev.Graphics.DrawImage(bmp, new Point(100, 100));
+            };
+
+            // 3. Set printer to "Microsoft Print to PDF"
+            pd.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            pd.PrinterSettings.PrintToFile = true;
+            pd.PrinterSettings.PrintFileName = $"Simulation_Export_Step{currentStep}.pdf";
+
+            try
+            {
+                pd.Print();
+                MessageBox.Show("PDF export successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Export failed: {ex.Message}");
+            }
         }
     }
 }
