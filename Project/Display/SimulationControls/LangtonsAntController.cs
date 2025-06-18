@@ -31,11 +31,11 @@ namespace Display.SimulationControls
         private void Init()
         {
             // Set default values if needed
-            nudRowsTable.Value = 50;
-            nudColumnsTable.Value = 50;
+            nudRowsTable.Value = 10;
+            nudColumnsTable.Value = 10;
             cbIsDefault.Checked = true;
-            nudAreaStartingSquare.Value = 25; // default ant X pos
-            nudNumberOfCellsStartingSquare.Value = 25; // default ant Y pos
+            //nudAreaStartingSquare.Value = 5; // default ant X pos
+            //nudNumberOfCellsStartingSquare.Value = 5; // default ant Y pos
             chbAutoNumberOfSteps.Checked = false;
             nudAutoNumberOfSteps.Enabled = false;
         }

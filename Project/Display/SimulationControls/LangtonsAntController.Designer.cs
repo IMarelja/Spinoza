@@ -152,9 +152,9 @@
             cbIsDefault.AutoSize = true;
             cbIsDefault.Location = new Point(19, 214);
             cbIsDefault.Name = "cbIsDefault";
-            cbIsDefault.Size = new Size(95, 29);
+            cbIsDefault.Size = new Size(158, 29);
             cbIsDefault.TabIndex = 51;
-            cbIsDefault.Text = "Default";
+            cbIsDefault.Text = "Default (center)";
             cbIsDefault.UseVisualStyleBackColor = true;
             // 
             // label3
