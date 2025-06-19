@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
-    enum AntStatus { White, Black }
+    public enum AntStatus { White, Black }
+
     public class LangtonsCell : Cell
     {
         private AntStatus _status;
@@ -45,7 +43,7 @@ namespace Models
         }
     }
 
-    enum Direction { Up, Right, Down, Left }
+    public enum Direction { Up, Right, Down, Left }
 
     public class LangtonsGrid : Grid
     {
@@ -53,15 +51,14 @@ namespace Models
         private int _rows;
         private int _cols;
 
-        private int _antX; //possition of ant 
+        private int _antX;
         private int _antY;
         private Direction _antDirection;
 
-
-        // To save what happened
         private Stack<(int, int, Direction, AntStatus)> _history = new();
 
-        public LangtonsGrid(int width, int height) //Initialise the grid
+        // Updated constructor with optional parameters for ant position and direction
+        public LangtonsGrid(int width, int height, int? antStartX = null, int? antStartY = null, Direction? antStartDirection = null)
         {
             _cols = width;
             _rows = height;
@@ -71,36 +68,33 @@ namespace Models
                 for (int x = 0; x < _cols; x++)
                     _grid[x, y] = new LangtonsCell();
 
-            // Ant set in center facing up
-            _antX = _cols / 2;
-            _antY = _rows / 2;
-            _antDirection = Direction.Up;
+            // Set ant initial position or default to center
+            _antX = antStartX ?? (_cols / 2);
+            _antY = antStartY ?? (_rows / 2);
 
+            // Clamp position to grid bounds just in case
+            _antX = Math.Max(0, Math.Min(_antX, _cols - 1));
+            _antY = Math.Max(0, Math.Min(_antY, _rows - 1));
+
+            // Set initial direction or default to Up
+            _antDirection = antStartDirection ?? Direction.Up;
         }
-
 
         public override int[,] NextStep()
         {
-            int[,] output = new int[_cols, _rows];
-
             var currentCell = _grid[_antX, _antY];
             AntStatus currentStatus = currentCell.GetStatus();
 
-            // Save before step
             _history.Push((_antX, _antY, _antDirection, currentStatus));
 
-            // Turn
             _antDirection = currentStatus == AntStatus.White
                 ? TurnRight(_antDirection)
                 : TurnLeft(_antDirection);
 
-            // Flip color
             currentCell.Update();
 
-            // Move ant
             (_antX, _antY) = MoveForward(_antX, _antY, _antDirection);
 
-            // Clamp ant inside bounds
             _antX = Math.Max(0, Math.Min(_antX, _cols - 1));
             _antY = Math.Max(0, Math.Min(_antY, _rows - 1));
 
@@ -125,11 +119,15 @@ namespace Models
         {
             int[,] data = new int[_cols, _rows];
             for (int y = 0; y < _rows; y++)
+            {
                 for (int x = 0; x < _cols; x++)
-                    data[x, y] = _grid[x, y].Print();
+                {
+                    data[x, y] = _grid[x, y].Print(); // 0 = white, 1 = black
+                }
+            }
 
-            // Optional: mark ant position (-1)
-            data[_antX, _antY] = -1;
+            // Mark ant's cell with 2 (for example, can be rendered as red)
+            data[_antX, _antY] = 2;
             return data;
         }
 
@@ -147,20 +145,17 @@ namespace Models
         {
             switch (direction)
             {
-                case Direction.Up:
-                    y = y - 1;
-                    break;
-                case Direction.Down:
-                    y = y + 1;
-                    break;
-                case Direction.Left:
-                    x = x - 1;
-                    break;
-                case Direction.Right:
-                    x = x + 1;
-                    break;
+                case Direction.Up: y--; break;
+                case Direction.Down: y++; break;
+                case Direction.Left: x--; break;
+                case Direction.Right: x++; break;
             }
             return (x, y);
+        }
+
+        public override int[,] CurrentState()
+        {
+            return RenderGrid();
         }
     }
 }
