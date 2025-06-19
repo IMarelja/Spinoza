@@ -102,5 +102,16 @@ namespace Display.SimulationControls
 
             return true;
         }
+
+
+        private Color GetColorForValue(int value)
+        {
+            return value switch
+            {
+                0 => Color.White,
+                1 => Color.Black,
+                2 => Color.Red
+            };
+        }
     }
 }

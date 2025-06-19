@@ -117,6 +117,7 @@
             chbAutoNumberOfSteps.TabIndex = 46;
             chbAutoNumberOfSteps.Text = "Auto steps";
             chbAutoNumberOfSteps.UseVisualStyleBackColor = true;
+            chbAutoNumberOfSteps.CheckedChanged += ChbAutoNumberOfSteps_CheckedChanged;
             // 
             // btnImportGrid
             // 

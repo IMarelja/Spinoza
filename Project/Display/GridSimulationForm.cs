@@ -51,6 +51,7 @@ namespace Display
             {
 
             }
+
             if (currentStep > 0)
                 currentStep--;
 
@@ -60,6 +61,22 @@ namespace Display
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if ((String)cbAutomataSelect.SelectedItem == "Brians Brain")
+            {
+
+            }
+            else if ((String)cbAutomataSelect.SelectedItem == "Langtons Ant")
+            {
+
+            }
+            else if ((String)cbAutomataSelect.SelectedItem == "Forest Fire")
+            {
+                // Add your own
+            }
+            else if ((String)cbAutomataSelect.SelectedItem == "Game of Life")
+            {
+                // Add your own
+            }
             currentStep++;
         }
 
@@ -333,6 +350,16 @@ namespace Display
                 }
             }
 
+        }
+
+        private void btnBackToMenu_Click(object sender, EventArgs e)
+        {
+            // Create and show the HomeForms form
+            HomeForms homeForm = new HomeForms(true);
+            homeForm.Show();
+
+            // Close the current form (the form that contains this button)
+            this.Hide();
         }
     }
 }

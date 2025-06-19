@@ -97,6 +97,7 @@
             btnBackToMenu.TabIndex = 26;
             btnBackToMenu.Text = "Back to menu";
             btnBackToMenu.UseVisualStyleBackColor = true;
+            btnBackToMenu.Click += btnBackToMenu_Click;
             // 
             // cbAutomataSelect
             // 
