@@ -34,8 +34,6 @@ namespace Display.SimulationControls
             nudRowsTable.Value = 10;
             nudColumnsTable.Value = 10;
             cbIsDefault.Checked = true;
-            //nudAreaStartingSquare.Value = 5; // default ant X pos
-            //nudNumberOfCellsStartingSquare.Value = 5; // default ant Y pos
             chbAutoNumberOfSteps.Checked = false;
             nudAutoNumberOfSteps.Enabled = false;
         }

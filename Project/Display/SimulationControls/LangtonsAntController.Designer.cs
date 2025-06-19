@@ -146,6 +146,7 @@
             btnInitGrid.TabIndex = 48;
             btnInitGrid.Text = "Intialise Grid";
             btnInitGrid.UseVisualStyleBackColor = true;
+            btnInitGrid.Click += BtnInitGrid_Click;
             // 
             // cbIsDefault
             // 

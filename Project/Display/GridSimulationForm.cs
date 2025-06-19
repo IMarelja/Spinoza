@@ -74,7 +74,9 @@ namespace Display
             }
             else if ((String)cbAutomataSelect.SelectedItem == "Langtons Ant")
             {
-                // Add your own
+                LangtonsAntController langtonAnt = new LangtonsAntController();
+                langtonAnt.PropertyChanged += OnUserControlPropertyChanged;
+                simulationController = langtonAnt;
             }
             else if ((String)cbAutomataSelect.SelectedItem == "Forest Fire")
             {
@@ -105,7 +107,6 @@ namespace Display
                     Grid receivedGrid = control.brian;
                     gridLayoutFromUserControl = receivedGrid;
                     panelSimulationGrid.Invalidate();
-
                     /*
                     int[,] data = gridLayoutFromUserControl.CurrentState();
                     String message = "";
@@ -126,8 +127,20 @@ namespace Display
                     */
                 }
             }
+            else if (e.PropertyName == nameof(LangtonsAntController.Grid))
+            {
+                if (sender is LangtonsAntController control)
+                {
+                    Grid receivedGrid = control.Grid;
+                    gridLayoutFromUserControl = receivedGrid;
+                    panelSimulationGrid.Invalidate();
+                }
+            }
             // Add your own if (e.PropertyName == nameof(BriansBrainController.brian))
         }
+
+
+
 
         private void btnGoBackToMenu_Click(object sender, EventArgs e)
         {
@@ -265,37 +278,61 @@ namespace Display
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            // 1. Capture panelSimulationGrid as Bitmap
-            Bitmap bmp = new Bitmap(panelSimulationGrid.Width, panelSimulationGrid.Height);
-            panelSimulationGrid.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+            // 1. Capture the entire Form as Bitmap
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
 
             // 2. Prepare PrintDocument
             PrintDocument pd = new PrintDocument();
+            pd.DefaultPageSettings.Landscape = true; // Optional: landscape orientation
             pd.PrintPage += (s, ev) =>
             {
-                // Draw step number
+                // 2a. Draw step number
                 Font font = new Font("Arial", 16);
                 string stepText = $"Simulation Step: {currentStep}";
-                ev.Graphics.DrawString(stepText, font, Brushes.Black, new PointF(100, 50));
+                ev.Graphics.DrawString(stepText, font, Brushes.Black, new PointF(50, 30));
 
-                // Draw the bitmap
-                ev.Graphics.DrawImage(bmp, new Point(100, 100));
+                // 2b. Calculate scale to fit the form image to the printable area
+                RectangleF printableArea = ev.MarginBounds;
+
+                float scaleX = printableArea.Width / bmp.Width;
+                float scaleY = printableArea.Height / bmp.Height;
+                float scale = Math.Min(scaleX, scaleY); // Preserve aspect ratio
+
+                int newWidth = (int)(bmp.Width * scale);
+                int newHeight = (int)(bmp.Height * scale);
+
+                // 2c. Center the image
+                float x = printableArea.X + (printableArea.Width - newWidth) / 2;
+                float y = printableArea.Y + 50; // Leave space for step text
+
+                ev.Graphics.DrawImage(bmp, x, y, newWidth, newHeight);
             };
 
-            // 3. Set printer to "Microsoft Print to PDF"
+            // 3. Save as PDF
             pd.PrinterSettings.PrinterName = "Microsoft Print to PDF";
             pd.PrinterSettings.PrintToFile = true;
-            pd.PrinterSettings.PrintFileName = $"Simulation_Export_Step{currentStep}.pdf";
 
-            try
+            using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                pd.Print();
-                MessageBox.Show("PDF export successful!");
+                sfd.Filter = "PDF files (*.pdf)|*.pdf";
+                sfd.FileName = $"Simulation_Export_Step{currentStep}.pdf";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    pd.PrinterSettings.PrintFileName = sfd.FileName;
+
+                    try
+                    {
+                        pd.Print();
+                        MessageBox.Show("PDF export successful!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Export failed: {ex.Message}");
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Export failed: {ex.Message}");
-            }
+
         }
     }
 }
