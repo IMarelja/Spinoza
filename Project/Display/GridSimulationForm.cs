@@ -1,13 +1,15 @@
-using Display.SimulationControls;
+﻿using Display.SimulationControls;
 using Models;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing.Printing;
+using System.Reflection;
 using System.Windows.Forms;
 namespace Display
 {
     public partial class GridSimulationForm : Form
     {
+        private List<Control> autoStartControls;
 
         private Grid gridLayoutFromUserControl;
         private UserControl simulationController;
@@ -22,13 +24,29 @@ namespace Display
         {
             clearForm();
             addingSimulationSelectionToCombobox();
+            initControlGroupingsInAList();
+            changedEnablilityAutoStartControls();
+
+            /*
+             * ------------------------------------------------------------------------
+             * For configuring the grid to look nice and for the blocks to be places
+             * ------------------------------------------------------------------------
+             */
             typeof(Panel).InvokeMember("DoubleBuffered",
             System.Reflection.BindingFlags.SetProperty |
             System.Reflection.BindingFlags.Instance |
             System.Reflection.BindingFlags.NonPublic,
             null, panelSimulationGrid, new object[] { true });
 
+        }
 
+        private void initControlGroupingsInAList()
+        {
+            autoStartControls = new List<Control> {
+                chbEnableAutoNumber ,
+                btnAutoStepsStartPause ,
+                nudAutoNumberOfSteps
+            };
         }
 
         private void addingSimulationSelectionToCombobox()
@@ -45,39 +63,26 @@ namespace Display
             panelControls.Controls.Clear();
         }
 
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (gridLayoutFromUserControl == null) return;
+
+            gridLayoutFromUserControl.NextStep();
+            panelSimulationGrid.Invalidate();
+
+            currentStep++;
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (gridLayoutFromUserControl is Brain)
-            {
+            if (gridLayoutFromUserControl == null) return;
 
-            }
+            gridLayoutFromUserControl.BackStep();
+            panelSimulationGrid.Invalidate();
 
             if (currentStep > 0)
                 currentStep--;
 
-        }
-
-
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            if ((String)cbAutomataSelect.SelectedItem == "Brians Brain")
-            {
-
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Langtons Ant")
-            {
-
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Forest Fire")
-            {
-                // Add your own
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Game of Life")
-            {
-                // Add your own
-            }
-            currentStep++;
         }
 
         private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,6 +120,13 @@ namespace Display
             }
         }
 
+
+        /*
+         * ===============================================================================================================
+         * 🧇 Fetches data from User Controls PropertyChangedEventHandler that are stored in SimulationControls  🧇
+         * ===============================================================================================================
+         */
+
         private void OnUserControlPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(BriansBrainController.brian))
@@ -124,24 +136,6 @@ namespace Display
                     Grid receivedGrid = control.brian;
                     gridLayoutFromUserControl = receivedGrid;
                     panelSimulationGrid.Invalidate();
-                    /*
-                    int[,] data = gridLayoutFromUserControl.CurrentState();
-                    String message = "";
-                    int rows = data.GetLength(0);
-                    int cols = data.GetLength(1);
-
-                    for (int x = 0; x < rows; x++)
-                    {
-                        for (int y = 0; y < cols; y++)
-                        {
-
-                            message += $"{data[x, y]}";
-
-                        }
-                        message += "\n";
-                    }
-                    MessageBox.Show(message);
-                    */
                 }
             }
             else if (e.PropertyName == nameof(LangtonsAntController.Grid))
@@ -153,7 +147,9 @@ namespace Display
                     panelSimulationGrid.Invalidate();
                 }
             }
-            // Add your own if (e.PropertyName == nameof(BriansBrainController.brian))
+            // Add your own if (e.PropertyName == nameof(/*Name of User control*/.brian))
+
+            stepsTakenAutoStart = 0;
         }
 
 
@@ -161,8 +157,14 @@ namespace Display
 
         private void btnGoBackToMenu_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            var homeForm = new HomeForms(false);
 
+            Cursor.Current = Cursors.Default;
+            homeForm.Closed += (object_sender, EventArgs_e) => this.Close();
+            homeForm.Show();
         }
+
 
         private void panelSimulationGrid_Paint(object sender, PaintEventArgs e)
         {
@@ -170,19 +172,6 @@ namespace Display
             if (gridLayoutFromUserControl == null)
                 return;
 
-
-            //if (gridLayoutFromUserControl is Brain)
-            //{
-            //    InitBrainTable(sender, e);
-            //}
-            //else if(gridLayoutFromUserControl is Forest)
-            //{
-
-            //}
-            //else if (gridLayoutFromUserControl is LangtonsGrid)
-            //{
-
-            //}
 
             switch (gridLayoutFromUserControl)
             {
@@ -208,7 +197,6 @@ namespace Display
 
         private void InitBrainTable(object sender, PaintEventArgs e)
         {
-            currentStep = 0;
             int[,] data = gridLayoutFromUserControl.CurrentState();
 
             Graphics g = e.Graphics;
@@ -228,13 +216,13 @@ namespace Display
                     switch ((BrainsStatus)data[x, y])
                     {
                         case BrainsStatus.On:
-                            color = Color.Cyan;
+                            color = Color.CadetBlue;
                             break;
                         case BrainsStatus.Dying:
-                            color = Color.Red;
+                            color = Color.LightBlue;
                             break;
                         default:
-                            color = Color.Black;
+                            color = Color.Gray;
                             break;
                     }
 
@@ -242,8 +230,6 @@ namespace Display
                     {
                         g.FillRectangle(brush, rect);
                     }
-
-                    g.DrawRectangle(Pens.Gray, rect); // Optional: draw grid lines
                 }
             }
         }
@@ -360,6 +346,87 @@ namespace Display
 
             // Close the current form (the form that contains this button)
             this.Hide();
+        }
+
+        private void chbEnableAutoNumber_CheckedChanged(object sender, EventArgs e)
+        {
+            changedEnablilityAutoStartControls();
+        }
+
+
+        /*
+         * ============================================
+         * Will disable/enable Auto start controls ❌✔️
+         * ============================================
+         */
+        private void changedEnablilityAutoStartControls()
+        {
+            if (chbEnableAutoNumber.Checked == true)
+            {
+                foreach (Control control in autoStartControls)
+                {
+                    if (control == chbEnableAutoNumber) continue;
+
+                    control.Enabled = true;
+                }
+            }
+            if (chbEnableAutoNumber.Checked == false)
+            {
+                foreach (Control control in autoStartControls)
+                {
+                    if (control == chbEnableAutoNumber) continue;
+
+                    control.Enabled = false;
+                }
+            }
+        }
+
+        private bool isAutoStartingCounting = false;
+        private int stepsTakenAutoStart = 0;
+        private void btnAutoStepsStartPause_Click(object sender, EventArgs e)
+        {
+            if (!isAutoStartingCounting)
+            {
+                StartAutoStepping();
+            }
+            else
+            {
+                StopAutoStepping();
+            }
+        }
+
+        private void StartAutoStepping()
+        {
+            isAutoStartingCounting = true;
+            btnAutoStepsStartPause.Text = "Stop";
+            timerAutoSteps.Start();
+        }
+
+        private void StopAutoStepping()
+        {
+            isAutoStartingCounting = false;
+            btnAutoStepsStartPause.Text = "Start";
+            timerAutoSteps.Stop();
+        }
+
+        /*
+         * --------------------------------------------------------------
+         * Auto steps for simulations that happen every 1 second 
+         * --------------------------------------------------------------
+         */
+
+        private void timerAutoSteps_Tick(object sender, EventArgs e)
+        {
+            if (!(stepsTakenAutoStart == (int)nudAutoNumberOfSteps.Value))
+            {
+                gridLayoutFromUserControl.NextStep();
+                panelSimulationGrid.Invalidate();
+                stepsTakenAutoStart++;
+            }
+            else
+            {
+                StopAutoStepping();
+            }
         }
     }
 }

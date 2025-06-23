@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btnNextState = new Button();
             btnBackState = new Button();
             colorDialog1 = new ColorDialog();
@@ -37,6 +38,11 @@
             btnBackToMenu = new Button();
             cbAutomataSelect = new ComboBox();
             panelSimulationGrid = new Panel();
+            nudAutoNumberOfSteps = new NumericUpDown();
+            chbEnableAutoNumber = new CheckBox();
+            btnAutoStepsStartPause = new Button();
+            timerAutoSteps = new System.Windows.Forms.Timer(components);
+            ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).BeginInit();
             SuspendLayout();
             // 
             // btnNextState
@@ -86,7 +92,7 @@
             panelControls.BorderStyle = BorderStyle.FixedSingle;
             panelControls.Location = new Point(10, 120);
             panelControls.Name = "panelControls";
-            panelControls.Size = new Size(275, 794);
+            panelControls.Size = new Size(275, 695);
             panelControls.TabIndex = 24;
             // 
             // btnBackToMenu
@@ -120,11 +126,50 @@
             panelSimulationGrid.TabIndex = 35;
             panelSimulationGrid.Paint += panelSimulationGrid_Paint;
             // 
+            // nudAutoNumberOfSteps
+            // 
+            nudAutoNumberOfSteps.Location = new Point(20, 865);
+            nudAutoNumberOfSteps.Margin = new Padding(4, 5, 4, 5);
+            nudAutoNumberOfSteps.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudAutoNumberOfSteps.Name = "nudAutoNumberOfSteps";
+            nudAutoNumberOfSteps.Size = new Size(265, 31);
+            nudAutoNumberOfSteps.TabIndex = 43;
+            nudAutoNumberOfSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // chbEnableAutoNumber
+            // 
+            chbEnableAutoNumber.AutoSize = true;
+            chbEnableAutoNumber.Location = new Point(19, 823);
+            chbEnableAutoNumber.Name = "chbEnableAutoNumber";
+            chbEnableAutoNumber.Size = new Size(124, 29);
+            chbEnableAutoNumber.TabIndex = 42;
+            chbEnableAutoNumber.Text = "Auto steps";
+            chbEnableAutoNumber.UseVisualStyleBackColor = true;
+            chbEnableAutoNumber.CheckedChanged += chbEnableAutoNumber_CheckedChanged;
+            // 
+            // btnAutoStepsStartPause
+            // 
+            btnAutoStepsStartPause.Location = new Point(149, 823);
+            btnAutoStepsStartPause.Name = "btnAutoStepsStartPause";
+            btnAutoStepsStartPause.Size = new Size(136, 34);
+            btnAutoStepsStartPause.TabIndex = 44;
+            btnAutoStepsStartPause.Text = "Start";
+            btnAutoStepsStartPause.UseVisualStyleBackColor = true;
+            btnAutoStepsStartPause.Click += btnAutoStepsStartPause_Click;
+            // 
+            // timerAutoSteps
+            // 
+            timerAutoSteps.Interval = 1000;
+            timerAutoSteps.Tick += timerAutoSteps_Tick;
+            // 
             // GridSimulationForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1400, 988);
+            Controls.Add(btnAutoStepsStartPause);
+            Controls.Add(nudAutoNumberOfSteps);
+            Controls.Add(chbEnableAutoNumber);
             Controls.Add(panelSimulationGrid);
             Controls.Add(cbAutomataSelect);
             Controls.Add(btnBackToMenu);
@@ -136,7 +181,9 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "GridSimulationForm";
             Text = "Grid Display";
+            ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -151,5 +198,9 @@
         private Button btnBackToMenu;
         private ComboBox cbAutomataSelect;
         private Panel panelSimulationGrid;
+        private NumericUpDown nudAutoNumberOfSteps;
+        private CheckBox chbEnableAutoNumber;
+        private Button btnAutoStepsStartPause;
+        private System.Windows.Forms.Timer timerAutoSteps;
     }
 }
