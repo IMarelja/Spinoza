@@ -87,32 +87,28 @@ namespace Models
         {
             int[,] data = new int[_columns, _rows];
 
-            if (!(_history.Count() <= 0))
+            if (_history.Count() > 0)
             {
+                _future.Push(CopyOfBrainCell(_currentBrainsInTable));
                 _currentBrainsInTable = _history.Pop();
-
-                return data;
             }
-            else
+
+            for (int y = 0; y < _rows; y++)
             {
-                for (int y = 0; y < _rows; y++)
+                for (int x = 0; x < _columns; x++)
                 {
-                    for (int x = 0; x < _columns; x++)
-                    {
-                        data[x, y] = _currentBrainsInTable[x, y].Print();
-                    }
+                    data[x, y] = _currentBrainsInTable[x, y].Print();
                 }
-                return data;
             }
+            return data;
 
-           
         }
 
         public override int[,] NextStep()
         {
             int[,] data = new int[_columns, _rows];
 
-            _history.Push(_currentBrainsInTable);
+            _history.Push(CopyOfBrainCell(_currentBrainsInTable));
 
             if (_future.Count() > 0)
             {
@@ -169,6 +165,30 @@ namespace Models
                 
         }
 
+        private BrainCell[,] CopyOfBrainCell(BrainCell[,] original)
+        {
+            if (original == null)
+                return null;
+
+            int rows = original.GetLength(0);
+            int cols = original.GetLength(1);
+
+            BrainCell[,] copy = new BrainCell[rows, cols];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (original[i, j] != null)
+                    {
+                        copy[i, j] = new BrainCell((BrainsStatus)original[i, j].Print());
+                    }
+                }
+            }
+
+            return copy;
+        }
+
         public override int[,] CurrentState()
         {
             int[,] data = new int[_columns, _rows];
@@ -183,5 +203,7 @@ namespace Models
 
             return data;
         }
+
+        
     }
 }
