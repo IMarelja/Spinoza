@@ -47,6 +47,9 @@ namespace Models
 
     public class LangtonsGrid : Grid
     {
+        public override string Name => "Langtons Ant";
+        public override string Description => "Description here";
+
         private LangtonsCell[,] _grid;
         private int _rows;
         private int _cols;
@@ -56,6 +59,8 @@ namespace Models
         private Direction _antDirection;
 
         private Stack<(int, int, Direction, AntStatus)> _history = new();
+
+        public LangtonsGrid() { }
 
         // Updated constructor with optional parameters for ant position and direction
         public LangtonsGrid(int width, int height, int? antStartX = null, int? antStartY = null, Direction? antStartDirection = null)
@@ -157,5 +162,8 @@ namespace Models
         {
             return RenderGrid();
         }
+
+        public override string ToString()
+        => Name;
     }
 }

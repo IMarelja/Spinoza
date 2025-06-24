@@ -72,9 +72,14 @@ namespace Models
 
     public class Forest : Grid
     {
+        public override string Name => "Forest Fire";
+        public override string Description => "Description here";
+
         private TreeCell[,] _table;
         private int _rows;
         private int _columns;
+
+        public Forest() { }
         
         //intialises row and columns and saves probability to cells
         public Forest(int xAxis, int yAxis, int p, int f)
@@ -148,6 +153,8 @@ namespace Models
             }
             return data;
         }
+        public override string ToString()
+        => Name;
     }
 
 }

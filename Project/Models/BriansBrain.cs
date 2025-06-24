@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+
     public enum BrainsStatus { On, Dying, Off }
     internal class BrainCell : Cell
     {
@@ -48,6 +49,9 @@ namespace Models
 
     public class Brain : Grid
     {
+        public override string Name => "Brian's Brain";
+        public override string Description => "A cellular automaton simulation where cells cycle through On, Dying, and Off states.";
+
         private Stack<BrainCell[,]> _history = new Stack<BrainCell[,]>();
         private Stack<BrainCell[,]> _future = new Stack<BrainCell[,]>();
         private BrainCell[,] _currentBrainsInTable;
@@ -55,6 +59,7 @@ namespace Models
         private int _columns;
         private int _numberOfCell;
 
+        public Brain() { }
         public Brain(int xAxis, int yAxis, int squareDimensions, int numberOfCell)
         {
             _columns = xAxis;
@@ -204,6 +209,7 @@ namespace Models
             return data;
         }
 
-        
+        public override string ToString()
+        => Name;
     }
 }
