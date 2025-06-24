@@ -1,10 +1,12 @@
 ﻿using Display.SimulationControls;
+using Display.Utilities;
 using Models;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing.Printing;
 using System.Reflection;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Display
 {
     public partial class GridSimulationForm : Form
@@ -14,6 +16,7 @@ namespace Display
         private Grid gridLayoutFromUserControl;
         private UserControl simulationController;
         private int currentStep = 0;
+
         public GridSimulationForm()
         {
             InitializeComponent();
@@ -51,16 +54,22 @@ namespace Display
 
         private void addingSimulationSelectionToCombobox()
         {
-            cbAutomataSelect.Items.Add("Brians Brain");
-            cbAutomataSelect.Items.Add("Forest Fire");
-            cbAutomataSelect.Items.Add("Langtons Ant");
-            cbAutomataSelect.Items.Add("Game of Life");
+            foreach (Grid grid in Utility.approvedSimulationsGrids)
+            {
+                cbAutomataSelect.Items.Add(grid);
+
+            }
         }
 
         private void clearForm()
         {
             cbAutomataSelect.Items.Clear();
             panelControls.Controls.Clear();
+            cbAutomataSelect.SelectedIndex = -1;
+            ttSimulationDescription.RemoveAll(); // Removes all tooltips assigned
+            ttSimulationDescription.Dispose();   // Frees all resources
+            ttSimulationDescription.IsBalloon = true;
+            ttSimulationDescription.ToolTipTitle = "Please select a simulation";
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -87,37 +96,52 @@ namespace Display
 
         private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
+                switch ((Grid)cbAutomataSelect.SelectedItem)
+                {
+                    case Brain brain:
+                        LoadSimulationUserControlInsideControlPanel(new BriansBrainController());
+                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription,pbSimulationInfo,brain.Name,brain.Description);
+                        break;
 
-            if ((String)cbAutomataSelect.SelectedItem == "Brians Brain")
-            {
-                BriansBrainController brainControl = new BriansBrainController();
-                brainControl.PropertyChanged += OnUserControlPropertyChanged;
-                simulationController = brainControl;
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Langtons Ant")
-            {
-                LangtonsAntController langtonAnt = new LangtonsAntController();
-                langtonAnt.PropertyChanged += OnUserControlPropertyChanged;
-                simulationController = langtonAnt;
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Forest Fire")
-            {
-                // Add your own
-            }
-            else if ((String)cbAutomataSelect.SelectedItem == "Game of Life")
-            {
-                // Add your own
-            }
+                    case Forest forest:
+                        // TODO: Add Forest-specific logic here
+                        break;
 
+                    case LangtonsGrid langtons:
+                        LoadSimulationUserControlInsideControlPanel(new LangtonsAntController());
+                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription, pbSimulationInfo, langtons.Name, langtons.Description);
+                        break;
 
-            if (simulationController != null)
-            {
-                panelControls.Controls.Clear();
-
-                simulationController.Dock = DockStyle.Fill;
-
-                panelControls.Controls.Add(simulationController);
+                    default:
+                        // Optional: handle unknown type
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                clearForm();
+            }
+        }
+
+        /*
+         * ===========================================================================================
+         * Loads User control inside a panel, checks if it is derived class of INotifyPropertyChanged
+         * ===========================================================================================
+         */
+        private void LoadSimulationUserControlInsideControlPanel(UserControl simulationUserControl)
+        {
+
+            if (simulationUserControl is not INotifyPropertyChanged notifyControl)
+                throw new Exception("The User Control being called is not a derivitive of the abstract class INotifyPropertyChanged");
+
+            notifyControl.PropertyChanged += OnUserControlPropertyChanged; 
+            simulationController = simulationUserControl;
+
+            panelControls.Controls.Clear();
+            simulationController.Dock = DockStyle.Fill;
+            panelControls.Controls.Add(simulationController);
         }
 
 

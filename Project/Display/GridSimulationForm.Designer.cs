@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridSimulationForm));
             btnNextState = new Button();
             btnBackState = new Button();
-            colorDialog1 = new ColorDialog();
             btnLogOut = new Button();
             btnExport = new Button();
             panelControls = new Panel();
@@ -42,7 +42,10 @@
             chbEnableAutoNumber = new CheckBox();
             btnAutoStepsStartPause = new Button();
             timerAutoSteps = new System.Windows.Forms.Timer(components);
+            pbSimulationInfo = new PictureBox();
+            ttSimulationDescription = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbSimulationInfo).BeginInit();
             SuspendLayout();
             // 
             // btnNextState
@@ -109,10 +112,10 @@
             // 
             cbAutomataSelect.FormattingEnabled = true;
             cbAutomataSelect.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbAutomataSelect.Location = new Point(10, 78);
+            cbAutomataSelect.Location = new Point(10, 80);
             cbAutomataSelect.Margin = new Padding(4, 5, 4, 5);
             cbAutomataSelect.Name = "cbAutomataSelect";
-            cbAutomataSelect.Size = new Size(275, 33);
+            cbAutomataSelect.Size = new Size(238, 33);
             cbAutomataSelect.TabIndex = 34;
             cbAutomataSelect.SelectedIndexChanged += cbAutomataSelect_SelectedIndexChanged;
             // 
@@ -162,11 +165,25 @@
             timerAutoSteps.Interval = 1000;
             timerAutoSteps.Tick += timerAutoSteps_Tick;
             // 
+            // pbSimulationInfo
+            // 
+            pbSimulationInfo.ErrorImage = null;
+            pbSimulationInfo.Image = (Image)resources.GetObject("pbSimulationInfo.Image");
+            pbSimulationInfo.InitialImage = null;
+            pbSimulationInfo.Location = new Point(256, 80);
+            pbSimulationInfo.Margin = new Padding(4, 5, 4, 5);
+            pbSimulationInfo.Name = "pbSimulationInfo";
+            pbSimulationInfo.Size = new Size(29, 33);
+            pbSimulationInfo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbSimulationInfo.TabIndex = 48;
+            pbSimulationInfo.TabStop = false;
+            // 
             // GridSimulationForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1400, 988);
+            Controls.Add(pbSimulationInfo);
             Controls.Add(btnAutoStepsStartPause);
             Controls.Add(nudAutoNumberOfSteps);
             Controls.Add(chbEnableAutoNumber);
@@ -182,6 +199,7 @@
             Name = "GridSimulationForm";
             Text = "Grid Display";
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbSimulationInfo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,7 +209,6 @@
         private TextBox txtColumns;
         private Button btnNextState;
         private Button btnBackState;
-        private ColorDialog colorDialog1;
         private Button btnLogOut;
         private Button btnExport;
         private Panel panelControls;
@@ -202,5 +219,7 @@
         private CheckBox chbEnableAutoNumber;
         private Button btnAutoStepsStartPause;
         private System.Windows.Forms.Timer timerAutoSteps;
+        private PictureBox pbSimulationInfo;
+        private ToolTip ttSimulationDescription;
     }
 }
