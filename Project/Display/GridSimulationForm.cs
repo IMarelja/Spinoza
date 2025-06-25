@@ -153,26 +153,31 @@ namespace Display
 
         private void OnUserControlPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(BriansBrainController.brian))
+            switch (sender)
             {
-                if (sender is BriansBrainController control)
-                {
-                    Grid receivedGrid = control.brian;
-                    gridLayoutFromUserControl = receivedGrid;
+                case BriansBrainController controlBrain 
+                when e.PropertyName == nameof(BriansBrainController.brian):
+                    gridLayoutFromUserControl = controlBrain.brian;
                     panelSimulationGrid.Invalidate();
-                }
-            }
-            else if (e.PropertyName == nameof(LangtonsAntController.Grid))
-            {
-                if (sender is LangtonsAntController control)
-                {
-                    Grid receivedGrid = control.Grid;
-                    gridLayoutFromUserControl = receivedGrid;
-                    panelSimulationGrid.Invalidate();
-                }
-            }
+                    break;
 
-            // Add your own if (e.PropertyName == nameof(/*Name of User control*/.brian))
+                case LangtonsAntController controlAnt 
+                when e.PropertyName == nameof(LangtonsAntController.Grid):
+                    gridLayoutFromUserControl = controlAnt.Grid;
+                    panelSimulationGrid.Invalidate();
+                    break;
+
+                case ForestFireController controlForest 
+                when e.PropertyName == nameof(ForestFireController.Grid):
+                    gridLayoutFromUserControl = controlForest.Grid;
+                    panelSimulationGrid.Invalidate();
+                    break;
+
+                // Add more cases here as needed
+
+                default:
+                    break;
+            }
 
             stepsTakenAutoStart = 0;
         }
