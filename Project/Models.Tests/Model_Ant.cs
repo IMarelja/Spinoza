@@ -21,27 +21,26 @@ namespace Models.Tests
         }
 
         [Fact]
-        public void NextStep_AntFlipsCell_And_Moves_Right_When_OnWhite()
+        public void NextStep_AntFlipsCell_And_Moves_Right_When_OnWhite() //error
         {
-            _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
+            var grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up); // Centered
 
-            // The cell at (1,1) initially white = 0
-            var before = _grid.CurrentState();
-            Assert.Equal(0, before[1, 1]);
+            var before = grid.CurrentState();
+            Assert.Equal(0, before[1, 1]); // Cell is white
 
-            var after = _grid.NextStep();
+            grid.NextStep();
 
-            // After step:
-            // The cell at (1,1) flips to black (1)
+            var after = grid.CurrentState();
+
+            // (1,1) should now be black: 1
             Assert.Equal(1, after[1, 1]);
 
-            // Ant should have turned right (Up -> Right) and moved one cell right to (2,1)
-            Assert.Equal(2, after[2, 1]); // Ant cell marked with 2
-            Assert.NotEqual(2, after[1, 1]); // Ant no longer here
+            // Ant should now be at (2,1) since it turns right and moves right from Up
+            Assert.Equal(2, after[2, 1]);
         }
 
         [Fact]
-        public void NextStep_AntFlipsCell_And_Moves_Left_When_OnBlack()
+        public void NextStep_AntFlipsCell_And_Moves_Left_When_OnBlack() //failed Test
         {
             _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
 
@@ -95,7 +94,7 @@ namespace Models.Tests
         }
 
         [Fact]
-        public void Ant_Does_Not_Move_Outside_Bounds()
+        public void Ant_Does_Not_Move_Outside_Bounds() //failed Test
         {
             // Ant start at top-left corner facing Up
             _grid = new LangtonsGrid(3, 3, 0, 0, Direction.Up);
