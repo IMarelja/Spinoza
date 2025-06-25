@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Display.Utilities;
+using Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -76,7 +77,7 @@ namespace Display
                     lbMessage.Visible = true;
                     lbMessage.Text = responseObject["message"];
 
-                    //Utility.SaveLoginToFile(loginData);
+
 
                     await Task.Delay(2000);
 

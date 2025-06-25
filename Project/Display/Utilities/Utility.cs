@@ -43,7 +43,7 @@ namespace Display.Utilities
             tooltip.IsBalloon = true;
             tooltip.ToolTipIcon = ToolTipIcon.Info;
             tooltip.ToolTipTitle = title;
-            tooltip.SetToolTip(control, description);
+            tooltip.SetToolTip(control, description); //tu sam dobila nuulpointException
         }
 
 
@@ -93,8 +93,31 @@ namespace Display.Utilities
         //
         public static void SaveLoginToFile(AuthLogin loginData)
         {
-            throw new NotImplementedException();
+            string filePath = "login.txt";
+
+            if (File.Exists(filePath))
+            {
+                File.AppendAllText(filePath, loginData.Formate());
+            }
+            else
+            {
+                File.WriteAllText(filePath, loginData.Formate());
+            }
         }
 
+        //
+        // Deleting user on a file
+        //
+        public static void DelteLoginOfFile()
+        {
+            string filePath = "login.txt";
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath); //delete file
+                //File.WriteAllText(filePath, string.Empty); //delete content
+            }
+        }
     }
+    
 }

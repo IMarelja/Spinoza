@@ -12,6 +12,7 @@ namespace Display
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new GridSimulationForm());
+            //Application.Run(new LoginForm());
         }
     }
 }

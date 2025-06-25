@@ -19,10 +19,29 @@ namespace Display
 
         public GridSimulationForm()
         {
-            InitializeComponent();
+            InitializeComponent(); // Initialize all controls including cbAutomataSelect
             Init();
         }
+        public GridSimulationForm(Grid selectedGrid)
+        {
+            InitializeComponent(); // Initialize all controls including cbAutomataSelect
+            Init();
 
+            if (selectedGrid != null)
+            {
+                // Make sure items are added BEFORE setting SelectedItem
+                cbAutomataSelect.Items.Clear();
+                foreach (var grid in Utility.approvedSimulationsGrids)
+                {
+                    cbAutomataSelect.Items.Add(grid);
+                }
+
+                cbAutomataSelect.SelectedItem = selectedGrid;
+
+                // Optionally trigger logic
+                cbAutomataSelect_SelectedIndexChanged(cbAutomataSelect, EventArgs.Empty);
+            }
+        }
         private void Init()
         {
             clearForm();
