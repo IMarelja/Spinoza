@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Display.SimulationControls
 {
-    public partial class ForestFireController : UserControl
+    public partial class ForestFireController : UserControl, INotifyPropertyChanged
     {
 
         private Forest _grid;
@@ -19,7 +19,7 @@ namespace Display.SimulationControls
         public Forest Grid
         {
             get => _grid;
-            private set
+            set
             {
                 _grid = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Grid)));
