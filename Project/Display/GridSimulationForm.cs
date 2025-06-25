@@ -513,5 +513,11 @@ namespace Display
                 StopAutoStepping();
             }
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Utility.DelteLoginOfFile();
+            this.Close();
+        }
     }
 }

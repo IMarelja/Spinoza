@@ -22,8 +22,6 @@ namespace Display
             Init();
         }
 
-        GridDisplay gd;
-
         private void Init()
         {
             //if (User logdIN){
