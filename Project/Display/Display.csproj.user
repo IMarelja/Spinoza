@@ -16,6 +16,9 @@
     <Compile Update="SimulationControls\BriansBrainController.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="SimulationControls\ForestFireController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="SimulationControls\LangtonsAntController.cs">
       <SubType>UserControl</SubType>
     </Compile>

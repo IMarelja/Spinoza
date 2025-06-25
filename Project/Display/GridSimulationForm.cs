@@ -105,7 +105,8 @@ namespace Display
                         break;
 
                     case Forest forest:
-                        // TODO: Add Forest-specific logic here
+                        LoadSimulationUserControlInsideControlPanel(new ForestFireController());
+                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription, pbSimulationInfo, forest.Name, forest.Description);
                         break;
 
                     case LangtonsGrid langtons:
@@ -171,6 +172,7 @@ namespace Display
                     panelSimulationGrid.Invalidate();
                 }
             }
+
             // Add your own if (e.PropertyName == nameof(/*Name of User control*/.brian))
 
             stepsTakenAutoStart = 0;
@@ -204,7 +206,7 @@ namespace Display
                     break;
 
                 case Forest forest:
-                    // TODO: Add Forest-specific logic here
+                    InitForestFire(sender, e);
                     break;
 
                 case LangtonsGrid langtons:
@@ -299,6 +301,42 @@ namespace Display
                     }
 
                     g.DrawRectangle(Pens.Gray, rect); // Optional grid lines
+                }
+            }
+        }
+
+        private void InitForestFire(object sender, PaintEventArgs e)
+        {
+            currentStep = 0;
+            int[,] data = gridLayoutFromUserControl.CurrentState();
+
+            Graphics g = e.Graphics;
+            int rows = data.GetLength(0);
+            int cols = data.GetLength(1);
+
+            int cellWidth = panelSimulationGrid.Width / cols;
+            int cellHeight = panelSimulationGrid.Height / rows;
+
+            for (int y = 0; y < rows; y++)
+            {
+                for (int x = 0; x < cols; x++)
+                {
+                    Rectangle rect = new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    Color color;
+
+                    switch (data[x, y])
+                    {
+                        case 0: color = Color.Silver; break;
+                        case 1: color = Color.Green; break;
+                        case 2: color = Color.Maroon; break;
+                        default: color = Color.White; break;
+                    }
+                    using (Brush brush = new SolidBrush(color))
+                    {
+                        g.FillRectangle(brush, rect);
+                    }
+
+                    g.DrawRectangle(Pens.Black, rect); // Optional grid lines
                 }
             }
         }
