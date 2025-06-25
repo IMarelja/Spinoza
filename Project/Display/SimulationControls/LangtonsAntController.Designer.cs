@@ -48,6 +48,9 @@
             panelDyingColor = new Panel();
             gbgoLeftInfo = new GroupBox();
             panelOnColor = new Panel();
+            cbDirection = new ComboBox();
+            label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudColumnsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRowsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAreaStartingSquare).BeginInit();
@@ -107,7 +110,7 @@
             // 
             // btnImportGrid
             // 
-            btnImportGrid.Location = new Point(34, 509);
+            btnImportGrid.Location = new Point(14, 556);
             btnImportGrid.Name = "btnImportGrid";
             btnImportGrid.Size = new Size(143, 34);
             btnImportGrid.TabIndex = 50;
@@ -116,17 +119,18 @@
             // 
             // btnRandomGrid
             // 
-            btnRandomGrid.Location = new Point(31, 551);
+            btnRandomGrid.Location = new Point(11, 598);
             btnRandomGrid.Margin = new Padding(4, 5, 4, 5);
             btnRandomGrid.Name = "btnRandomGrid";
             btnRandomGrid.Size = new Size(146, 38);
             btnRandomGrid.TabIndex = 49;
             btnRandomGrid.Text = "Random Grid";
             btnRandomGrid.UseVisualStyleBackColor = true;
+            btnRandomGrid.Click += btnRandomGrid_Click;
             // 
             // btnInitGrid
             // 
-            btnInitGrid.Location = new Point(34, 463);
+            btnInitGrid.Location = new Point(14, 510);
             btnInitGrid.Margin = new Padding(4, 5, 4, 5);
             btnInitGrid.Name = "btnInitGrid";
             btnInitGrid.Size = new Size(143, 38);
@@ -197,7 +201,7 @@
             // 
             gbWhiteInfo.BackColor = SystemColors.ButtonFace;
             gbWhiteInfo.Controls.Add(panelOffColor);
-            gbWhiteInfo.Location = new Point(100, 362);
+            gbWhiteInfo.Location = new Point(102, 422);
             gbWhiteInfo.Margin = new Padding(4, 5, 4, 5);
             gbWhiteInfo.Name = "gbWhiteInfo";
             gbWhiteInfo.Padding = new Padding(4, 5, 4, 5);
@@ -219,7 +223,7 @@
             // 
             gbAntInfo.BackColor = SystemColors.ButtonFace;
             gbAntInfo.Controls.Add(panelDyingColor);
-            gbAntInfo.Location = new Point(187, 362);
+            gbAntInfo.Location = new Point(189, 422);
             gbAntInfo.Margin = new Padding(4, 5, 4, 5);
             gbAntInfo.Name = "gbAntInfo";
             gbAntInfo.Padding = new Padding(4, 5, 4, 5);
@@ -241,7 +245,7 @@
             // 
             gbgoLeftInfo.BackColor = SystemColors.ButtonFace;
             gbgoLeftInfo.Controls.Add(panelOnColor);
-            gbgoLeftInfo.Location = new Point(14, 362);
+            gbgoLeftInfo.Location = new Point(16, 422);
             gbgoLeftInfo.Margin = new Padding(4, 5, 4, 5);
             gbgoLeftInfo.Name = "gbgoLeftInfo";
             gbgoLeftInfo.Padding = new Padding(4, 5, 4, 5);
@@ -259,10 +263,43 @@
             panelOnColor.Size = new Size(30, 35);
             panelOnColor.TabIndex = 1;
             // 
+            // cbDirection
+            // 
+            cbDirection.FormattingEnabled = true;
+            cbDirection.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
+            cbDirection.Location = new Point(102, 370);
+            cbDirection.Margin = new Padding(4, 5, 4, 5);
+            cbDirection.Name = "cbDirection";
+            cbDirection.Size = new Size(155, 33);
+            cbDirection.TabIndex = 60;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(4, 373);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(83, 25);
+            label5.TabIndex = 62;
+            label5.Text = "Direction";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(54, 340);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(176, 25);
+            label6.TabIndex = 63;
+            label6.Text = "Choose ant direction";
+            // 
             // LangtonsAntController
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(cbDirection);
             Controls.Add(gbWhiteInfo);
             Controls.Add(gbAntInfo);
             Controls.Add(gbgoLeftInfo);
@@ -315,5 +352,8 @@
         private Panel panelDyingColor;
         private GroupBox gbgoLeftInfo;
         private Panel panelOnColor;
+        private ComboBox cbDirection;
+        private Label label5;
+        private Label label6;
     }
 }
