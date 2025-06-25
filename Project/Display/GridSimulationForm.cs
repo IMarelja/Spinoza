@@ -67,7 +67,6 @@ namespace Display
             panelControls.Controls.Clear();
             cbAutomataSelect.SelectedIndex = -1;
             ttSimulationDescription.RemoveAll(); // Removes all tooltips assigned
-            ttSimulationDescription.Dispose();   // Frees all resources
             ttSimulationDescription.IsBalloon = true;
             ttSimulationDescription.ToolTipTitle = "Please select a simulation";
         }
