@@ -43,7 +43,7 @@ namespace Display.Utilities
             tooltip.IsBalloon = true;
             tooltip.ToolTipIcon = ToolTipIcon.Info;
             tooltip.ToolTipTitle = title;
-            tooltip.SetToolTip(control, description); //tu sam dobila nuulpointException
+            tooltip.SetToolTip(control, description); //nuulpointException, not initialised
         }
 
 

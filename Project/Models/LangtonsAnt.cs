@@ -39,11 +39,13 @@ namespace Models
 
         internal void SetStatus(AntStatus status)
         {
+            _previousStatus = _status;
             _status = status;
         }
     }
 
     public enum Direction { Up, Right, Down, Left }
+
 
     public class LangtonsGrid : Grid
     {

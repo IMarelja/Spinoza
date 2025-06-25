@@ -140,7 +140,7 @@ namespace Display
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                clearForm();
+                //clearForm();
             }
         }
 
@@ -279,7 +279,6 @@ namespace Display
 
         private void InitLangtonsAnt(object sender, PaintEventArgs e)
         {
-            currentStep = 0;
             int[,] data = gridLayoutFromUserControl.CurrentState();
 
             Graphics g = e.Graphics;
@@ -296,20 +295,20 @@ namespace Display
                     Rectangle rect = new Rectangle(y * cellWidth, x * cellHeight, cellWidth, cellHeight);
                     Color color;
 
-                    if (data[x, y] == -1)
+                    switch (data[x, y])
                     {
-                        // Ant position
-                        color = Color.Red;
-                    }
-                    else if (data[x, y] == 0)
-                    {
-                        // White cell
-                        color = Color.White;
-                    }
-                    else
-                    {
-                        // Black cell
-                        color = Color.Black;
+                        case 0:
+                            color = Color.White; // White cell
+                            break;
+                        case 1:
+                            color = Color.Black; // Black cell
+                            break;
+                        case 2:
+                            color = Color.Red; // Ant position
+                            break;
+                        default:
+                            color = Color.Gray; // Fallback
+                            break;
                     }
 
                     using (Brush brush = new SolidBrush(color))
@@ -317,7 +316,7 @@ namespace Display
                         g.FillRectangle(brush, rect);
                     }
 
-                    g.DrawRectangle(Pens.Gray, rect); // Optional grid lines
+                    g.DrawRectangle(Pens.Gray, rect); // Optional: draw grid lines
                 }
             }
         }
