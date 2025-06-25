@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Display.Utilities;
 using Models;
 
 namespace Display
@@ -19,7 +20,6 @@ namespace Display
             _registerOrFirstQuestion = registerOrFirstQuestion;
             InitializeComponent();
             Init();
-            gd = new GridDisplay(this);
         }
 
         GridDisplay gd;
@@ -45,43 +45,41 @@ namespace Display
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
+            Utility.DelteLoginOfFile();
+            this.Close();
+        }
 
+        private void OpenSimulationForm(Grid selectedGrid)
+        {
+            this.Hide();
+            GridSimulationForm gs = new GridSimulationForm(selectedGrid);
+            gs.Closed += (s, args) => this.Close();
+            gs.Show();
         }
 
         private void btnLangtonsAnt_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            gd.setSelectAutomata(3);
-            gd.ShowDialog();
+            var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is LangtonsGrid);
+            OpenSimulationForm(grid);
+
         }
 
         private void btnForestFire_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            gd.setSelectAutomata(2);
-            gd.ShowDialog();
+            var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is Forest);
+            OpenSimulationForm(grid);
         }
 
         private void btnBriansBrain_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            this.Hide();
-            var homeForm = new GridSimulationForm();
-
-            Cursor.Current = Cursors.Default;
-            homeForm.Closed += (object_sender, EventArgs_e) => this.Close();
-            homeForm.Show();
-            /*
-            gd.setSelectAutomata(1);
-            gd.ShowDialog();
-            */
+            var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is Brain);
+            OpenSimulationForm(grid);
         }
 
         private void btnGameOfLife_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            gd.setSelectAutomata(0);
-            gd.ShowDialog();
+            //var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is GameOfLife);
+            //OpenSimulationForm(grid);
         }
     }
 }

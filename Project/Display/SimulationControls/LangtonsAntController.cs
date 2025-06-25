@@ -34,21 +34,14 @@ namespace Display.SimulationControls
             nudRowsTable.Value = 10;
             nudColumnsTable.Value = 10;
             cbIsDefault.Checked = true;
-            chbAutoNumberOfSteps.Checked = false;
-            nudAutoNumberOfSteps.Enabled = false;
         }
 
         private void HookEvents()
         {
             btnInitGrid.Click += BtnInitGrid_Click;
-            chbAutoNumberOfSteps.CheckedChanged += ChbAutoNumberOfSteps_CheckedChanged;
             // Additional buttons (RandomGrid, ImportGrid) can be wired similarly if implemented
         }
 
-        private void ChbAutoNumberOfSteps_CheckedChanged(object? sender, EventArgs e)
-        {
-            nudAutoNumberOfSteps.Enabled = chbAutoNumberOfSteps.Checked;
-        }
 
         private void BtnInitGrid_Click(object? sender, EventArgs e)
         {
@@ -113,5 +106,7 @@ namespace Display.SimulationControls
                 2 => Color.Red
             };
         }
+
+
     }
 }
