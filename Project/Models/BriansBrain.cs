@@ -170,6 +170,19 @@ namespace Models
                 
         }
 
+        public void SetCells(int[,] data)
+        {
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    _currentBrainsInTable[x, y] = new BrainCell((BrainsStatus)data[x,y]);
+                }
+            }
+            _history.Clear();
+            _future.Clear();
+        }
+
         private BrainCell[,] CopyOfBrainCell(BrainCell[,] original)
         {
             if (original == null)
