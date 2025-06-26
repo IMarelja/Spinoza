@@ -33,8 +33,6 @@
             nudRowsTable = new NumericUpDown();
             label2 = new Label();
             label1 = new Label();
-            nudAutoNumberOfSteps = new NumericUpDown();
-            chbAutoNumberOfSteps = new CheckBox();
             btnImportGrid = new Button();
             btnRandomGrid = new Button();
             btnInitGrid = new Button();
@@ -44,11 +42,22 @@
             nudNumberOfCellsStartingSquare = new NumericUpDown();
             lblColumn = new Label();
             lblRow = new Label();
+            gbWhiteInfo = new GroupBox();
+            panelOffColor = new Panel();
+            gbAntInfo = new GroupBox();
+            panelDyingColor = new Panel();
+            gbgoLeftInfo = new GroupBox();
+            panelOnColor = new Panel();
+            cbDirection = new ComboBox();
+            label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudColumnsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRowsTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAreaStartingSquare).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumberOfCellsStartingSquare).BeginInit();
+            gbWhiteInfo.SuspendLayout();
+            gbAntInfo.SuspendLayout();
+            gbgoLeftInfo.SuspendLayout();
             SuspendLayout();
             // 
             // label4
@@ -99,29 +108,9 @@
             label1.TabIndex = 41;
             label1.Text = "Rows";
             // 
-            // nudAutoNumberOfSteps
-            // 
-            nudAutoNumberOfSteps.Location = new Point(19, 446);
-            nudAutoNumberOfSteps.Margin = new Padding(4, 5, 4, 5);
-            nudAutoNumberOfSteps.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudAutoNumberOfSteps.Name = "nudAutoNumberOfSteps";
-            nudAutoNumberOfSteps.Size = new Size(232, 31);
-            nudAutoNumberOfSteps.TabIndex = 47;
-            // 
-            // chbAutoNumberOfSteps
-            // 
-            chbAutoNumberOfSteps.AutoSize = true;
-            chbAutoNumberOfSteps.Location = new Point(19, 409);
-            chbAutoNumberOfSteps.Name = "chbAutoNumberOfSteps";
-            chbAutoNumberOfSteps.Size = new Size(124, 29);
-            chbAutoNumberOfSteps.TabIndex = 46;
-            chbAutoNumberOfSteps.Text = "Auto steps";
-            chbAutoNumberOfSteps.UseVisualStyleBackColor = true;
-            chbAutoNumberOfSteps.CheckedChanged += ChbAutoNumberOfSteps_CheckedChanged;
-            // 
             // btnImportGrid
             // 
-            btnImportGrid.Location = new Point(69, 556);
+            btnImportGrid.Location = new Point(14, 556);
             btnImportGrid.Name = "btnImportGrid";
             btnImportGrid.Size = new Size(143, 34);
             btnImportGrid.TabIndex = 50;
@@ -130,20 +119,21 @@
             // 
             // btnRandomGrid
             // 
-            btnRandomGrid.Location = new Point(143, 598);
+            btnRandomGrid.Location = new Point(11, 598);
             btnRandomGrid.Margin = new Padding(4, 5, 4, 5);
             btnRandomGrid.Name = "btnRandomGrid";
-            btnRandomGrid.Size = new Size(128, 38);
+            btnRandomGrid.Size = new Size(146, 38);
             btnRandomGrid.TabIndex = 49;
             btnRandomGrid.Text = "Random Grid";
             btnRandomGrid.UseVisualStyleBackColor = true;
+            btnRandomGrid.Click += btnRandomGrid_Click;
             // 
             // btnInitGrid
             // 
-            btnInitGrid.Location = new Point(4, 598);
+            btnInitGrid.Location = new Point(14, 510);
             btnInitGrid.Margin = new Padding(4, 5, 4, 5);
             btnInitGrid.Name = "btnInitGrid";
-            btnInitGrid.Size = new Size(131, 38);
+            btnInitGrid.Size = new Size(143, 38);
             btnInitGrid.TabIndex = 48;
             btnInitGrid.Text = "Intialise Grid";
             btnInitGrid.UseVisualStyleBackColor = true;
@@ -207,10 +197,112 @@
             lblRow.TabIndex = 52;
             lblRow.Text = "Row";
             // 
+            // gbWhiteInfo
+            // 
+            gbWhiteInfo.BackColor = SystemColors.ButtonFace;
+            gbWhiteInfo.Controls.Add(panelOffColor);
+            gbWhiteInfo.Location = new Point(102, 422);
+            gbWhiteInfo.Margin = new Padding(4, 5, 4, 5);
+            gbWhiteInfo.Name = "gbWhiteInfo";
+            gbWhiteInfo.Padding = new Padding(4, 5, 4, 5);
+            gbWhiteInfo.Size = new Size(77, 78);
+            gbWhiteInfo.TabIndex = 59;
+            gbWhiteInfo.TabStop = false;
+            gbWhiteInfo.Text = "Right";
+            // 
+            // panelOffColor
+            // 
+            panelOffColor.BackColor = Color.White;
+            panelOffColor.Location = new Point(14, 33);
+            panelOffColor.Margin = new Padding(4, 5, 4, 5);
+            panelOffColor.Name = "panelOffColor";
+            panelOffColor.Size = new Size(30, 35);
+            panelOffColor.TabIndex = 1;
+            // 
+            // gbAntInfo
+            // 
+            gbAntInfo.BackColor = SystemColors.ButtonFace;
+            gbAntInfo.Controls.Add(panelDyingColor);
+            gbAntInfo.Location = new Point(189, 422);
+            gbAntInfo.Margin = new Padding(4, 5, 4, 5);
+            gbAntInfo.Name = "gbAntInfo";
+            gbAntInfo.Padding = new Padding(4, 5, 4, 5);
+            gbAntInfo.Size = new Size(79, 78);
+            gbAntInfo.TabIndex = 58;
+            gbAntInfo.TabStop = false;
+            gbAntInfo.Text = "Ant";
+            // 
+            // panelDyingColor
+            // 
+            panelDyingColor.BackColor = Color.OrangeRed;
+            panelDyingColor.Location = new Point(23, 33);
+            panelDyingColor.Margin = new Padding(4, 5, 4, 5);
+            panelDyingColor.Name = "panelDyingColor";
+            panelDyingColor.Size = new Size(30, 35);
+            panelDyingColor.TabIndex = 1;
+            // 
+            // gbgoLeftInfo
+            // 
+            gbgoLeftInfo.BackColor = SystemColors.ButtonFace;
+            gbgoLeftInfo.Controls.Add(panelOnColor);
+            gbgoLeftInfo.Location = new Point(16, 422);
+            gbgoLeftInfo.Margin = new Padding(4, 5, 4, 5);
+            gbgoLeftInfo.Name = "gbgoLeftInfo";
+            gbgoLeftInfo.Padding = new Padding(4, 5, 4, 5);
+            gbgoLeftInfo.Size = new Size(77, 78);
+            gbgoLeftInfo.TabIndex = 57;
+            gbgoLeftInfo.TabStop = false;
+            gbgoLeftInfo.Text = "Left";
+            // 
+            // panelOnColor
+            // 
+            panelOnColor.BackColor = Color.Black;
+            panelOnColor.Location = new Point(17, 33);
+            panelOnColor.Margin = new Padding(4, 5, 4, 5);
+            panelOnColor.Name = "panelOnColor";
+            panelOnColor.Size = new Size(30, 35);
+            panelOnColor.TabIndex = 1;
+            // 
+            // cbDirection
+            // 
+            cbDirection.FormattingEnabled = true;
+            cbDirection.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
+            cbDirection.Location = new Point(102, 370);
+            cbDirection.Margin = new Padding(4, 5, 4, 5);
+            cbDirection.Name = "cbDirection";
+            cbDirection.Size = new Size(155, 33);
+            cbDirection.TabIndex = 60;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(4, 373);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(83, 25);
+            label5.TabIndex = 62;
+            label5.Text = "Direction";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(54, 340);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(176, 25);
+            label6.TabIndex = 63;
+            label6.Text = "Choose ant direction";
+            // 
             // LangtonsAntController
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(cbDirection);
+            Controls.Add(gbWhiteInfo);
+            Controls.Add(gbAntInfo);
+            Controls.Add(gbgoLeftInfo);
             Controls.Add(label3);
             Controls.Add(nudAreaStartingSquare);
             Controls.Add(nudNumberOfCellsStartingSquare);
@@ -220,8 +312,6 @@
             Controls.Add(btnImportGrid);
             Controls.Add(btnRandomGrid);
             Controls.Add(btnInitGrid);
-            Controls.Add(nudAutoNumberOfSteps);
-            Controls.Add(chbAutoNumberOfSteps);
             Controls.Add(label4);
             Controls.Add(nudColumnsTable);
             Controls.Add(nudRowsTable);
@@ -231,9 +321,11 @@
             Size = new Size(275, 648);
             ((System.ComponentModel.ISupportInitialize)nudColumnsTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudRowsTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAreaStartingSquare).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNumberOfCellsStartingSquare).EndInit();
+            gbWhiteInfo.ResumeLayout(false);
+            gbAntInfo.ResumeLayout(false);
+            gbgoLeftInfo.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -245,8 +337,6 @@
         private NumericUpDown nudRowsTable;
         private Label label2;
         private Label label1;
-        private NumericUpDown nudAutoNumberOfSteps;
-        private CheckBox chbAutoNumberOfSteps;
         private Button btnImportGrid;
         private Button btnRandomGrid;
         private Button btnInitGrid;
@@ -256,5 +346,14 @@
         private NumericUpDown nudNumberOfCellsStartingSquare;
         private Label lblColumn;
         private Label lblRow;
+        private GroupBox gbWhiteInfo;
+        private Panel panelOffColor;
+        private GroupBox gbAntInfo;
+        private Panel panelDyingColor;
+        private GroupBox gbgoLeftInfo;
+        private Panel panelOnColor;
+        private ComboBox cbDirection;
+        private Label label5;
+        private Label label6;
     }
 }
