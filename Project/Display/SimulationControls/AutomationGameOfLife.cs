@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Display
 {
-    public partial class AutomationGameOfLife : UserControl
+    public partial class AutomationGameOfLife : UserControl, INotifyPropertyChanged
     {
         public AutomationGameOfLife()
         {
             InitializeComponent();
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
