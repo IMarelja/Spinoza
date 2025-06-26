@@ -10,3 +10,7 @@
 /Project/MiddleWareSimulation/obj
 /Project/.vs/
 /Project/MiddleWareSimulation/appsettings.json
+
+
+**/bin/
+**/obj/
