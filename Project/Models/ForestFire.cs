@@ -11,7 +11,7 @@ namespace Models
 
     internal class TreeCell : Cell
     {
-        private ForestStatus _previousStatus;
+        private Stack<ForestStatus> _previousStatus = new();
         private ForestStatus _status;
         private ForestStatus _nextStatus;
         private int _p;
@@ -29,28 +29,15 @@ namespace Models
         //calculates next status
         public override void Update()
         {
-            _previousStatus = _status;
+            _previousStatus.Push(_status);
             _status = _nextStatus;
-            if (_status == ForestStatus.Burning)
-                _nextStatus = ForestStatus.Empty;
-            if (_status == ForestStatus.Empty && ProbabilityCalculation(_p))
-                _nextStatus = ForestStatus.Tree;
-            if (_status == ForestStatus.Tree && ProbabilityCalculation(_f))
-                _nextStatus = ForestStatus.Burning;
+            CalculateNext();
         }
 
-        //probably needs adjusting
-        //calculates previous status
         public override void Undo()
         {
             _nextStatus = _status ;
-            _status = _previousStatus;
-            if (_status == ForestStatus.Burning)
-                _previousStatus = ForestStatus.Tree;
-            if (_status == ForestStatus.Tree && ProbabilityCalculation(_p))
-                _previousStatus = ForestStatus.Empty;
-            if (_status == ForestStatus.Empty && ProbabilityCalculation(_f))
-                _previousStatus = ForestStatus.Burning;
+            _status = _previousStatus.Pop();
         }
 
         //check if cell next to is burning
@@ -73,14 +60,36 @@ namespace Models
         {
             return (int)_status;
         }
+
+        public void SetStatus(int status)
+        {
+            _status = (ForestStatus)status;
+            _nextStatus = _status;
+            CalculateNext();
+        }
+
+        private void CalculateNext()
+        {
+            if (_status == ForestStatus.Burning)
+                _nextStatus = ForestStatus.Empty;
+            if (_status == ForestStatus.Empty && ProbabilityCalculation(_p))
+                _nextStatus = ForestStatus.Tree;
+            if (_status == ForestStatus.Tree && ProbabilityCalculation(_f))
+                _nextStatus = ForestStatus.Burning;
+        }
     }
 
 
     public class Forest : Grid
     {
+        public override string Name => "Forest Fire";
+        public override string Description => "Description here";
+
         private TreeCell[,] _table;
         private int _rows;
         private int _columns;
+
+        public Forest() { }
         
         //intialises row and columns and saves probability to cells
         public Forest(int xAxis, int yAxis, int p, int f)
@@ -97,7 +106,17 @@ namespace Models
             }
         }
 
-        //definately needs adjusting
+        public void SetCells(int[,] data)
+        {
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    _table[x, y].SetStatus(data[x, y]);
+                }
+            }
+        }
+
         public override int[,] BackStep()
         {
             int[,] data = new int[_columns, _rows];
@@ -106,6 +125,19 @@ namespace Models
                 for (int x = 0; x < _columns; x++)
                 {
                     _table[x, y].Undo();
+                    data[x, y] = _table[x, y].Print();
+                }
+            }
+            return data;
+        }
+
+        public override int[,] CurrentState()
+        {
+            int[,] data = new int[_columns, _rows];
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
                     data[x, y] = _table[x, y].Print();
                 }
             }
@@ -141,6 +173,8 @@ namespace Models
             }
             return data;
         }
+        public override string ToString()
+        => Name;
     }
 
 }

@@ -13,8 +13,10 @@ namespace Display
 {
     public partial class HomeForms : Form
     {
-        public HomeForms()
+        private bool _registerOrFirstQuestion;
+        public HomeForms(bool registerOrFirstQuestion)
         {
+            _registerOrFirstQuestion = registerOrFirstQuestion;
             InitializeComponent();
             Init();
             gd = new GridDisplay(this);
@@ -36,8 +38,8 @@ namespace Display
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            //Login login = new Login();
+            //login.Show();
 
         }
 
@@ -63,8 +65,16 @@ namespace Display
         private void btnBriansBrain_Click(object sender, EventArgs e)
         {
             this.Hide();
+            this.Hide();
+            var homeForm = new GridSimulationForm();
+
+            Cursor.Current = Cursors.Default;
+            homeForm.Closed += (object_sender, EventArgs_e) => this.Close();
+            homeForm.Show();
+            /*
             gd.setSelectAutomata(1);
             gd.ShowDialog();
+            */
         }
 
         private void btnGameOfLife_Click(object sender, EventArgs e)

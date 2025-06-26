@@ -100,8 +100,7 @@
             // btnLogOut
             // 
             btnLogOut.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            btnLogOut.Location = new Point(993, 22);
-            btnLogOut.Margin = new Padding(2, 2, 2, 2);
+            btnLogOut.Location = new Point(1243, 27);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(116, 66);
             btnLogOut.TabIndex = 5;
