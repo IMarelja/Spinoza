@@ -155,6 +155,14 @@ namespace Models
             return copy;
         }
 
+        // setcells
+        public void SetCells(int[,] state)
+        {
+            for (int y = 0; y < _rows; y++)
+                for (int x = 0; x < _columns; x++)
+                    _grid[x, y] = new LifeCell((LifeStatus)state[x, y]);
+        }
+
 
         // name of display in UI
         public override string ToString() => Name;
