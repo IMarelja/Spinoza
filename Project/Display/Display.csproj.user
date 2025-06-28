@@ -7,9 +7,6 @@
     <Compile Update="SimulationControls\GameOfLifeController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="GridDisplay.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="HomeForms.cs">
       <SubType>Form</SubType>
     </Compile>

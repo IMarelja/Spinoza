@@ -32,12 +32,12 @@ namespace Models
             return _status == AntStatus.White ? 0 : 1;
         }
 
-        internal AntStatus GetStatus()
+        public AntStatus GetStatus()
         {
             return _status;
         }
 
-        internal void SetStatus(AntStatus status)
+        public void SetStatus(AntStatus status)
         {
             _status = status;
         }
