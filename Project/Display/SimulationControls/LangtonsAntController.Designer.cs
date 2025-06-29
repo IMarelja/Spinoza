@@ -94,7 +94,7 @@
             // 
             // nudColumnsTable
             // 
-            nudColumnsTable.Location = new Point(88, 67);
+            nudColumnsTable.Location = new Point(79, 67);
             nudColumnsTable.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudColumnsTable.Name = "nudColumnsTable";
             nudColumnsTable.Size = new Size(90, 23);
@@ -102,7 +102,7 @@
             // 
             // nudRowsTable
             // 
-            nudRowsTable.Location = new Point(88, 38);
+            nudRowsTable.Location = new Point(79, 38);
             nudRowsTable.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudRowsTable.Name = "nudRowsTable";
             nudRowsTable.Size = new Size(90, 23);
@@ -111,7 +111,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(13, 67);
+            label2.Location = new Point(4, 67);
             label2.Name = "label2";
             label2.Size = new Size(55, 15);
             label2.TabIndex = 42;
@@ -120,7 +120,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 38);
+            label1.Location = new Point(4, 38);
             label1.Name = "label1";
             label1.Size = new Size(35, 15);
             label1.TabIndex = 41;
@@ -128,10 +128,10 @@
             // 
             // btnImportGrid
             // 
-            btnImportGrid.Location = new Point(10, 334);
-            btnImportGrid.Margin = new Padding(2, 2, 2, 2);
+            btnImportGrid.Location = new Point(8, 363);
+            btnImportGrid.Margin = new Padding(2);
             btnImportGrid.Name = "btnImportGrid";
-            btnImportGrid.Size = new Size(100, 20);
+            btnImportGrid.Size = new Size(100, 27);
             btnImportGrid.TabIndex = 50;
             btnImportGrid.Text = "Import Grid";
             btnImportGrid.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@
             // 
             // btnRandomGrid
             // 
-            btnRandomGrid.Location = new Point(8, 359);
+            btnRandomGrid.Location = new Point(6, 395);
             btnRandomGrid.Name = "btnRandomGrid";
             btnRandomGrid.Size = new Size(102, 23);
             btnRandomGrid.TabIndex = 49;
@@ -149,7 +149,7 @@
             // 
             // btnInitGrid
             // 
-            btnInitGrid.Location = new Point(10, 306);
+            btnInitGrid.Location = new Point(8, 335);
             btnInitGrid.Name = "btnInitGrid";
             btnInitGrid.Size = new Size(100, 23);
             btnInitGrid.TabIndex = 48;
@@ -160,8 +160,8 @@
             // cbIsDefault
             // 
             cbIsDefault.AutoSize = true;
-            cbIsDefault.Location = new Point(13, 128);
-            cbIsDefault.Margin = new Padding(2, 2, 2, 2);
+            cbIsDefault.Location = new Point(13, 136);
+            cbIsDefault.Margin = new Padding(2);
             cbIsDefault.Name = "cbIsDefault";
             cbIsDefault.Size = new Size(108, 19);
             cbIsDefault.TabIndex = 51;
@@ -171,7 +171,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(38, 104);
+            label3.Location = new Point(13, 110);
             label3.Name = "label3";
             label3.Size = new Size(113, 15);
             label3.TabIndex = 56;
@@ -179,7 +179,7 @@
             // 
             // nudAreaStartingSquare
             // 
-            nudAreaStartingSquare.Location = new Point(81, 182);
+            nudAreaStartingSquare.Location = new Point(78, 190);
             nudAreaStartingSquare.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudAreaStartingSquare.Name = "nudAreaStartingSquare";
             nudAreaStartingSquare.Size = new Size(77, 23);
@@ -187,7 +187,7 @@
             // 
             // nudNumberOfCellsStartingSquare
             // 
-            nudNumberOfCellsStartingSquare.Location = new Point(81, 151);
+            nudNumberOfCellsStartingSquare.Location = new Point(78, 160);
             nudNumberOfCellsStartingSquare.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudNumberOfCellsStartingSquare.Name = "nudNumberOfCellsStartingSquare";
             nudNumberOfCellsStartingSquare.Size = new Size(77, 23);
@@ -196,7 +196,7 @@
             // lblColumn
             // 
             lblColumn.AutoSize = true;
-            lblColumn.Location = new Point(20, 184);
+            lblColumn.Location = new Point(15, 192);
             lblColumn.Name = "lblColumn";
             lblColumn.Size = new Size(50, 15);
             lblColumn.TabIndex = 53;
@@ -205,7 +205,7 @@
             // lblRow
             // 
             lblRow.AutoSize = true;
-            lblRow.Location = new Point(20, 154);
+            lblRow.Location = new Point(18, 168);
             lblRow.Name = "lblRow";
             lblRow.Size = new Size(30, 15);
             lblRow.TabIndex = 52;
@@ -215,7 +215,7 @@
             // 
             gbWhiteInfo.BackColor = SystemColors.ButtonFace;
             gbWhiteInfo.Controls.Add(panelOffColor);
-            gbWhiteInfo.Location = new Point(71, 253);
+            gbWhiteInfo.Location = new Point(68, 282);
             gbWhiteInfo.Name = "gbWhiteInfo";
             gbWhiteInfo.Size = new Size(54, 47);
             gbWhiteInfo.TabIndex = 59;
@@ -234,7 +234,7 @@
             // 
             gbAntInfo.BackColor = SystemColors.ButtonFace;
             gbAntInfo.Controls.Add(panelDyingColor);
-            gbAntInfo.Location = new Point(132, 253);
+            gbAntInfo.Location = new Point(129, 282);
             gbAntInfo.Name = "gbAntInfo";
             gbAntInfo.Size = new Size(55, 47);
             gbAntInfo.TabIndex = 58;
@@ -253,7 +253,7 @@
             // 
             gbgoLeftInfo.BackColor = SystemColors.ButtonFace;
             gbgoLeftInfo.Controls.Add(panelOnColor);
-            gbgoLeftInfo.Location = new Point(11, 253);
+            gbgoLeftInfo.Location = new Point(8, 282);
             gbgoLeftInfo.Name = "gbgoLeftInfo";
             gbgoLeftInfo.Size = new Size(54, 47);
             gbgoLeftInfo.TabIndex = 57;
@@ -272,7 +272,7 @@
             // 
             cbDirection.FormattingEnabled = true;
             cbDirection.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbDirection.Location = new Point(102, 379);
+            cbDirection.Location = new Point(68, 251);
             cbDirection.Margin = new Padding(4, 5, 4, 5);
             cbDirection.Name = "cbDirection";
             cbDirection.Size = new Size(110, 23);
@@ -281,7 +281,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(4, 382);
+            label5.Location = new Point(5, 254);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(55, 15);
@@ -291,7 +291,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(50, 349);
+            label6.Location = new Point(4, 222);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(117, 15);
@@ -303,10 +303,10 @@
             pbInitializeGrid.ErrorImage = null;
             pbInitializeGrid.Image = (Image)resources.GetObject("pbInitializeGrid.Image");
             pbInitializeGrid.InitialImage = null;
-            pbInitializeGrid.Location = new Point(164, 510);
+            pbInitializeGrid.Location = new Point(115, 335);
             pbInitializeGrid.Margin = new Padding(4, 5, 4, 5);
             pbInitializeGrid.Name = "pbInitializeGrid";
-            pbInitializeGrid.Size = new Size(29, 33);
+            pbInitializeGrid.Size = new Size(21, 23);
             pbInitializeGrid.SizeMode = PictureBoxSizeMode.StretchImage;
             pbInitializeGrid.TabIndex = 66;
             pbInitializeGrid.TabStop = false;
@@ -316,10 +316,10 @@
             pbRandomGridInfo.ErrorImage = null;
             pbRandomGridInfo.Image = (Image)resources.GetObject("pbRandomGridInfo.Image");
             pbRandomGridInfo.InitialImage = null;
-            pbRandomGridInfo.Location = new Point(166, 603);
+            pbRandomGridInfo.Location = new Point(115, 395);
             pbRandomGridInfo.Margin = new Padding(4, 5, 4, 5);
             pbRandomGridInfo.Name = "pbRandomGridInfo";
-            pbRandomGridInfo.Size = new Size(29, 33);
+            pbRandomGridInfo.Size = new Size(21, 23);
             pbRandomGridInfo.SizeMode = PictureBoxSizeMode.StretchImage;
             pbRandomGridInfo.TabIndex = 65;
             pbRandomGridInfo.TabStop = false;
@@ -329,10 +329,10 @@
             pbImportGridInfo.ErrorImage = null;
             pbImportGridInfo.Image = (Image)resources.GetObject("pbImportGridInfo.Image");
             pbImportGridInfo.InitialImage = null;
-            pbImportGridInfo.Location = new Point(164, 556);
+            pbImportGridInfo.Location = new Point(115, 363);
             pbImportGridInfo.Margin = new Padding(4, 5, 4, 5);
             pbImportGridInfo.Name = "pbImportGridInfo";
-            pbImportGridInfo.Size = new Size(29, 33);
+            pbImportGridInfo.Size = new Size(21, 23);
             pbImportGridInfo.SizeMode = PictureBoxSizeMode.StretchImage;
             pbImportGridInfo.TabIndex = 64;
             pbImportGridInfo.TabStop = false;
@@ -342,10 +342,10 @@
             pbsetDirection.ErrorImage = null;
             pbsetDirection.Image = (Image)resources.GetObject("pbsetDirection.Image");
             pbsetDirection.InitialImage = null;
-            pbsetDirection.Location = new Point(234, 341);
+            pbsetDirection.Location = new Point(129, 221);
             pbsetDirection.Margin = new Padding(4, 5, 4, 5);
             pbsetDirection.Name = "pbsetDirection";
-            pbsetDirection.Size = new Size(29, 33);
+            pbsetDirection.Size = new Size(21, 20);
             pbsetDirection.SizeMode = PictureBoxSizeMode.StretchImage;
             pbsetDirection.TabIndex = 67;
             pbsetDirection.TabStop = false;
@@ -355,10 +355,10 @@
             pbSetPosition.ErrorImage = null;
             pbSetPosition.Image = (Image)resources.GetObject("pbSetPosition.Image");
             pbSetPosition.InitialImage = null;
-            pbSetPosition.Location = new Point(224, 174);
+            pbSetPosition.Location = new Point(145, 110);
             pbSetPosition.Margin = new Padding(4, 5, 4, 5);
             pbSetPosition.Name = "pbSetPosition";
-            pbSetPosition.Size = new Size(29, 33);
+            pbSetPosition.Size = new Size(21, 23);
             pbSetPosition.SizeMode = PictureBoxSizeMode.StretchImage;
             pbSetPosition.TabIndex = 68;
             pbSetPosition.TabStop = false;
@@ -368,10 +368,10 @@
             pbTable.ErrorImage = null;
             pbTable.Image = (Image)resources.GetObject("pbTable.Image");
             pbTable.InitialImage = null;
-            pbTable.Location = new Point(166, 18);
+            pbTable.Location = new Point(129, 5);
             pbTable.Margin = new Padding(4, 5, 4, 5);
             pbTable.Name = "pbTable";
-            pbTable.Size = new Size(29, 33);
+            pbTable.Size = new Size(21, 25);
             pbTable.SizeMode = PictureBoxSizeMode.StretchImage;
             pbTable.TabIndex = 69;
             pbTable.TabStop = false;
@@ -381,8 +381,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pbTable);
-            Controls.Add(pbSetPosition);
             Controls.Add(pbsetDirection);
+            Controls.Add(pbSetPosition);
             Controls.Add(pbInitializeGrid);
             Controls.Add(pbRandomGridInfo);
             Controls.Add(pbImportGridInfo);
@@ -406,9 +406,9 @@
             Controls.Add(nudRowsTable);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "LangtonsAntController";
-            Size = new Size(192, 389);
+            Size = new Size(192, 427);
             ((System.ComponentModel.ISupportInitialize)nudColumnsTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudRowsTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAreaStartingSquare).EndInit();
