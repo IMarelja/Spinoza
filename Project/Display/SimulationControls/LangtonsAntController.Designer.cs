@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LangtonsAntController));
             label4 = new Label();
             nudColumnsTable = new NumericUpDown();
             nudRowsTable = new NumericUpDown();
@@ -51,6 +53,21 @@
             cbDirection = new ComboBox();
             label5 = new Label();
             label6 = new Label();
+            pbInitializeGrid = new PictureBox();
+            pbRandomGridInfo = new PictureBox();
+            pbImportGridInfo = new PictureBox();
+            pbsetDirection = new PictureBox();
+            pbSetPosition = new PictureBox();
+            pbTable = new PictureBox();
+            ttInitGrid = new ToolTip(components);
+            ttImportGrid = new ToolTip(components);
+            ttRandomGrid = new ToolTip(components);
+            ttTable = new ToolTip(components);
+            ttAntColor = new ToolTip(components);
+            ttGoRightInfo = new ToolTip(components);
+            ttGoLeftInfo = new ToolTip(components);
+            ttAntPosstion = new ToolTip(components);
+            ttAntDirection = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)nudColumnsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRowsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAreaStartingSquare).BeginInit();
@@ -58,6 +75,12 @@
             gbWhiteInfo.SuspendLayout();
             gbAntInfo.SuspendLayout();
             gbgoLeftInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbInitializeGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbRandomGridInfo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbImportGridInfo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbsetDirection).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbSetPosition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbTable).BeginInit();
             SuspendLayout();
             // 
             // label4
@@ -267,7 +290,7 @@
             // 
             cbDirection.FormattingEnabled = true;
             cbDirection.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbDirection.Location = new Point(102, 370);
+            cbDirection.Location = new Point(102, 379);
             cbDirection.Margin = new Padding(4, 5, 4, 5);
             cbDirection.Name = "cbDirection";
             cbDirection.Size = new Size(155, 33);
@@ -276,7 +299,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(4, 373);
+            label5.Location = new Point(4, 382);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(83, 25);
@@ -286,17 +309,101 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(54, 340);
+            label6.Location = new Point(50, 349);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(176, 25);
             label6.TabIndex = 63;
             label6.Text = "Choose ant direction";
             // 
+            // pbInitializeGrid
+            // 
+            pbInitializeGrid.ErrorImage = null;
+            pbInitializeGrid.Image = (Image)resources.GetObject("pbInitializeGrid.Image");
+            pbInitializeGrid.InitialImage = null;
+            pbInitializeGrid.Location = new Point(164, 510);
+            pbInitializeGrid.Margin = new Padding(4, 5, 4, 5);
+            pbInitializeGrid.Name = "pbInitializeGrid";
+            pbInitializeGrid.Size = new Size(29, 33);
+            pbInitializeGrid.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbInitializeGrid.TabIndex = 66;
+            pbInitializeGrid.TabStop = false;
+            // 
+            // pbRandomGridInfo
+            // 
+            pbRandomGridInfo.ErrorImage = null;
+            pbRandomGridInfo.Image = (Image)resources.GetObject("pbRandomGridInfo.Image");
+            pbRandomGridInfo.InitialImage = null;
+            pbRandomGridInfo.Location = new Point(166, 603);
+            pbRandomGridInfo.Margin = new Padding(4, 5, 4, 5);
+            pbRandomGridInfo.Name = "pbRandomGridInfo";
+            pbRandomGridInfo.Size = new Size(29, 33);
+            pbRandomGridInfo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbRandomGridInfo.TabIndex = 65;
+            pbRandomGridInfo.TabStop = false;
+            // 
+            // pbImportGridInfo
+            // 
+            pbImportGridInfo.ErrorImage = null;
+            pbImportGridInfo.Image = (Image)resources.GetObject("pbImportGridInfo.Image");
+            pbImportGridInfo.InitialImage = null;
+            pbImportGridInfo.Location = new Point(164, 556);
+            pbImportGridInfo.Margin = new Padding(4, 5, 4, 5);
+            pbImportGridInfo.Name = "pbImportGridInfo";
+            pbImportGridInfo.Size = new Size(29, 33);
+            pbImportGridInfo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbImportGridInfo.TabIndex = 64;
+            pbImportGridInfo.TabStop = false;
+            // 
+            // pbsetDirection
+            // 
+            pbsetDirection.ErrorImage = null;
+            pbsetDirection.Image = (Image)resources.GetObject("pbsetDirection.Image");
+            pbsetDirection.InitialImage = null;
+            pbsetDirection.Location = new Point(234, 341);
+            pbsetDirection.Margin = new Padding(4, 5, 4, 5);
+            pbsetDirection.Name = "pbsetDirection";
+            pbsetDirection.Size = new Size(29, 33);
+            pbsetDirection.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbsetDirection.TabIndex = 67;
+            pbsetDirection.TabStop = false;
+            // 
+            // pbSetPosition
+            // 
+            pbSetPosition.ErrorImage = null;
+            pbSetPosition.Image = (Image)resources.GetObject("pbSetPosition.Image");
+            pbSetPosition.InitialImage = null;
+            pbSetPosition.Location = new Point(224, 174);
+            pbSetPosition.Margin = new Padding(4, 5, 4, 5);
+            pbSetPosition.Name = "pbSetPosition";
+            pbSetPosition.Size = new Size(29, 33);
+            pbSetPosition.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbSetPosition.TabIndex = 68;
+            pbSetPosition.TabStop = false;
+            // 
+            // pbTable
+            // 
+            pbTable.ErrorImage = null;
+            pbTable.Image = (Image)resources.GetObject("pbTable.Image");
+            pbTable.InitialImage = null;
+            pbTable.Location = new Point(166, 18);
+            pbTable.Margin = new Padding(4, 5, 4, 5);
+            pbTable.Name = "pbTable";
+            pbTable.Size = new Size(29, 33);
+            pbTable.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbTable.TabIndex = 69;
+            pbTable.TabStop = false;
+            // 
             // LangtonsAntController
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pbTable);
+            Controls.Add(pbSetPosition);
+            Controls.Add(pbsetDirection);
+            Controls.Add(pbInitializeGrid);
+            Controls.Add(pbRandomGridInfo);
+            Controls.Add(pbImportGridInfo);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(cbDirection);
@@ -326,6 +433,12 @@
             gbWhiteInfo.ResumeLayout(false);
             gbAntInfo.ResumeLayout(false);
             gbgoLeftInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbInitializeGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbRandomGridInfo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbImportGridInfo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbsetDirection).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbSetPosition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -355,5 +468,20 @@
         private ComboBox cbDirection;
         private Label label5;
         private Label label6;
+        private PictureBox pbInitializeGrid;
+        private PictureBox pbRandomGridInfo;
+        private PictureBox pbImportGridInfo;
+        private PictureBox pbsetDirection;
+        private PictureBox pbSetPosition;
+        private PictureBox pbTable;
+        private ToolTip ttInitGrid;
+        private ToolTip ttImportGrid;
+        private ToolTip ttRandomGrid;
+        private ToolTip ttTable;
+        private ToolTip ttAntColor;
+        private ToolTip ttGoRightInfo;
+        private ToolTip ttGoLeftInfo;
+        private ToolTip ttAntPosstion;
+        private ToolTip ttAntDirection;
     }
 }
