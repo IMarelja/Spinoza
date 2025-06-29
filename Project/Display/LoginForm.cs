@@ -26,47 +26,9 @@ namespace Display
 
         public LoginForm()
         {
-            AutoLoginBeforeAnything();
             InitializeComponent();
             tbPassword.PasswordChar = '⬤';
             lbMessage.Visible = false;
-        }
-
-        private async void AutoLoginBeforeAnything()
-        {
-            try
-            {
-                AuthLogin loginData = Utility.LoadLoginFile();
-                String json = JsonConvert.SerializeObject(loginData);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await httpClient.PostAsync($"{API_BASE_URL}/login", content);
-
-                string responseText = await response.Content.ReadAsStringAsync();
-                var responseObject = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseText);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    this.Hide();
-                    var homeForm = new HomeForms(false);
-
-                    Cursor.Current = Cursors.Default;
-                    homeForm.Closed += (object_sender, EventArgs_e) => this.Close();
-                    homeForm.Show();
-                }
-            }
-            catch (OperationCanceledException ex)
-            {
-
-            }
-            catch (HttpRequestException ex)
-            {
-                MessageBox.Show($"Network error: {ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private async void btnLogIn_Click(object sender, EventArgs e)
