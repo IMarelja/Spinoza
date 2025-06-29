@@ -39,6 +39,42 @@ namespace Display.SimulationControls
             cbDirection.Items.AddRange(Enum.GetNames(typeof(Direction)));
             cbDirection.SelectedItem = Direction.Up.ToString();
             cbDirection.DropDownStyle = ComboBoxStyle.DropDownList;
+            ToolTipInit();
+
+        }
+
+        private void ToolTipInit()
+        {
+            Utility.SetInfoBalloonTooltipForControl(ttTable, pbTable, "Table Configuration",
+            "Defines the size of the simulation grid.\n" +
+            "• Rows: vertical cells\n" +
+            "• Columns: horizontal cells\n" +
+            "Total squares = Rows × Columns.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttAntPosstion, pbSetPosition, "Ant position",
+                "Select the ant position. \n" +
+                "If checked: defaukt center \n +" +
+                "If you want to specify specific position unckeck default");
+
+            Utility.SetInfoBalloonTooltipForControl(ttAntDirection, pbsetDirection, "Direction of Ant",
+                "Choose direction the ant will start with.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttInitGrid, pbInitializeGrid, "Initialize Grid",
+                "Click to create an empty grid based on defined dimensions.\n" +
+                "All cells will be set to their initial default state.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttImportGrid, pbImportGridInfo, "Import Grid",
+                "Import a previously saved grid layout.\n" +
+                "Useful for continuing simulations or loading predefined patterns.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttRandomGrid, pbRandomGridInfo, "Random Grid",
+                "Generate a randomized grid layout.\n" +
+                "Cells will be randomly activated to create diverse simulation states.");
+
+
+            Utility.CreateCellStateTooltip(ttGoLeftInfo, gbgoLeftInfo, panelOnColor, "Black: Go left");
+            Utility.CreateCellStateTooltip(ttGoRightInfo, gbWhiteInfo, panelOffColor, "White: turn right");
+            Utility.CreateCellStateTooltip(ttAntColor, gbAntInfo, panelDyingColor, "Ant Cell");
         }
 
         private void HookEvents()

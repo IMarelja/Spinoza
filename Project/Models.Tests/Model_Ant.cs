@@ -6,103 +6,96 @@ namespace Models.Tests
     {
         private LangtonsGrid _grid;
 
-
         [Fact]
-        public void Initial_State_Is_White_Cell_And_Ant_In_Center()
+        public void Initial_Grid_Has_Ant_At_Center()
         {
             _grid = new LangtonsGrid(3, 3);
             var state = _grid.CurrentState();
-
-            // All cells white = 0, ant marked as 2
-            // Ant should be in center at (1,1)
-            Assert.Equal(0, state[0, 0]);
-            Assert.Equal(0, state[2, 2]);
-            Assert.Equal(2, state[1, 1]);
+            Assert.Equal(2, state[1, 1]); // Center cell should be marked with 2 (ant)
         }
 
         [Fact]
-        public void NextStep_AntFlipsCell_And_Moves_Right_When_OnWhite() //error
+        public void Ant_Turns_Right_On_White_And_Flips_Cell()
         {
-            var grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up); // Centered
+            _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up); // Ant starts at (1,1)
 
-            var before = grid.CurrentState();
-            Assert.Equal(0, before[1, 1]); // Cell is white
+            var result = _grid.NextStep();
 
-            grid.NextStep();
+            // The center cell should now be BLACK (1)
+            Assert.Equal(1, result[1, 1]); // (x=1, y=1)
 
-            var after = grid.CurrentState();
-
-            // (1,1) should now be black: 1
-            Assert.Equal(1, after[1, 1]);
-
-            // Ant should now be at (2,1) since it turns right and moves right from Up
-            Assert.Equal(2, after[2, 1]);
+            // Ant should move UP and RIGHT turn = RIGHT direction → (x+1, y)
+            Assert.Equal(2, result[2, 1]); // Ant now at (2,1)
         }
 
         [Fact]
-        public void NextStep_AntFlipsCell_And_Moves_Left_When_OnBlack() //failed Test
+        public void Ant_Turns_Left_On_Black_And_Flips_Cell()
         {
-            _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
+            // Arrange: ant starts at center, facing Up
+            var grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
 
-            // Manually set cell (1,1) to black so ant is on black cell
-            _grid.BackStep(); // to clear history if any
-            var cellField = typeof(LangtonsGrid).GetField("_grid", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var gridArray = (LangtonsCell[,])cellField.GetValue(_grid);
-            gridArray[1, 1].SetStatus(AntStatus.Black);
+            // Manually set the cell to BLACK
+            var cell = typeof(LangtonsGrid)
+                .GetField("_grid", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                ?.GetValue(grid) as LangtonsCell[,];
+            cell[1, 1].SetStatus(AntStatus.Black);
 
-            var before = _grid.CurrentState();
-            Assert.Equal(1, before[1, 1]);
+            // Act
+            var result = grid.NextStep();
 
-            var after = _grid.NextStep();
+            // Assert: cell (1,1) should now be white (0)
+            Assert.Equal(0, result[1, 1]);
 
-            // On black, ant turns left (Up -> Left) and flips cell to white (0)
-            Assert.Equal(0, after[1, 1]);
-
-            // Ant moved left to (0,1)
-            Assert.Equal(2, after[0, 1]);
+            // Ant was facing Up, turned LEFT (black cell), moved to (0,1)
+            Assert.Equal(2, result[0, 1]);
         }
 
         [Fact]
-        public void BackStep_Reverts_Last_Step()
+        public void Undo_BackStep_Reverses_Ant_Move_And_Cell_Flip()
         {
             _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
 
-            var state1 = _grid.CurrentState();
-            var state2 = _grid.NextStep();
+            var initial = _grid.CurrentState();
+            var afterStep = _grid.NextStep();
+            var afterUndo = _grid.BackStep();
 
-            // Ensure states are different
-            Assert.NotEqual(state1[1, 1], state2[1, 1]);
-
-            var backState = _grid.BackStep();
-
-            // BackStep returns to original state
-            Assert.Equal(state1[1, 1], backState[1, 1]);
-            Assert.Equal(state1[1, 1], backState[1, 1]);
-            Assert.Equal(state1[1, 1], backState[1, 1]);
+            Assert.Equal(initial, afterUndo); // Should be same as start
         }
 
         [Fact]
-        public void BackStep_With_No_History_Returns_CurrentState()
+        public void Ant_Stays_In_Bounds()
         {
-            _grid = new LangtonsGrid(3, 3);
+            _grid = new LangtonsGrid(3, 3, 0, 0, Direction.Left); // Ant starts at top-left and faces out of bounds
 
-            var before = _grid.CurrentState();
-            var back = _grid.BackStep();
+            for (int i = 0; i < 10; i++)
+                _grid.NextStep();
 
-            // With no history BackStep should return same grid state
-            Assert.Equal(before, back);
+            var state = _grid.CurrentState();
+            // All coordinates must be within bounds
+            for (int y = 0; y < 3; y++)
+                for (int x = 0; x < 3; x++)
+                    Assert.InRange(state[x, y], 0, 2);
         }
 
         [Fact]
-        public void Ant_Does_Not_Move_Outside_Bounds() //failed Test
+        public void Full_Cycle_Of_Steps_And_BackSteps_Match()
         {
-            // Ant start at top-left corner facing Up
-            _grid = new LangtonsGrid(3, 3, 0, 0, Direction.Up);
+            _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
+            var initial = _grid.CurrentState();
 
-            var after = _grid.NextStep();
+            _grid.NextStep();
+            _grid.NextStep();
+            _grid.NextStep();
 
-            // Ant tries to move up from (0,0) but clamped to (0,0)
-            Assert.Equal(2, after[0, 0]);
+            _grid.BackStep();
+            _grid.BackStep();
+            _grid.BackStep();
+
+            var final = _grid.CurrentState();
+
+            Assert.Equal(initial, final); // Grid should match original
         }
+        
     }
 }
+

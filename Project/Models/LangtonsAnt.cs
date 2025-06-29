@@ -50,7 +50,7 @@ namespace Models
     public class LangtonsGrid : Grid
     {
         public override string Name => "Langtons Ant";
-        public override string Description => "Description here";
+        public override string Description => "Two-dimensional Turing machine with a simple set of rules that produces complex, emergent behavior from an ant moving on a grid of black and white cells.";
 
         private LangtonsCell[,] _grid;
         private int _rows;
