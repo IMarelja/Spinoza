@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -88,6 +90,8 @@ namespace Models
         private TreeCell[,] _table;
         private int _rows;
         private int _columns;
+        private int _tree;
+        private int _fire;
 
         public Forest() { }
         
@@ -96,6 +100,8 @@ namespace Models
         {
             _columns = xAxis;
             _rows = yAxis;
+            _tree = p;
+            _fire = f;
             _table = new TreeCell[_columns, _rows];
             for (int y = 0; y < _rows; y++)
             {
@@ -175,6 +181,66 @@ namespace Models
         }
         public override string ToString()
         => Name;
+
+        public override string SaveGridToJsonFile()
+        {
+            int[,] data = new int[_columns, _rows];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    data[x, y] = _table[x, y].Print();
+                }
+            }
+
+            var export = new
+            {
+                GridType = this.GetType().Name,
+                TreeProbability = _tree,
+                FireProbability = _fire,
+                Cells = data
+            };
+
+            return JsonConvert.SerializeObject(export, Formatting.Indented);
+        }
+
+
+
+        public override void ImportGridFromJsonFile(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            dynamic parsed = JsonConvert.DeserializeObject(json);
+
+            string gridType = parsed.GridType;
+            if (gridType != this.GetType().Name)
+            {
+                throw new InvalidOperationException($"GridType mismatch: expected '{this.GetType().Name}', but found '{gridType}'.");
+            }
+
+            JArray cellsArray = parsed.Cells;
+            int cols = cellsArray.Count;
+            int rows = cellsArray[0].Count();
+
+            _columns = cols;
+            _rows = rows;
+
+            _tree = parsed.TreeProbability;
+            _fire = parsed.FireProbability;
+
+            _table = new TreeCell[_columns, _rows];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    int status = (int)cellsArray[x][y];
+                    _table[x, y] = new TreeCell(_tree, _fire);
+                    _table[x, y].SetStatus(status);
+                }
+            }
+        }
+
     }
 
 }

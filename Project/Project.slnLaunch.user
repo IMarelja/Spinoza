@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Display\\Display.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MiddleWareSimulation\\MiddleWareSimulation.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
