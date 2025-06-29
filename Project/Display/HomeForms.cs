@@ -24,21 +24,21 @@ namespace Display
 
         private void Init()
         {
-            //if (User logdIN){
-            //    btnLogin.Visible= false;
-            //    btnLogOut.Visible = true;
-            //} 
-            //if (!user in logdIN){
-            //    btnLogin.Visible = true;
-            //    btnLogOut.Visible = false;
-            //}
+            registerInit();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void registerInit()
         {
-            //Login login = new Login();
-            //login.Show();
-
+            if (_registerOrFirstQuestion)
+            {
+                lbWelcomeMessage.Visible = true;
+                lbWelcomeMessage.Enabled = true;
+            }
+            else
+            {
+                lbWelcomeMessage.Visible = false;
+                lbWelcomeMessage.Enabled = false;
+            }
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

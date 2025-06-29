@@ -26,52 +26,69 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        /// 
+        private Image ResizeImage(Image img, int maxHeight)
+        {
+            double scale = (double)maxHeight / img.Height;
+            int newWidth = (int)(img.Width * scale);
+            Bitmap bmp = new Bitmap(newWidth, maxHeight);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(img, 0, 0, newWidth, maxHeight);
+            }
+            return bmp;
+        }
+
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForms));
             btnGameOfLife = new Button();
             btnBriansBrain = new Button();
             btnForestFire = new Button();
             btnLangtonsAnt = new Button();
             btnLogOut = new Button();
+            lbWelcomeMessage = new Label();
             label1 = new Label();
             SuspendLayout();
             // 
             // btnGameOfLife
             // 
-            btnGameOfLife.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGameOfLife.Image = Properties.Resources.GameOfLife;
+            btnGameOfLife.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGameOfLife.ImageAlign = ContentAlignment.TopCenter;
-            btnGameOfLife.Location = new Point(34, 27);
+            btnGameOfLife.Location = new Point(22, 43);
+            btnGameOfLife.Margin = new Padding(2);
             btnGameOfLife.Name = "btnGameOfLife";
-            btnGameOfLife.Size = new Size(248, 211);
+            btnGameOfLife.Size = new Size(174, 119);
             btnGameOfLife.TabIndex = 0;
             btnGameOfLife.Text = "Game Of Life";
             btnGameOfLife.TextAlign = ContentAlignment.BottomCenter;
+            btnGameOfLife.TextImageRelation = TextImageRelation.ImageAboveText;
             btnGameOfLife.UseVisualStyleBackColor = true;
             btnGameOfLife.Click += btnGameOfLife_Click;
             // 
             // btnBriansBrain
             // 
-            btnBriansBrain.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBriansBrain.Image = Properties.Resources.BriansBrain;
-            btnBriansBrain.Location = new Point(334, 27);
+            btnBriansBrain.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBriansBrain.ImageAlign = ContentAlignment.TopCenter;
+            btnBriansBrain.Location = new Point(232, 43);
+            btnBriansBrain.Margin = new Padding(2);
             btnBriansBrain.Name = "btnBriansBrain";
-            btnBriansBrain.Size = new Size(248, 211);
+            btnBriansBrain.Size = new Size(174, 119);
             btnBriansBrain.TabIndex = 1;
             btnBriansBrain.Text = "Brian's Brain";
             btnBriansBrain.TextAlign = ContentAlignment.BottomCenter;
+            btnBriansBrain.TextImageRelation = TextImageRelation.ImageAboveText;
             btnBriansBrain.UseVisualStyleBackColor = true;
             btnBriansBrain.Click += btnBriansBrain_Click;
             // 
             // btnForestFire
             // 
             btnForestFire.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnForestFire.Image = Properties.Resources.ForestFire;
             btnForestFire.ImageAlign = ContentAlignment.TopCenter;
-            btnForestFire.Location = new Point(649, 27);
+            btnForestFire.Location = new Point(452, 43);
+            btnForestFire.Margin = new Padding(2);
             btnForestFire.Name = "btnForestFire";
-            btnForestFire.Size = new Size(248, 211);
+            btnForestFire.Size = new Size(174, 119);
             btnForestFire.TabIndex = 2;
             btnForestFire.Text = "Forest Fire";
             btnForestFire.TextAlign = ContentAlignment.BottomCenter;
@@ -81,49 +98,67 @@
             // 
             // btnLangtonsAnt
             // 
-            btnLangtonsAnt.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLangtonsAnt.Image = Properties.Resources.LangtonAnt;
+            btnLangtonsAnt.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLangtonsAnt.ImageAlign = ContentAlignment.TopCenter;
-            btnLangtonsAnt.Location = new Point(970, 27);
+            btnLangtonsAnt.Location = new Point(677, 43);
+            btnLangtonsAnt.Margin = new Padding(2);
             btnLangtonsAnt.Name = "btnLangtonsAnt";
-            btnLangtonsAnt.Size = new Size(248, 211);
+            btnLangtonsAnt.Size = new Size(174, 119);
             btnLangtonsAnt.TabIndex = 3;
             btnLangtonsAnt.Text = "Langton's Ant";
             btnLangtonsAnt.TextAlign = ContentAlignment.BottomCenter;
+            btnLangtonsAnt.TextImageRelation = TextImageRelation.ImageAboveText;
             btnLangtonsAnt.UseVisualStyleBackColor = true;
             btnLangtonsAnt.Click += btnLangtonsAnt_Click;
             // 
             // btnLogOut
             // 
             btnLogOut.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            btnLogOut.Location = new Point(1243, 27);
+            btnLogOut.Location = new Point(865, 115);
+            btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(145, 83);
+            btnLogOut.Size = new Size(102, 47);
             btnLogOut.TabIndex = 5;
             btnLogOut.Text = "Log Out";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
             // 
+            // lbWelcomeMessage
+            // 
+            lbWelcomeMessage.AutoSize = true;
+            lbWelcomeMessage.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbWelcomeMessage.ImageAlign = ContentAlignment.TopCenter;
+            lbWelcomeMessage.Location = new Point(165, 257);
+            lbWelcomeMessage.Margin = new Padding(2, 0, 2, 0);
+            lbWelcomeMessage.Name = "lbWelcomeMessage";
+            lbWelcomeMessage.Size = new Size(673, 172);
+            lbWelcomeMessage.TabIndex = 6;
+            lbWelcomeMessage.Text = "Welcome to SPINOZA \r\nSimulation application";
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 397);
+            label1.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(22, 9);
             label1.Name = "label1";
-            label1.Size = new Size(1588, 25);
-            label1.TabIndex = 6;
-            label1.Text = resources.GetString("label1.Text");
+            label1.Size = new Size(96, 18);
+            label1.TabIndex = 7;
+            label1.Text = "Simulations";
             // 
             // HomeForms
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1400, 1032);
+            ClientSize = new Size(980, 578);
             Controls.Add(label1);
+            Controls.Add(lbWelcomeMessage);
             Controls.Add(btnLogOut);
             Controls.Add(btnLangtonsAnt);
             Controls.Add(btnForestFire);
             Controls.Add(btnBriansBrain);
             Controls.Add(btnGameOfLife);
+            Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(2);
             Name = "HomeForms";
             Text = "Spinosa: Cellular Automata";
             ResumeLayout(false);
@@ -137,6 +172,7 @@
         private Button btnForestFire;
         private Button btnLangtonsAnt;
         private Button btnLogOut;
+        private Label lbWelcomeMessage;
         private Label label1;
     }
 }
