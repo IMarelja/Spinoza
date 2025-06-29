@@ -112,7 +112,10 @@ namespace Display
                         LoadSimulationUserControlInsideControlPanel(new LangtonsAntController());
                         Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription, pbSimulationInfo, langtons.Name, langtons.Description);
                         break;
-
+                    case Life life:
+                        LoadSimulationUserControlInsideControlPanel(new GameOfLifeController());
+                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription, pbSimulationInfo, life.Name, life.Description);
+                        break;
                     default:
                         // Optional: handle unknown type
                         break;
@@ -172,8 +175,11 @@ namespace Display
                     gridLayoutFromUserControl = controlForest.Grid;
                     panelSimulationGrid.Invalidate();
                     break;
-
-                // Add more cases here as needed
+                case GameOfLifeController controlLife
+                when e.PropertyName == nameof(GameOfLifeController.Simulation):
+                    gridLayoutFromUserControl = controlLife.Simulation;
+                    panelSimulationGrid.Invalidate();
+                    break;
 
                 default:
                     break;
@@ -215,6 +221,9 @@ namespace Display
 
                 case LangtonsGrid langtons:
                     InitLangtonsAnt(sender, e);
+                    break;
+                case Life life:
+                    InitGameOfLifeGrid(sender, e);
                     break;
 
                 default:
@@ -344,6 +353,35 @@ namespace Display
                 }
             }
         }
+        private void InitGameOfLifeGrid(object sender, PaintEventArgs e)
+        {
+            currentStep = 0;
+            int[,] data = gridLayoutFromUserControl.CurrentState();
+
+            Graphics g = e.Graphics;
+            int rows = data.GetLength(0);
+            int cols = data.GetLength(1);
+
+            int cellWidth = panelSimulationGrid.Width / cols;
+            int cellHeight = panelSimulationGrid.Height / rows;
+
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < cols; y++)
+                {
+                    Rectangle rect = new Rectangle(y * cellWidth, x * cellHeight, cellWidth, cellHeight);
+                    Color color = data[x, y] == 1 ? Color.LimeGreen : Color.LightCoral;
+
+                    using (Brush brush = new SolidBrush(color))
+                    {
+                        g.FillRectangle(brush, rect);
+                    }
+
+                    g.DrawRectangle(Pens.Black, rect);
+                }
+            }
+        }
+
 
         private void btnExport_Click(object sender, EventArgs e)
         {

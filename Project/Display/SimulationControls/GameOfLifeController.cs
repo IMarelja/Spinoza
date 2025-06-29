@@ -19,7 +19,6 @@ namespace Display
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private Life _simulation;
-        private System.Windows.Forms.Timer _timer;
         private int _cellSize = 15;
 
         public Life Simulation
@@ -36,12 +35,22 @@ namespace Display
         public GameOfLifeController()
         {
             InitializeComponent();
-            DoubleBuffered = true;
-
-            _timer = new System.Windows.Forms.Timer();
-            _timer.Interval = 250;
-            _timer.Tick += (s, e) => Advance();
+            SetupTooltips();
         }
+
+        private void SetupTooltips()
+        {
+            Utility.SetInfoBalloonTooltipForControl(ttRows, pbInfoRows, "Rows", "Number of vertical cells.");
+            Utility.SetInfoBalloonTooltipForControl(ttCols, pbInfoCols, "Columns", "Number of horizontal cells.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttStart, pbInfoStart, "Start", "Start simulation.");
+            Utility.SetInfoBalloonTooltipForControl(ttPause, pbInfoPause, "Pause", "Pause simulation.");
+
+            Utility.SetInfoBalloonTooltipForControl(ttInit, pbInfoInit, "Initialize", "Create a new empty grid.");
+            Utility.SetInfoBalloonTooltipForControl(ttRandom, pbInfoRandom, "Randomize", "Randomly seed live cells.");
+            Utility.SetInfoBalloonTooltipForControl(ttImport, pbInfoImport, "Import", "Import a saved grid.");
+        }
+
 
         public void InitializeGrid(int cols, int rows, int seedCells = 100)
         {
@@ -50,70 +59,26 @@ namespace Display
             Height = rows * _cellSize + 1;
         }
 
-        public void Advance()
+        private void btnRandomize_Click(object sender, EventArgs e)
         {
-            if (Simulation == null) return;
-            Simulation.NextStep();
-            Invalidate();
-        }
+            int rows = (int)nudRows.Value;
+            int cols = (int)nudColumns.Value;
 
-        public void Back()
-        {
-            if (Simulation == null) return;
-            Simulation.BackStep();
-            Invalidate();
-        }
-
-        public void Start() => _timer.Start();
-        public void Pause() => _timer.Stop();
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            if (Simulation == null) return;
-
-            var g = e.Graphics;
-            var state = Simulation.CurrentState();
-
-            for (int y = 0; y < state.GetLength(1); y++)
+            if (rows <= 0 || cols <= 0)
             {
-                for (int x = 0; x < state.GetLength(0); x++)
-                {
-                    var rect = new Rectangle(x * _cellSize, y * _cellSize, _cellSize, _cellSize);
-                    g.FillRectangle(state[x, y] == 1 ? Brushes.Black : Brushes.White, rect);
-                    g.DrawRectangle(Pens.LightGray, rect);
-                }
+                MessageBox.Show("Rows and Columns must be greater than 0.", "Error");
+                return;
             }
+
         }
 
-        protected override void OnMouseClick(MouseEventArgs e)
+        private void btnInit_Click(object sender, EventArgs e)
         {
-            base.OnMouseClick(e);
+                int rows = (int)nudRows.Value;
+                int cols = (int)nudColumns.Value;
 
-            if (Simulation == null) return;
-
-            int x = e.X / _cellSize;
-            int y = e.Y / _cellSize;
-
-            var current = Simulation.CurrentState();
-
-            if (x < current.GetLength(0) && y < current.GetLength(1))
-            {
-                var newModel = new Life(current.GetLength(0), current.GetLength(1), 0);
-                var newGrid = Simulation.CurrentState();
-
-                for (int j = 0; j < newGrid.GetLength(1); j++)
-                    for (int i = 0; i < newGrid.GetLength(0); i++)
-                        if (i != x || j != y)
-                            newModel.NextStep(); // or assign manually if needed
-
-                newModel = new Life(current.GetLength(0), current.GetLength(1), 0);
-                for (int i = 0; i < current.GetLength(0); i++)
-                    for (int j = 0; j < current.GetLength(1); j++)
-                        newModel.NextStep();
-
-                Invalidate();
-            }
+                Simulation = new Life(cols, rows, 0);
+            
         }
     }
 }

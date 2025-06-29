@@ -28,93 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameOfLifeController));
-            nudRowsTable = new NumericUpDown();
-            nudColumnsTable = new NumericUpDown();
-            nudSeedCells = new NumericUpDown();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            nudRows = new NumericUpDown();
+            nudColumns = new NumericUpDown();
+            pbInfoRows = new PictureBox();
+            pbInfoCols = new PictureBox();
             lblRows = new Label();
             label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnInit = new Button();
+            btnRandom = new Button();
+            btnImport = new Button();
             label1 = new Label();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            pictureBox6 = new PictureBox();
+            pbInfoInit = new PictureBox();
+            pbInfoRandom = new PictureBox();
+            pbInfoImport = new PictureBox();
             btnStart = new Button();
             btnPause = new Button();
-            btn = new Button();
-            pictureBox7 = new PictureBox();
-            pictureBox8 = new PictureBox();
-            pictureBox9 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)nudRowsTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudColumnsTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudSeedCells).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            pbInfoStart = new PictureBox();
+            pbInfoPause = new PictureBox();
+            ttRows = new ToolTip(components);
+            ttCols = new ToolTip(components);
+            ttSeed = new ToolTip(components);
+            ttInit = new ToolTip(components);
+            ttRandom = new ToolTip(components);
+            ttImport = new ToolTip(components);
+            ttStart = new ToolTip(components);
+            pnlAlive = new Panel();
+            pnlDead = new Panel();
+            lblAlive = new Label();
+            lblDead = new Label();
+            ttPause = new ToolTip(components);
+            ((System.ComponentModel.ISupportInitialize)nudRows).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudColumns).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoRows).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoCols).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoInit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoRandom).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoImport).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoStart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoPause).BeginInit();
             SuspendLayout();
             // 
-            // nudRowsTable
+            // nudRows
             // 
-            nudRowsTable.Location = new Point(99, 55);
-            nudRowsTable.Name = "nudRowsTable";
-            nudRowsTable.Size = new Size(132, 27);
-            nudRowsTable.TabIndex = 0;
+            nudRows.Location = new Point(99, 55);
+            nudRows.Name = "nudRows";
+            nudRows.Size = new Size(132, 27);
+            nudRows.TabIndex = 0;
             // 
-            // nudColumnsTable
+            // nudColumns
             // 
-            nudColumnsTable.Location = new Point(99, 88);
-            nudColumnsTable.Name = "nudColumnsTable";
-            nudColumnsTable.Size = new Size(132, 27);
-            nudColumnsTable.TabIndex = 1;
+            nudColumns.Location = new Point(99, 88);
+            nudColumns.Name = "nudColumns";
+            nudColumns.Size = new Size(132, 27);
+            nudColumns.TabIndex = 1;
             // 
-            // nudSeedCells
+            // pbInfoRows
             // 
-            nudSeedCells.Location = new Point(99, 121);
-            nudSeedCells.Name = "nudSeedCells";
-            nudSeedCells.Size = new Size(132, 27);
-            nudSeedCells.TabIndex = 2;
+            pbInfoRows.Image = (Image)resources.GetObject("pbInfoRows.Image");
+            pbInfoRows.Location = new Point(240, 55);
+            pbInfoRows.Name = "pbInfoRows";
+            pbInfoRows.Size = new Size(25, 27);
+            pbInfoRows.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoRows.TabIndex = 3;
+            pbInfoRows.TabStop = false;
             // 
-            // pictureBox1
+            // pbInfoCols
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(240, 55);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 27);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.notify;
-            pictureBox2.Location = new Point(240, 88);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(25, 27);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 4;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = Properties.Resources.notify;
-            pictureBox3.Location = new Point(240, 121);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(25, 27);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 5;
-            pictureBox3.TabStop = false;
+            pbInfoCols.Location = new Point(240, 88);
+            pbInfoCols.Name = "pbInfoCols";
+            pbInfoCols.Size = new Size(25, 27);
+            pbInfoCols.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoCols.TabIndex = 4;
+            pbInfoCols.TabStop = false;
             // 
             // lblRows
             // 
@@ -134,41 +121,34 @@
             label2.TabIndex = 7;
             label2.Text = "Columns";
             // 
-            // label3
+            // btnInit
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(16, 122);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 20);
-            label3.TabIndex = 8;
-            label3.Text = "Seed";
+            btnInit.Location = new Point(17, 445);
+            btnInit.Name = "btnInit";
+            btnInit.Size = new Size(94, 29);
+            btnInit.TabIndex = 9;
+            btnInit.Text = "Initialize";
+            btnInit.UseVisualStyleBackColor = true;
+            btnInit.Click += btnInit_Click;
             // 
-            // button1
+            // btnRandom
             // 
-            button1.Location = new Point(17, 445);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 9;
-            button1.Text = "Initialize";
-            button1.UseVisualStyleBackColor = true;
+            btnRandom.Location = new Point(17, 480);
+            btnRandom.Name = "btnRandom";
+            btnRandom.Size = new Size(94, 29);
+            btnRandom.TabIndex = 10;
+            btnRandom.Text = "Randomize";
+            btnRandom.UseVisualStyleBackColor = true;
+            btnRandom.Click += btnRandomize_Click;
             // 
-            // button2
+            // btnImport
             // 
-            button2.Location = new Point(17, 480);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 10;
-            button2.Text = "Randomize";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(17, 515);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 11;
-            button3.Text = "Import";
-            button3.UseVisualStyleBackColor = true;
+            btnImport.Location = new Point(17, 515);
+            btnImport.Name = "btnImport";
+            btnImport.Size = new Size(94, 29);
+            btnImport.TabIndex = 11;
+            btnImport.Text = "Import";
+            btnImport.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -179,39 +159,36 @@
             label1.TabIndex = 12;
             label1.Text = "Game Of Life";
             // 
-            // pictureBox4
+            // pbInfoInit
             // 
-            pictureBox4.Image = Properties.Resources.notify;
-            pictureBox4.Location = new Point(117, 447);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(25, 27);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 13;
-            pictureBox4.TabStop = false;
+            pbInfoInit.Location = new Point(117, 447);
+            pbInfoInit.Name = "pbInfoInit";
+            pbInfoInit.Size = new Size(25, 27);
+            pbInfoInit.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoInit.TabIndex = 13;
+            pbInfoInit.TabStop = false;
             // 
-            // pictureBox5
+            // pbInfoRandom
             // 
-            pictureBox5.Image = Properties.Resources.notify;
-            pictureBox5.Location = new Point(117, 480);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(25, 27);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 14;
-            pictureBox5.TabStop = false;
+            pbInfoRandom.Location = new Point(117, 480);
+            pbInfoRandom.Name = "pbInfoRandom";
+            pbInfoRandom.Size = new Size(25, 27);
+            pbInfoRandom.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoRandom.TabIndex = 14;
+            pbInfoRandom.TabStop = false;
             // 
-            // pictureBox6
+            // pbInfoImport
             // 
-            pictureBox6.Image = Properties.Resources.notify;
-            pictureBox6.Location = new Point(117, 517);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(25, 27);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 15;
-            pictureBox6.TabStop = false;
+            pbInfoImport.Location = new Point(117, 517);
+            pbInfoImport.Name = "pbInfoImport";
+            pbInfoImport.Size = new Size(25, 27);
+            pbInfoImport.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoImport.TabIndex = 15;
+            pbInfoImport.TabStop = false;
             // 
             // btnStart
             // 
-            btnStart.Location = new Point(52, 190);
+            btnStart.Location = new Point(88, 141);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(51, 28);
             btnStart.TabIndex = 16;
@@ -220,119 +197,137 @@
             // 
             // btnPause
             // 
-            btnPause.Location = new Point(108, 190);
+            btnPause.Location = new Point(144, 141);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(56, 28);
             btnPause.TabIndex = 17;
             btnPause.Text = "Pause";
             btnPause.UseVisualStyleBackColor = true;
             // 
-            // btn
+            // pbInfoStart
             // 
-            btn.Location = new Point(170, 190);
-            btn.Name = "btn";
-            btn.Size = new Size(56, 28);
-            btn.TabIndex = 18;
-            btn.Text = "Step";
-            btn.UseVisualStyleBackColor = true;
+            pbInfoStart.Image = (Image)resources.GetObject("pbInfoStart.Image");
+            pbInfoStart.Location = new Point(103, 175);
+            pbInfoStart.Name = "pbInfoStart";
+            pbInfoStart.Size = new Size(25, 27);
+            pbInfoStart.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoStart.TabIndex = 19;
+            pbInfoStart.TabStop = false;
             // 
-            // pictureBox7
+            // pbInfoPause
             // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(67, 224);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(25, 27);
-            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox7.TabIndex = 19;
-            pictureBox7.TabStop = false;
+            pbInfoPause.Image = (Image)resources.GetObject("pbInfoPause.Image");
+            pbInfoPause.Location = new Point(163, 175);
+            pbInfoPause.Name = "pbInfoPause";
+            pbInfoPause.Size = new Size(25, 27);
+            pbInfoPause.SizeMode = PictureBoxSizeMode.Zoom;
+            pbInfoPause.TabIndex = 20;
+            pbInfoPause.TabStop = false;
             // 
-            // pictureBox8
+            // pnlAlive
             // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(127, 224);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(25, 27);
-            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox8.TabIndex = 20;
-            pictureBox8.TabStop = false;
+            pnlAlive.BackColor = Color.FromArgb(128, 255, 128);
+            pnlAlive.Location = new Point(77, 337);
+            pnlAlive.Name = "pnlAlive";
+            pnlAlive.Size = new Size(38, 39);
+            pnlAlive.TabIndex = 21;
             // 
-            // pictureBox9
+            // pnlDead
             // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(188, 224);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(25, 27);
-            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox9.TabIndex = 21;
-            pictureBox9.TabStop = false;
+            pnlDead.BackColor = Color.FromArgb(255, 192, 192);
+            pnlDead.Location = new Point(77, 382);
+            pnlDead.Name = "pnlDead";
+            pnlDead.Size = new Size(38, 39);
+            pnlDead.TabIndex = 22;
+            // 
+            // lblAlive
+            // 
+            lblAlive.AutoSize = true;
+            lblAlive.Location = new Point(13, 344);
+            lblAlive.Name = "lblAlive";
+            lblAlive.Size = new Size(42, 20);
+            lblAlive.TabIndex = 23;
+            lblAlive.Text = "Alive";
+            // 
+            // lblDead
+            // 
+            lblDead.AutoSize = true;
+            lblDead.Location = new Point(13, 391);
+            lblDead.Name = "lblDead";
+            lblDead.Size = new Size(45, 20);
+            lblDead.TabIndex = 24;
+            lblDead.Text = "Dead";
             // 
             // GameOfLifeController
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(pictureBox9);
-            Controls.Add(pictureBox8);
-            Controls.Add(pictureBox7);
-            Controls.Add(btn);
+            Controls.Add(lblDead);
+            Controls.Add(lblAlive);
+            Controls.Add(pnlDead);
+            Controls.Add(pnlAlive);
+            Controls.Add(pbInfoPause);
+            Controls.Add(pbInfoStart);
             Controls.Add(btnPause);
             Controls.Add(btnStart);
-            Controls.Add(pictureBox6);
-            Controls.Add(pictureBox5);
-            Controls.Add(pictureBox4);
+            Controls.Add(pbInfoImport);
+            Controls.Add(pbInfoRandom);
+            Controls.Add(pbInfoInit);
             Controls.Add(label1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label3);
+            Controls.Add(btnImport);
+            Controls.Add(btnRandom);
+            Controls.Add(btnInit);
             Controls.Add(label2);
             Controls.Add(lblRows);
-            Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
-            Controls.Add(nudSeedCells);
-            Controls.Add(nudColumnsTable);
-            Controls.Add(nudRowsTable);
+            Controls.Add(pbInfoCols);
+            Controls.Add(pbInfoRows);
+            Controls.Add(nudColumns);
+            Controls.Add(nudRows);
             Name = "GameOfLifeController";
             Size = new Size(276, 569);
-            ((System.ComponentModel.ISupportInitialize)nudRowsTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudColumnsTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudSeedCells).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudRows).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudColumns).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoRows).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoCols).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoInit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoRandom).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoImport).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoStart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbInfoPause).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private NumericUpDown nudRowsTable;
-        private NumericUpDown nudColumnsTable;
-        private NumericUpDown nudSeedCells;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private NumericUpDown nudRows;
+        private NumericUpDown nudColumns;
+        private PictureBox pbInfoRows;
+        private PictureBox pbInfoCols;
         private Label lblRows;
         private Label label2;
-        private Label label3;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnInit;
+        private Button btnRandom;
+        private Button btnImport;
         private Label label1;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
+        private PictureBox pbInfoInit;
+        private PictureBox pbInfoRandom;
+        private PictureBox pbInfoImport;
         private Button btnStart;
         private Button btnPause;
-        private Button btn;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox9;
+        private PictureBox pbInfoStart;
+        private PictureBox pbInfoPause;
+        private ToolTip ttRows;
+        private ToolTip ttCols;
+        private ToolTip ttSeed;
+        private ToolTip ttInit;
+        private ToolTip ttRandom;
+        private ToolTip ttImport;
+        private ToolTip ttStart;
+        private Panel pnlAlive;
+        private Panel pnlDead;
+        private Label lblAlive;
+        private Label lblDead;
+        private ToolTip ttPause;
     }
 }
