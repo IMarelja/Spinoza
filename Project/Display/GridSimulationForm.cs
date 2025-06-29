@@ -531,6 +531,10 @@ namespace Display
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+            catch (OperationCanceledException ex)
+            {
+
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving file:\n{ex.Message}",
@@ -538,6 +542,7 @@ namespace Display
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
+            
         }
     }
 }

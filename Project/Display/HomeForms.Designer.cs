@@ -70,7 +70,7 @@
             // 
             btnBriansBrain.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBriansBrain.ImageAlign = ContentAlignment.TopCenter;
-            btnBriansBrain.Location = new Point(232, 43);
+            btnBriansBrain.Location = new Point(233, 43);
             btnBriansBrain.Margin = new Padding(2);
             btnBriansBrain.Name = "btnBriansBrain";
             btnBriansBrain.Size = new Size(174, 119);
@@ -85,7 +85,7 @@
             // 
             btnForestFire.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnForestFire.ImageAlign = ContentAlignment.TopCenter;
-            btnForestFire.Location = new Point(452, 43);
+            btnForestFire.Location = new Point(457, 43);
             btnForestFire.Margin = new Padding(2);
             btnForestFire.Name = "btnForestFire";
             btnForestFire.Size = new Size(174, 119);
@@ -100,7 +100,7 @@
             // 
             btnLangtonsAnt.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLangtonsAnt.ImageAlign = ContentAlignment.TopCenter;
-            btnLangtonsAnt.Location = new Point(677, 43);
+            btnLangtonsAnt.Location = new Point(664, 43);
             btnLangtonsAnt.Margin = new Padding(2);
             btnLangtonsAnt.Name = "btnLangtonsAnt";
             btnLangtonsAnt.Size = new Size(174, 119);

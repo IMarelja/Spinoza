@@ -116,20 +116,22 @@ namespace Display.Utilities
             tt.SetToolTip(panelColor, message);
         }
 
+        // File location
+        public static string fileLogginPath = Path.Combine(HomePath(), "login.txt");
+
         //
         // Saving logged in user on a file and he will automatically log in after starting up the app
         //
         public static void SaveLoginToFile(AuthLogin loginData)
         {
-            string filePath = "login.txt";
 
-            if (File.Exists(filePath))
+            if (File.Exists(fileLogginPath))
             {
-                File.AppendAllText(filePath, loginData.Formate());
+                File.AppendAllText(fileLogginPath, loginData.Formate());
             }
             else
             {
-                File.WriteAllText(filePath, loginData.Formate());
+                File.WriteAllText(fileLogginPath, loginData.Formate());
             }
         }
 
@@ -138,13 +140,25 @@ namespace Display.Utilities
         //
         public static void DelteLoginOfFile()
         {
-            string filePath = "login.txt";
-
-            if (File.Exists(filePath))
+            if (File.Exists(fileLogginPath))
             {
-                File.Delete(filePath); //delete file
+                File.Delete(fileLogginPath); //delete file
                 //File.WriteAllText(filePath, string.Empty); //delete content
             }
+        }
+        //
+        // Load user data from a file
+        //
+        public static AuthLogin LoadLoginFile()
+        {
+            if (!File.Exists(fileLogginPath))
+                throw new OperationCanceledException("File not found");
+            string line = File.ReadLines(fileLogginPath).FirstOrDefault();
+            if (line == null || line == "") {
+                DelteLoginOfFile();
+                throw new OperationCanceledException("File is empty");
+            }
+            return new AuthLogin().ParseFromFile(File.ReadLines(fileLogginPath).FirstOrDefault());
         }
 
         public static void SaveGridToFile(Grid gridLoaded)
@@ -217,27 +231,6 @@ namespace Display.Utilities
                     throw new OperationCanceledException("Import operation was cancelled.");
                 }
             }
-        }
-
-        private static int[,] ConvertToMultiDimensionalArray(int[][] jaggedArray)
-        {
-            if (jaggedArray == null || jaggedArray.Length == 0)
-                throw new ArgumentException("Array cannot be null or empty");
-
-            int rows = jaggedArray.Length;
-            int cols = jaggedArray[0].Length;
-
-            int[,] result = new int[rows, cols];
-
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
-                    result[i, j] = jaggedArray[i][j];
-                }
-            }
-
-            return result;
         }
 
     }
