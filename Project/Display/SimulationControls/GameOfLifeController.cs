@@ -42,21 +42,15 @@ namespace Display
         {
             Utility.SetInfoBalloonTooltipForControl(ttRows, pbInfoRows, "Rows", "Number of vertical cells.");
             Utility.SetInfoBalloonTooltipForControl(ttCols, pbInfoCols, "Columns", "Number of horizontal cells.");
-
-            Utility.SetInfoBalloonTooltipForControl(ttStart, pbInfoStart, "Start", "Start simulation.");
-            Utility.SetInfoBalloonTooltipForControl(ttPause, pbInfoPause, "Pause", "Pause simulation.");
+            Utility.SetInfoBalloonTooltipForControl(new ToolTip(), pbInfoSeedLife, "Seed", "The amount of life there will be in this simulation");
 
             Utility.SetInfoBalloonTooltipForControl(ttInit, pbInfoInit, "Initialize", "Create a new empty grid.");
             Utility.SetInfoBalloonTooltipForControl(ttRandom, pbInfoRandom, "Randomize", "Randomly seed live cells.");
             Utility.SetInfoBalloonTooltipForControl(ttImport, pbInfoImport, "Import", "Import a saved grid.");
-        }
 
-
-        public void InitializeGrid(int cols, int rows, int seedCells = 100)
-        {
-            Simulation = new Life(cols, rows, seedCells);
-            Width = cols * _cellSize + 1;
-            Height = rows * _cellSize + 1;
+            Utility.SetInfoBalloonTooltipForControl(new ToolTip(),pnlAlive, "Alive", "Needs two neighbors to live");
+            Utility.SetInfoBalloonTooltipForControl(new ToolTip(), pnlDead, "Dead", "Empty space or a dead cell");
+            
         }
 
         private void btnRandomize_Click(object sender, EventArgs e)
@@ -74,11 +68,17 @@ namespace Display
 
         private void btnInit_Click(object sender, EventArgs e)
         {
-                int rows = (int)nudRows.Value;
-                int cols = (int)nudColumns.Value;
+            int rows = (int)nudRows.Value;
+            int cols = (int)nudColumns.Value;
+            int seed = (int)nudLifeSeed.Value;
 
-                Simulation = new Life(cols, rows, 0);
-            
+            Simulation = new Life(cols, rows, seed);
+
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

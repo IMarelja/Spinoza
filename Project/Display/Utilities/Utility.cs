@@ -25,7 +25,8 @@ namespace Display.Utilities
         {
             new Brain(),
             new LangtonsGrid(),
-            new Forest()
+            new Forest(),
+            new Life()
         };
 
 
