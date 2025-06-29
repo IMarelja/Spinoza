@@ -102,12 +102,46 @@ namespace Display.SimulationControls
 
         private void btnImportGrid_Click(object sender, EventArgs e)
         {
+            try { 
+                Grid loadedGrid = Utility.ImportGridFromAFile<Brain>();
+                brian = loadedGrid;
+            }
+            catch (OperationCanceledException ex)
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                "Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void btnRandomGrid_Click(object sender, EventArgs e)
         {
+            Random rnd = new Random();
 
+            int maxWidth = 100;
+            int maxHeight = 100;
+
+            int rows = rnd.Next(4, maxHeight + 1);
+            int cols = rnd.Next(4, maxWidth + 1); 
+
+            int maxArea = Math.Min(rows, cols);
+            int areaStarting = rnd.Next(1, maxArea + 1);
+
+            int maxCellsInArea = areaStarting * areaStarting;
+            int numOfCells = rnd.Next(1, maxCellsInArea + 1);
+
+            brian = new Brain(rows, cols, areaStarting, numOfCells);
+
+            nudRowsTable.Value = rows;
+            nudColumnsTable.Value = cols;
+            nudAreaStartingSquare.Value = areaStarting;
+            nudNumberOfCellsStartingSquare.Value = numOfCells;
         }
     }
 }

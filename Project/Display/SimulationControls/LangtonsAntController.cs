@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Display.Utilities;
+using Models;  // Your simulation logic namespace
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Models;  // Your simulation logic namespace
 
 namespace Display.SimulationControls
 {
@@ -153,6 +154,26 @@ namespace Display.SimulationControls
             // Create grid with randomized parameters
             LangtonsGrid grid = new LangtonsGrid(cols, rows, antX, antY, randomDirection);
 
+        }
+
+        private void btnImportGrid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Grid loadedGrid = Utility.ImportGridFromAFile<LangtonsGrid>();
+                Grid = (LangtonsGrid)loadedGrid;
+            }
+            catch (OperationCanceledException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                "Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            }
         }
     }
 }

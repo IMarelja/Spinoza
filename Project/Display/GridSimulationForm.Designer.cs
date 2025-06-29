@@ -44,16 +44,16 @@
             timerAutoSteps = new System.Windows.Forms.Timer(components);
             pbSimulationInfo = new PictureBox();
             ttSimulationDescription = new ToolTip(components);
+            btn_SaveGrid = new Button();
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbSimulationInfo).BeginInit();
             SuspendLayout();
             // 
             // btnNextState
             // 
-            btnNextState.Location = new Point(1267, 922);
-            btnNextState.Margin = new Padding(4, 5, 4, 5);
+            btnNextState.Location = new Point(887, 553);
             btnNextState.Name = "btnNextState";
-            btnNextState.Size = new Size(119, 53);
+            btnNextState.Size = new Size(83, 32);
             btnNextState.TabIndex = 17;
             btnNextState.Text = "Next";
             btnNextState.UseVisualStyleBackColor = true;
@@ -61,10 +61,9 @@
             // 
             // btnBackState
             // 
-            btnBackState.Location = new Point(306, 922);
-            btnBackState.Margin = new Padding(4, 5, 4, 5);
+            btnBackState.Location = new Point(214, 553);
             btnBackState.Name = "btnBackState";
-            btnBackState.Size = new Size(119, 53);
+            btnBackState.Size = new Size(83, 32);
             btnBackState.TabIndex = 18;
             btnBackState.Text = "Back";
             btnBackState.UseVisualStyleBackColor = true;
@@ -72,9 +71,10 @@
             // 
             // btnLogOut
             // 
-            btnLogOut.Location = new Point(11, 918);
+            btnLogOut.Location = new Point(8, 551);
+            btnLogOut.Margin = new Padding(2, 2, 2, 2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(124, 53);
+            btnLogOut.Size = new Size(87, 32);
             btnLogOut.TabIndex = 22;
             btnLogOut.Text = "Log out";
             btnLogOut.UseVisualStyleBackColor = true;
@@ -82,9 +82,10 @@
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(161, 918);
+            btnExport.Location = new Point(113, 551);
+            btnExport.Margin = new Padding(2, 2, 2, 2);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(124, 53);
+            btnExport.Size = new Size(87, 32);
             btnExport.TabIndex = 23;
             btnExport.Text = "Export";
             btnExport.UseVisualStyleBackColor = true;
@@ -93,16 +94,18 @@
             // panelControls
             // 
             panelControls.BorderStyle = BorderStyle.FixedSingle;
-            panelControls.Location = new Point(10, 120);
+            panelControls.Location = new Point(7, 72);
+            panelControls.Margin = new Padding(2, 2, 2, 2);
             panelControls.Name = "panelControls";
-            panelControls.Size = new Size(275, 695);
+            panelControls.Size = new Size(193, 418);
             panelControls.TabIndex = 24;
             // 
             // btnBackToMenu
             // 
-            btnBackToMenu.Location = new Point(10, 12);
+            btnBackToMenu.Location = new Point(7, 7);
+            btnBackToMenu.Margin = new Padding(2, 2, 2, 2);
             btnBackToMenu.Name = "btnBackToMenu";
-            btnBackToMenu.Size = new Size(274, 60);
+            btnBackToMenu.Size = new Size(192, 36);
             btnBackToMenu.TabIndex = 26;
             btnBackToMenu.Text = "Back to menu";
             btnBackToMenu.UseVisualStyleBackColor = true;
@@ -112,39 +115,37 @@
             // 
             cbAutomataSelect.FormattingEnabled = true;
             cbAutomataSelect.Items.AddRange(new object[] { "Game Of Life", "Brian's Brain", "Forest Fire Model", "Langton's Ant" });
-            cbAutomataSelect.Location = new Point(10, 80);
-            cbAutomataSelect.Margin = new Padding(4, 5, 4, 5);
+            cbAutomataSelect.Location = new Point(7, 48);
             cbAutomataSelect.Name = "cbAutomataSelect";
-            cbAutomataSelect.Size = new Size(238, 33);
+            cbAutomataSelect.Size = new Size(168, 23);
             cbAutomataSelect.TabIndex = 34;
             cbAutomataSelect.SelectedIndexChanged += cbAutomataSelect_SelectedIndexChanged;
             // 
             // panelSimulationGrid
             // 
             panelSimulationGrid.BorderStyle = BorderStyle.FixedSingle;
-            panelSimulationGrid.Location = new Point(306, 12);
-            panelSimulationGrid.Margin = new Padding(4, 5, 4, 5);
+            panelSimulationGrid.Location = new Point(214, 7);
             panelSimulationGrid.Name = "panelSimulationGrid";
-            panelSimulationGrid.Size = new Size(1079, 902);
+            panelSimulationGrid.Size = new Size(756, 542);
             panelSimulationGrid.TabIndex = 35;
             panelSimulationGrid.Paint += panelSimulationGrid_Paint;
             // 
             // nudAutoNumberOfSteps
             // 
-            nudAutoNumberOfSteps.Location = new Point(20, 865);
-            nudAutoNumberOfSteps.Margin = new Padding(4, 5, 4, 5);
+            nudAutoNumberOfSteps.Location = new Point(14, 519);
             nudAutoNumberOfSteps.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudAutoNumberOfSteps.Name = "nudAutoNumberOfSteps";
-            nudAutoNumberOfSteps.Size = new Size(265, 31);
+            nudAutoNumberOfSteps.Size = new Size(186, 23);
             nudAutoNumberOfSteps.TabIndex = 43;
             nudAutoNumberOfSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // chbEnableAutoNumber
             // 
             chbEnableAutoNumber.AutoSize = true;
-            chbEnableAutoNumber.Location = new Point(19, 823);
+            chbEnableAutoNumber.Location = new Point(13, 494);
+            chbEnableAutoNumber.Margin = new Padding(2, 2, 2, 2);
             chbEnableAutoNumber.Name = "chbEnableAutoNumber";
-            chbEnableAutoNumber.Size = new Size(124, 29);
+            chbEnableAutoNumber.Size = new Size(82, 19);
             chbEnableAutoNumber.TabIndex = 42;
             chbEnableAutoNumber.Text = "Auto steps";
             chbEnableAutoNumber.UseVisualStyleBackColor = true;
@@ -152,9 +153,10 @@
             // 
             // btnAutoStepsStartPause
             // 
-            btnAutoStepsStartPause.Location = new Point(149, 823);
+            btnAutoStepsStartPause.Location = new Point(104, 494);
+            btnAutoStepsStartPause.Margin = new Padding(2, 2, 2, 2);
             btnAutoStepsStartPause.Name = "btnAutoStepsStartPause";
-            btnAutoStepsStartPause.Size = new Size(136, 34);
+            btnAutoStepsStartPause.Size = new Size(95, 20);
             btnAutoStepsStartPause.TabIndex = 44;
             btnAutoStepsStartPause.Text = "Start";
             btnAutoStepsStartPause.UseVisualStyleBackColor = true;
@@ -170,19 +172,29 @@
             pbSimulationInfo.ErrorImage = null;
             pbSimulationInfo.Image = (Image)resources.GetObject("pbSimulationInfo.Image");
             pbSimulationInfo.InitialImage = null;
-            pbSimulationInfo.Location = new Point(256, 80);
-            pbSimulationInfo.Margin = new Padding(4, 5, 4, 5);
+            pbSimulationInfo.Location = new Point(179, 48);
             pbSimulationInfo.Name = "pbSimulationInfo";
-            pbSimulationInfo.Size = new Size(29, 33);
+            pbSimulationInfo.Size = new Size(20, 20);
             pbSimulationInfo.SizeMode = PictureBoxSizeMode.StretchImage;
             pbSimulationInfo.TabIndex = 48;
             pbSimulationInfo.TabStop = false;
             // 
+            // btn_SaveGrid
+            // 
+            btn_SaveGrid.Location = new Point(327, 553);
+            btn_SaveGrid.Name = "btn_SaveGrid";
+            btn_SaveGrid.Size = new Size(89, 32);
+            btn_SaveGrid.TabIndex = 49;
+            btn_SaveGrid.Text = "Save Grid";
+            btn_SaveGrid.UseVisualStyleBackColor = true;
+            btn_SaveGrid.Click += btn_SaveGrid_Click;
+            // 
             // GridSimulationForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1400, 988);
+            ClientSize = new Size(980, 593);
+            Controls.Add(btn_SaveGrid);
             Controls.Add(pbSimulationInfo);
             Controls.Add(btnAutoStepsStartPause);
             Controls.Add(nudAutoNumberOfSteps);
@@ -195,7 +207,6 @@
             Controls.Add(btnLogOut);
             Controls.Add(btnBackState);
             Controls.Add(btnNextState);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "GridSimulationForm";
             Text = "Grid Display";
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).EndInit();
@@ -221,5 +232,6 @@
         private System.Windows.Forms.Timer timerAutoSteps;
         private PictureBox pbSimulationInfo;
         private ToolTip ttSimulationDescription;
+        private Button btn_SaveGrid;
     }
 }

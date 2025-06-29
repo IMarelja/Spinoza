@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Display.Utilities
@@ -27,6 +28,33 @@ namespace Display.Utilities
             new Forest()
         };
 
+
+        /*
+         * ================================================
+         * 🏠 Home path where the simulation is running 🏠
+         * ================================================
+         */
+
+        public static string HomePath()
+        {
+            if (!DebugDirectoryChecker())
+            {
+                return AppDomain.CurrentDomain.BaseDirectory;
+            }
+            return Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
+        }
+
+        private static bool DebugDirectoryChecker()
+        {
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            var normalizedPath = Path.GetFullPath(baseDir)
+                                     .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                                     .ToLowerInvariant();
+
+            return normalizedPath.Contains(Path.Combine("bin", "debug").ToLowerInvariant()) ||
+                   normalizedPath.Contains(Path.Combine("bin", "release").ToLowerInvariant());
+        }
 
 
         /*
@@ -117,6 +145,99 @@ namespace Display.Utilities
                 File.Delete(filePath); //delete file
                 //File.WriteAllText(filePath, string.Empty); //delete content
             }
+        }
+
+        public static void SaveGridToFile(Grid gridLoaded)
+        {
+            if (gridLoaded == null)
+                throw new ArgumentNullException(nameof(gridLoaded), "Grid can not be empty.");
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Save the grid state";
+                saveFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog.DefaultExt = "json";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.FileName = $"{gridLoaded.Name}_{DateTime.Now:yyyyMMdd_HHmmss}.json";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+                    string JSON = gridLoaded.SaveGridToJsonFile();
+
+                    try
+                    {
+                        File.WriteAllText(filePath, JSON);
+                    }
+                    catch (IOException ex)
+                    {
+                        throw new InvalidOperationException($"Failed to save the file: {ex.Message}", ex);
+                    }
+
+                }
+                else
+                {
+                    throw new OperationCanceledException("Import operation was cancelled.");
+                }
+            }
+        }
+
+
+        public static T ImportGridFromAFile<T>() where T : Grid, new()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // Configure the dialog
+                openFileDialog.Title = "Import Grid State";
+                openFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                openFileDialog.DefaultExt = "json";
+
+                // Show the dialog
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    try
+                    {
+                        T instance = new T();
+                        instance.ImportGridFromJsonFile(filePath);
+                        return instance;
+                    }
+                    catch (JsonException ex)
+                    {
+                        throw new InvalidOperationException($"Invalid JSON format: {ex.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidOperationException($"Error reading file: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    throw new OperationCanceledException("Import operation was cancelled.");
+                }
+            }
+        }
+
+        private static int[,] ConvertToMultiDimensionalArray(int[][] jaggedArray)
+        {
+            if (jaggedArray == null || jaggedArray.Length == 0)
+                throw new ArgumentException("Array cannot be null or empty");
+
+            int rows = jaggedArray.Length;
+            int cols = jaggedArray[0].Length;
+
+            int[,] result = new int[rows, cols];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    result[i, j] = jaggedArray[i][j];
+                }
+            }
+
+            return result;
         }
 
     }
