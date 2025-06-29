@@ -81,8 +81,8 @@ namespace Display
 
         private void btnGameOfLife_Click(object sender, EventArgs e)
         {
-            //var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is GameOfLife);
-            //OpenSimulationForm(grid);
+            var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is Life);
+            OpenSimulationForm(grid);
         }
 
         private Image ResizeImage(Image img, int maxHeight)
