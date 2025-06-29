@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -171,12 +174,56 @@ namespace Models
 
         public override string SaveGridToJsonFile()
         {
-            throw new NotImplementedException();
+            int[,] data = new int[_columns, _rows];
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    data[x, y] = _grid[x, y].Print(); // 0 = Dead, 1 = Alive
+                }
+            }
+
+            var export = new
+            {
+                GridType = this.GetType().Name,
+                Cells = data
+            };
+
+            return JsonConvert.SerializeObject(export, Formatting.Indented);
         }
+
 
         public override void ImportGridFromJsonFile(string filePath)
         {
-            throw new NotImplementedException();
+            string json = File.ReadAllText(filePath);
+            dynamic parsed = JsonConvert.DeserializeObject(json);
+
+            string gridType = parsed.GridType;
+            if (gridType != this.GetType().Name)
+            {
+                throw new InvalidOperationException($"GridType mismatch: expected '{this.GetType().Name}', but found '{gridType}'.");
+            }
+
+            JArray cellsArray = parsed.Cells;
+            int cols = cellsArray.Count;
+            int rows = cellsArray[0].Count();
+
+            _grid = new LifeCell[cols, rows];
+            for (int y = 0; y < rows; y++)
+            {
+                for (int x = 0; x < cols; x++)
+                {
+                    int state = (int)cellsArray[x][y];
+                    _grid[x, y] = new LifeCell((LifeStatus)state);
+                }
+            }
+
+            typeof(Life).GetField("_columns", BindingFlags.NonPublic | BindingFlags.Instance)?.SetValue(this, cols);
+            typeof(Life).GetField("_rows", BindingFlags.NonPublic | BindingFlags.Instance)?.SetValue(this, rows);
+
+            _history.Clear();
+            _future.Clear();
         }
+
     }
 }

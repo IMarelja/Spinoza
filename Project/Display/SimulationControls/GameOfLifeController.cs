@@ -78,7 +78,22 @@ namespace Display
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Grid loadedGrid = Utility.ImportGridFromAFile<Life>();
+                Simulation = (Life)loadedGrid;
+            }
+            catch (OperationCanceledException ex)
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                "Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            }
         }
     }
 }
