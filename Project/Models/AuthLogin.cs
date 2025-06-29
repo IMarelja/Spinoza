@@ -9,7 +9,7 @@ namespace Models
         public string password { get; set; } = string.Empty;
         public string Formate() => $"{username}{DEL}{password}";
 
-        internal static AuthLogin ParseFromFile(string line)
+        public AuthLogin ParseFromFile(string line)
         {
             string[] lines = line.Split(DEL);
 

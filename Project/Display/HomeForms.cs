@@ -25,6 +25,11 @@ namespace Display
         private void Init()
         {
             registerInit();
+            int imageHeight = 80;
+            btnGameOfLife.Image = ResizeImage(Properties.Resources.GameOfLife, imageHeight);
+            btnBriansBrain.Image = ResizeImage(Properties.Resources.BriansBrain, imageHeight);
+            btnForestFire.Image = ResizeImage(Properties.Resources.ForestFire, imageHeight);
+            btnLangtonsAnt.Image = ResizeImage(Properties.Resources.LangtonAnt, imageHeight);
         }
 
         private void registerInit()
@@ -78,6 +83,19 @@ namespace Display
         {
             //var grid = Utility.approvedSimulationsGrids.FirstOrDefault(g => g is GameOfLife);
             //OpenSimulationForm(grid);
+        }
+
+        private Image ResizeImage(Image img, int maxHeight)
+        {
+            double scale = (double)maxHeight / img.Height;
+            int newWidth = (int)(img.Width * scale);
+            Bitmap bmp = new Bitmap(newWidth, maxHeight);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(img, 0, 0, newWidth, maxHeight);
+            }
+            return bmp;
         }
     }
 }
