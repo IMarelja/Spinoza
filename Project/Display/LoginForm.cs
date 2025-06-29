@@ -72,7 +72,7 @@ namespace Display
                     lbMessage.Visible = true;
                     lbMessage.Text = responseObject["message"];
 
-                    //Utility.SaveLoginToFile(loginData);
+                    Utility.SaveLoginToFile(loginData);
 
                     await Task.Delay(2000);
 

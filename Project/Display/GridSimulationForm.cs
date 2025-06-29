@@ -22,6 +22,26 @@ namespace Display
             InitializeComponent();
             Init();
         }
+        public GridSimulationForm(Grid selectedGrid)
+        {
+            InitializeComponent(); // Initialize all controls including cbAutomataSelect
+            Init();
+
+            if (selectedGrid != null)
+            {
+                // Make sure items are added BEFORE setting SelectedItem
+                cbAutomataSelect.Items.Clear();
+                foreach (var grid in Utility.approvedSimulationsGrids)
+                {
+                    cbAutomataSelect.Items.Add(grid);
+                }
+
+                cbAutomataSelect.SelectedItem = selectedGrid;
+
+                // Optionally trigger logic
+                cbAutomataSelect_SelectedIndexChanged(cbAutomataSelect, EventArgs.Empty);
+            }
+        }
 
         private void Init()
         {
@@ -275,7 +295,6 @@ namespace Display
 
         private void InitLangtonsAnt(object sender, PaintEventArgs e)
         {
-            currentStep = 0;
             int[,] data = gridLayoutFromUserControl.CurrentState();
 
             Graphics g = e.Graphics;
@@ -292,20 +311,20 @@ namespace Display
                     Rectangle rect = new Rectangle(y * cellWidth, x * cellHeight, cellWidth, cellHeight);
                     Color color;
 
-                    if (data[x, y] == -1)
+                    switch (data[x, y])
                     {
-                        // Ant position
-                        color = Color.Red;
-                    }
-                    else if (data[x, y] == 0)
-                    {
-                        // White cell
-                        color = Color.White;
-                    }
-                    else
-                    {
-                        // Black cell
-                        color = Color.Black;
+                        case 0:
+                            color = Color.White; // White cell
+                            break;
+                        case 1:
+                            color = Color.Black; // Black cell
+                            break;
+                        case 2:
+                            color = Color.Red; // Ant position
+                            break;
+                        default:
+                            color = Color.Gray; // Fallback
+                            break;
                     }
 
                     using (Brush brush = new SolidBrush(color))
@@ -313,7 +332,7 @@ namespace Display
                         g.FillRectangle(brush, rect);
                     }
 
-                    g.DrawRectangle(Pens.Gray, rect); // Optional grid lines
+                    g.DrawRectangle(Pens.Gray, rect); // Optional: draw grid lines
                 }
             }
         }
@@ -531,6 +550,12 @@ namespace Display
             {
                 StopAutoStepping();
             }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Utility.DelteLoginOfFile();
+            this.Close();
         }
     }
 }

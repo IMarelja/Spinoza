@@ -10,7 +10,5 @@
 /Project/MiddleWareSimulation/obj
 /Project/.vs/
 /Project/MiddleWareSimulation/appsettings.json
-
-
-**/bin/
-**/obj/
+/Project/Models.Tests/bin
+/Project/Models.Tests/obj
