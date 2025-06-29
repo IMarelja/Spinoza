@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Display.Utilities;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,7 +65,22 @@ namespace Display.SimulationControls
 
         private void btnImportGrid_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Grid loadedGrid = Utility.ImportGridFromAFile<Forest>();
+                Grid = (Forest)loadedGrid;
+            }
+            catch (OperationCanceledException ex)
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                "Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            }
         }
     }
 }

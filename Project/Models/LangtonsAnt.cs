@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 namespace Models
@@ -165,5 +167,65 @@ namespace Models
 
         public override string ToString()
         => Name;
+
+        public override string SaveGridToJsonFile()
+        {
+            int[,] cellStates = new int[_cols, _rows];
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _cols; x++)
+                {
+                    cellStates[x, y] = _grid[x, y].Print();
+                }
+            }
+
+            var export = new
+            {
+                GridType = this.GetType().Name,
+                Width = _cols,
+                Height = _rows,
+                AntX = _antX,
+                AntY = _antY,
+                AntDirection = (int)_antDirection, // store as int instead of string
+                Cells = cellStates
+            };
+
+            return JsonConvert.SerializeObject(export, Formatting.Indented);
+        }
+
+
+        public override void ImportGridFromJsonFile(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            dynamic parsed = JsonConvert.DeserializeObject(json);
+
+            string gridType = parsed.GridType;
+            if (gridType != this.GetType().Name)
+            {
+                throw new InvalidOperationException($"GridType mismatch: expected '{this.GetType().Name}', but found '{gridType}'.");
+            }
+
+            _cols = parsed.Width;
+            _rows = parsed.Height;
+            _antX = parsed.AntX;
+            _antY = parsed.AntY;
+            _antDirection = (Direction)((int)parsed.AntDirection); // cast from int to enum
+
+            JArray cellsArray = parsed.Cells;
+            _grid = new LangtonsCell[_cols, _rows];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _cols; x++)
+                {
+                    int status = (int)cellsArray[x][y];
+                    _grid[x, y] = new LangtonsCell();
+                    _grid[x, y].SetStatus((AntStatus)status);
+                }
+            }
+
+            _history.Clear();
+        }
+
     }
 }

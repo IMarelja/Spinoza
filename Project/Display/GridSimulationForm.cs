@@ -115,12 +115,13 @@ namespace Display
 
         private void cbAutomataSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 switch ((Grid)cbAutomataSelect.SelectedItem)
                 {
                     case Brain brain:
                         LoadSimulationUserControlInsideControlPanel(new BriansBrainController());
-                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription,pbSimulationInfo,brain.Name,brain.Description);
+                        Utility.SetInfoBalloonTooltipForControl(ttSimulationDescription, pbSimulationInfo, brain.Name, brain.Description);
                         break;
 
                     case Forest forest:
@@ -156,7 +157,7 @@ namespace Display
             if (simulationUserControl is not INotifyPropertyChanged notifyControl)
                 throw new Exception("The User Control being called is not a derivitive of the abstract class INotifyPropertyChanged");
 
-            notifyControl.PropertyChanged += OnUserControlPropertyChanged; 
+            notifyControl.PropertyChanged += OnUserControlPropertyChanged;
             simulationController = simulationUserControl;
 
             panelControls.Controls.Clear();
@@ -175,19 +176,19 @@ namespace Display
         {
             switch (sender)
             {
-                case BriansBrainController controlBrain 
+                case BriansBrainController controlBrain
                 when e.PropertyName == nameof(BriansBrainController.brian):
                     gridLayoutFromUserControl = controlBrain.brian;
                     panelSimulationGrid.Invalidate();
                     break;
 
-                case LangtonsAntController controlAnt 
+                case LangtonsAntController controlAnt
                 when e.PropertyName == nameof(LangtonsAntController.Grid):
                     gridLayoutFromUserControl = controlAnt.Grid;
                     panelSimulationGrid.Invalidate();
                     break;
 
-                case ForestFireController controlForest 
+                case ForestFireController controlForest
                 when e.PropertyName == nameof(ForestFireController.Grid):
                     gridLayoutFromUserControl = controlForest.Grid;
                     panelSimulationGrid.Invalidate();
@@ -518,6 +519,30 @@ namespace Display
         {
             Utility.DelteLoginOfFile();
             this.Close();
+        }
+
+        private void btn_SaveGrid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utility.SaveGridToFile(gridLayoutFromUserControl);
+                MessageBox.Show("Grid saved successfully.",
+                    "Save Successful",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (OperationCanceledException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving file:\n{ex.Message}",
+                    "Save Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            
         }
     }
 }

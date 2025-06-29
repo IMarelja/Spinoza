@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,7 +60,6 @@ namespace Models
         private BrainCell[,] _currentBrainsInTable;
         private int _rows;
         private int _columns;
-        private int _numberOfCell;
 
         public Brain() { }
         public Brain(int xAxis, int yAxis, int squareDimensions, int numberOfCell)
@@ -224,5 +226,59 @@ namespace Models
 
         public override string ToString()
         => Name;
+
+
+
+        public override string SaveGridToJsonFile()
+        {
+            int[,] grid = new int[_columns, _rows];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    grid[y, x] = (int)_currentBrainsInTable[y, x].getStatus();
+                }
+            }
+
+            var export = new
+            {
+                GridType = this.GetType().Name,
+                Cells = grid
+            };
+
+            return JsonConvert.SerializeObject(export, Formatting.Indented);
+        }
+
+        public override void ImportGridFromJsonFile(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            var parsed = JsonConvert.DeserializeObject<dynamic>(json);
+
+            string gridType = parsed.GridType;
+            if (gridType != this.GetType().Name)
+            {
+                throw new InvalidOperationException($"GridType mismatch: expected '{this.GetType().Name}', but found '{gridType}'.");
+            }
+
+            // Read the cell array
+            JArray cellsArray = parsed.Cells;
+            _rows = cellsArray.Count();
+            _columns = cellsArray[0].Count();
+
+            _currentBrainsInTable = new BrainCell[_rows, _columns];
+
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    int status = (int)cellsArray[y][x];
+                    _currentBrainsInTable[y, x] = new BrainCell((BrainsStatus)status); // Adjust if BrainCell constructor is different
+                }
+            }
+
+            //var field = typeof(Brain).GetField("_currentBrainsInTable", BindingFlags.NonPublic | BindingFlags.Instance);
+            //field.SetValue(this, _currentBrainsInTable);
+        }
     }
 }
