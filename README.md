@@ -1,4 +1,5 @@
 # Spinosa
 
 ## Notes
-- When a user signs up they should get the introduction tutorial
+Algebra University group project
+Made in .NET C# and MS-SQL
