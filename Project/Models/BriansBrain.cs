@@ -33,12 +33,19 @@ namespace Models
         public override void Update()
         {
             if (_status == BrainsStatus.On)
+            {
                 _status = BrainsStatus.Dying;
+            }
             else if (_status == BrainsStatus.Dying)
+            {
                 _status = BrainsStatus.Off;
-            else if(_status == BrainsStatus.Off && _onNeighbors == 2)
+            }
+            else if (_status == BrainsStatus.Off && _onNeighbors == 2)
+            {
                 _status = BrainsStatus.On;
-                _onNeighbors = 0;
+            }
+
+            _onNeighbors = 0;
         }
 
         public void setNeighborCount(int onNeighbor)
@@ -140,14 +147,13 @@ namespace Models
                         if (_currentBrainsInTable[x,y].getStatus() == BrainsStatus.Off) {
                             // Counting neighbors of Cell
                             int neighborCount = 0;
-
-                            for (int brainY = (y - 1); brainY < (y + 1); brainY++)
+                            for (int brainY = y - 1; brainY <= y + 1; brainY++)
                             {
-                                for (int brainX = (x - 1); brainX < (x + 1); brainX++)
+                                for (int brainX = x - 1; brainX <= x + 1; brainX++)
                                 {
                                     if (brainX == x && brainY == y) continue;
-                                    else if (brainX < 0 || brainY < 0 || brainX >= _columns || brainY >= _rows) continue;
-                                    else if (_currentBrainsInTable[brainX, brainY].getStatus() == BrainsStatus.On)
+                                    if (brainX < 0 || brainY < 0 || brainX >= _columns || brainY >= _rows) continue;
+                                    if (_currentBrainsInTable[brainX, brainY].getStatus() == BrainsStatus.On)
                                     {
                                         neighborCount++;
                                     }
@@ -163,6 +169,13 @@ namespace Models
                     for (int x = 0; x < _columns; x++)
                     {
                         _currentBrainsInTable[x, y].Update();
+                    }
+                }
+
+                for (int y = 0; y < _rows; y++)
+                {
+                    for (int x = 0; x < _columns; x++)
+                    {
                         data[x, y] = _currentBrainsInTable[x, y].Print();
                     }
                 }
@@ -174,6 +187,11 @@ namespace Models
 
         public void SetCells(int[,] data)
         {
+            _rows = data.GetLength(0);
+            _columns = data.GetLength(1);
+            _history.Clear();
+            _future.Clear();
+            _currentBrainsInTable = new BrainCell[_columns, _rows];
             for (int y = 0; y < _rows; y++)
             {
                 for (int x = 0; x < _columns; x++)
@@ -181,8 +199,7 @@ namespace Models
                     _currentBrainsInTable[x, y] = new BrainCell((BrainsStatus)data[x,y]);
                 }
             }
-            _history.Clear();
-            _future.Clear();
+            
         }
 
         private BrainCell[,] CopyOfBrainCell(BrainCell[,] original)
