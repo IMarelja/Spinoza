@@ -26,9 +26,9 @@ namespace Models
             _nextStatus = _status;
             _p = p;
             _f = f;
-
+            CalculateNext();
         }
-        //calculates next status
+
         public override void Update()
         {
             _previousStatus.Push(_status);
@@ -79,13 +79,18 @@ namespace Models
             if (_status == ForestStatus.Tree && ProbabilityCalculation(_f))
                 _nextStatus = ForestStatus.Burning;
         }
+
+        internal void SetRandom()
+        {
+            SetStatus(_random.Next(0, 3));
+        }
     }
 
 
     public class Forest : Grid
     {
         public override string Name => "Forest Fire";
-        public override string Description => "Description here";
+        public override string Description => "A cellular automaton where trees grow and fire spreads.";
 
         private TreeCell[,] _table;
         private int _rows;
@@ -119,6 +124,17 @@ namespace Models
                 for (int x = 0; x < _columns; x++)
                 {
                     _table[x, y].SetStatus(data[x, y]);
+                }
+            }
+        }
+
+        public void SetRandomCells()
+        {
+            for (int y = 0; y < _rows; y++)
+            {
+                for (int x = 0; x < _columns; x++)
+                {
+                    _table[x, y].SetRandom();
                 }
             }
         }

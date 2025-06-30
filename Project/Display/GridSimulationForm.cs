@@ -68,7 +68,8 @@ namespace Display
             autoStartControls = new List<Control> {
                 chbEnableAutoNumber ,
                 btnAutoStepsStartPause ,
-                nudAutoNumberOfSteps
+                nudAutoNumberOfSteps ,
+                nudStepInterval
             };
         }
 
@@ -521,8 +522,11 @@ namespace Display
 
         private void StartAutoStepping()
         {
+            btnNextState.Enabled = false;
+            btnBackState.Enabled = false;
             isAutoStartingCounting = true;
             btnAutoStepsStartPause.Text = "Stop";
+            timerAutoSteps.Interval = (int)nudStepInterval.Value;
             timerAutoSteps.Start();
         }
 
@@ -531,6 +535,8 @@ namespace Display
             isAutoStartingCounting = false;
             btnAutoStepsStartPause.Text = "Start";
             timerAutoSteps.Stop();
+            btnNextState.Enabled = true;
+            btnBackState.Enabled = true;
         }
 
         /*

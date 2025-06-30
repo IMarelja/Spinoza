@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.Marshalling.IIUnknownCacheStrategy;
 
 namespace Display.SimulationControls
 {
@@ -32,6 +33,27 @@ namespace Display.SimulationControls
         public ForestFireController()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            Utility.SetInfoBalloonTooltipForControl(ttGrid, pbGrid, "Grid Configuration",
+            "Defines the size of the simulation grid.\n\n" +
+            " - Rows: number of vertical cells\n" +
+            " - Columns: number of horizontal cells");
+
+
+            Utility.SetInfoBalloonTooltipForControl(ttSettings, pbSettings, "Random Grid",
+                "Generate a randomized grid layout.\n\n" +
+                " - Chance of Tree: the chance a tree will grow in a empty cell\n" +
+                " - Chance of Fire: the chance a fire will start in a tree cell"); 
+
+            Utility.SetInfoBalloonTooltipForControl(ttRandom, pbRandom, "Randomise Cells",
+                "Randomise the starting cells of the grid.");
+
+            btnRandomGrid.Visible = false;
+            pbRandom.Visible = false;
         }
 
         private void btnInitGrid_Click(object sender, EventArgs e)
@@ -45,6 +67,9 @@ namespace Display.SimulationControls
                 int fire = (int)nudFireChance.Value;
 
                 Grid = new Forest(cols, rows, tree, fire);
+
+                btnRandomGrid.Visible = true;
+                pbRandom.Visible=true;
             }
 
         }
@@ -60,7 +85,8 @@ namespace Display.SimulationControls
 
         private void btnRandomGrid_Click(object sender, EventArgs e)
         {
-
+            Grid.SetRandomCells();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Grid)));
         }
 
         private void btnImportGrid_Click(object sender, EventArgs e)
