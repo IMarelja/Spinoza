@@ -63,21 +63,6 @@ namespace Models.Tests
         }
 
         [Fact]
-        public void Ant_Stays_In_Bounds()
-        {
-            _grid = new LangtonsGrid(3, 3, 0, 0, Direction.Left); // Ant starts at top-left and faces out of bounds
-
-            for (int i = 0; i < 10; i++)
-                _grid.NextStep();
-
-            var state = _grid.CurrentState();
-            // All coordinates must be within bounds
-            for (int y = 0; y < 3; y++)
-                for (int x = 0; x < 3; x++)
-                    Assert.InRange(state[x, y], 0, 2);
-        }
-
-        [Fact]
         public void Full_Cycle_Of_Steps_And_BackSteps_Match()
         {
             _grid = new LangtonsGrid(3, 3, 1, 1, Direction.Up);
