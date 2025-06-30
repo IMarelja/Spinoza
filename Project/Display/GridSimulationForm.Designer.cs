@@ -45,13 +45,17 @@
             pbSimulationInfo = new PictureBox();
             ttSimulationDescription = new ToolTip(components);
             btn_SaveGrid = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            nudStepInterval = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbSimulationInfo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudStepInterval).BeginInit();
             SuspendLayout();
             // 
             // btnNextState
             // 
-            btnNextState.Location = new Point(887, 553);
+            btnNextState.Location = new Point(887, 581);
             btnNextState.Name = "btnNextState";
             btnNextState.Size = new Size(83, 32);
             btnNextState.TabIndex = 17;
@@ -61,7 +65,7 @@
             // 
             // btnBackState
             // 
-            btnBackState.Location = new Point(214, 553);
+            btnBackState.Location = new Point(214, 580);
             btnBackState.Name = "btnBackState";
             btnBackState.Size = new Size(83, 32);
             btnBackState.TabIndex = 18;
@@ -71,8 +75,8 @@
             // 
             // btnLogOut
             // 
-            btnLogOut.Location = new Point(8, 551);
-            btnLogOut.Margin = new Padding(2, 2, 2, 2);
+            btnLogOut.Location = new Point(7, 581);
+            btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(87, 32);
             btnLogOut.TabIndex = 22;
@@ -82,8 +86,8 @@
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(113, 551);
-            btnExport.Margin = new Padding(2, 2, 2, 2);
+            btnExport.Location = new Point(113, 581);
+            btnExport.Margin = new Padding(2);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(87, 32);
             btnExport.TabIndex = 23;
@@ -95,7 +99,7 @@
             // 
             panelControls.BorderStyle = BorderStyle.FixedSingle;
             panelControls.Location = new Point(7, 72);
-            panelControls.Margin = new Padding(2, 2, 2, 2);
+            panelControls.Margin = new Padding(2);
             panelControls.Name = "panelControls";
             panelControls.Size = new Size(193, 418);
             panelControls.TabIndex = 24;
@@ -103,7 +107,7 @@
             // btnBackToMenu
             // 
             btnBackToMenu.Location = new Point(7, 7);
-            btnBackToMenu.Margin = new Padding(2, 2, 2, 2);
+            btnBackToMenu.Margin = new Padding(2);
             btnBackToMenu.Name = "btnBackToMenu";
             btnBackToMenu.Size = new Size(192, 36);
             btnBackToMenu.TabIndex = 26;
@@ -126,16 +130,16 @@
             panelSimulationGrid.BorderStyle = BorderStyle.FixedSingle;
             panelSimulationGrid.Location = new Point(214, 7);
             panelSimulationGrid.Name = "panelSimulationGrid";
-            panelSimulationGrid.Size = new Size(756, 542);
+            panelSimulationGrid.Size = new Size(756, 566);
             panelSimulationGrid.TabIndex = 35;
             panelSimulationGrid.Paint += panelSimulationGrid_Paint;
             // 
             // nudAutoNumberOfSteps
             // 
-            nudAutoNumberOfSteps.Location = new Point(14, 519);
+            nudAutoNumberOfSteps.Location = new Point(114, 521);
             nudAutoNumberOfSteps.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudAutoNumberOfSteps.Name = "nudAutoNumberOfSteps";
-            nudAutoNumberOfSteps.Size = new Size(186, 23);
+            nudAutoNumberOfSteps.Size = new Size(87, 23);
             nudAutoNumberOfSteps.TabIndex = 43;
             nudAutoNumberOfSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -143,7 +147,7 @@
             // 
             chbEnableAutoNumber.AutoSize = true;
             chbEnableAutoNumber.Location = new Point(13, 494);
-            chbEnableAutoNumber.Margin = new Padding(2, 2, 2, 2);
+            chbEnableAutoNumber.Margin = new Padding(2);
             chbEnableAutoNumber.Name = "chbEnableAutoNumber";
             chbEnableAutoNumber.Size = new Size(82, 19);
             chbEnableAutoNumber.TabIndex = 42;
@@ -153,10 +157,10 @@
             // 
             // btnAutoStepsStartPause
             // 
-            btnAutoStepsStartPause.Location = new Point(104, 494);
-            btnAutoStepsStartPause.Margin = new Padding(2, 2, 2, 2);
+            btnAutoStepsStartPause.Location = new Point(113, 494);
+            btnAutoStepsStartPause.Margin = new Padding(2);
             btnAutoStepsStartPause.Name = "btnAutoStepsStartPause";
-            btnAutoStepsStartPause.Size = new Size(95, 20);
+            btnAutoStepsStartPause.Size = new Size(86, 20);
             btnAutoStepsStartPause.TabIndex = 44;
             btnAutoStepsStartPause.Text = "Start";
             btnAutoStepsStartPause.UseVisualStyleBackColor = true;
@@ -181,7 +185,7 @@
             // 
             // btn_SaveGrid
             // 
-            btn_SaveGrid.Location = new Point(327, 553);
+            btn_SaveGrid.Location = new Point(303, 579);
             btn_SaveGrid.Name = "btn_SaveGrid";
             btn_SaveGrid.Size = new Size(89, 32);
             btn_SaveGrid.TabIndex = 49;
@@ -189,11 +193,43 @@
             btn_SaveGrid.UseVisualStyleBackColor = true;
             btn_SaveGrid.Click += btn_SaveGrid_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 521);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 15);
+            label1.TabIndex = 50;
+            label1.Text = "Number of Steps";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 552);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 15);
+            label2.TabIndex = 51;
+            label2.Text = "Step Interval";
+            // 
+            // nudStepInterval
+            // 
+            nudStepInterval.Increment = new decimal(new int[] { 100, 0, 0, 0 });
+            nudStepInterval.Location = new Point(114, 550);
+            nudStepInterval.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudStepInterval.Minimum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudStepInterval.Name = "nudStepInterval";
+            nudStepInterval.Size = new Size(87, 23);
+            nudStepInterval.TabIndex = 52;
+            nudStepInterval.Value = new decimal(new int[] { 1000, 0, 0, 0 });
+            // 
             // GridSimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(980, 593);
+            ClientSize = new Size(980, 624);
+            Controls.Add(nudStepInterval);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(btn_SaveGrid);
             Controls.Add(pbSimulationInfo);
             Controls.Add(btnAutoStepsStartPause);
@@ -211,6 +247,7 @@
             Text = "Grid Display";
             ((System.ComponentModel.ISupportInitialize)nudAutoNumberOfSteps).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbSimulationInfo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudStepInterval).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -233,5 +270,8 @@
         private PictureBox pbSimulationInfo;
         private ToolTip ttSimulationDescription;
         private Button btn_SaveGrid;
+        private Label label1;
+        private Label label2;
+        private NumericUpDown nudStepInterval;
     }
 }

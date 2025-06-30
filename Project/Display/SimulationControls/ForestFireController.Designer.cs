@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForestFireController));
             label3 = new Label();
             nudFireChance = new NumericUpDown();
             nudTreeChance = new NumericUpDown();
@@ -49,10 +51,19 @@
             btnImportGrid = new Button();
             btnRandomGrid = new Button();
             btnInitGrid = new Button();
+            pbGrid = new PictureBox();
+            pbSettings = new PictureBox();
+            pbRandom = new PictureBox();
+            ttGrid = new ToolTip(components);
+            ttSettings = new ToolTip(components);
+            ttRandom = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)nudFireChance).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTreeChance).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudColumns).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRows).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbSettings).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbRandom).BeginInit();
             SuspendLayout();
             // 
             // label3
@@ -70,6 +81,7 @@
             nudFireChance.Name = "nudFireChance";
             nudFireChance.Size = new Size(77, 23);
             nudFireChance.TabIndex = 66;
+            nudFireChance.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // nudTreeChance
             // 
@@ -77,6 +89,7 @@
             nudTreeChance.Name = "nudTreeChance";
             nudTreeChance.Size = new Size(77, 23);
             nudTreeChance.TabIndex = 65;
+            nudTreeChance.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // label6
             // 
@@ -109,17 +122,21 @@
             // 
             nudColumns.Location = new Point(88, 70);
             nudColumns.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudColumns.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             nudColumns.Name = "nudColumns";
             nudColumns.Size = new Size(90, 23);
             nudColumns.TabIndex = 60;
+            nudColumns.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // nudRows
             // 
             nudRows.Location = new Point(88, 41);
             nudRows.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudRows.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             nudRows.Name = "nudRows";
             nudRows.Size = new Size(90, 23);
             nudRows.TabIndex = 59;
+            nudRows.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // label2
             // 
@@ -210,7 +227,7 @@
             // 
             // btnImportGrid
             // 
-            btnImportGrid.Location = new Point(95, 314);
+            btnImportGrid.Location = new Point(95, 214);
             btnImportGrid.Margin = new Padding(2);
             btnImportGrid.Name = "btnImportGrid";
             btnImportGrid.Size = new Size(92, 23);
@@ -221,7 +238,7 @@
             // 
             // btnRandomGrid
             // 
-            btnRandomGrid.Location = new Point(3, 314);
+            btnRandomGrid.Location = new Point(48, 311);
             btnRandomGrid.Name = "btnRandomGrid";
             btnRandomGrid.Size = new Size(92, 23);
             btnRandomGrid.TabIndex = 75;
@@ -231,7 +248,7 @@
             // 
             // btnInitGrid
             // 
-            btnInitGrid.Location = new Point(49, 212);
+            btnInitGrid.Location = new Point(3, 214);
             btnInitGrid.Name = "btnInitGrid";
             btnInitGrid.Size = new Size(92, 23);
             btnInitGrid.TabIndex = 74;
@@ -239,10 +256,52 @@
             btnInitGrid.UseVisualStyleBackColor = true;
             btnInitGrid.Click += btnInitGrid_Click;
             // 
+            // pbGrid
+            // 
+            pbGrid.ErrorImage = null;
+            pbGrid.Image = (Image)resources.GetObject("pbGrid.Image");
+            pbGrid.InitialImage = null;
+            pbGrid.Location = new Point(126, 8);
+            pbGrid.Margin = new Padding(4, 5, 4, 5);
+            pbGrid.Name = "pbGrid";
+            pbGrid.Size = new Size(21, 25);
+            pbGrid.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbGrid.TabIndex = 77;
+            pbGrid.TabStop = false;
+            // 
+            // pbSettings
+            // 
+            pbSettings.ErrorImage = null;
+            pbSettings.Image = (Image)resources.GetObject("pbSettings.Image");
+            pbSettings.InitialImage = null;
+            pbSettings.Location = new Point(149, 101);
+            pbSettings.Margin = new Padding(4, 5, 4, 5);
+            pbSettings.Name = "pbSettings";
+            pbSettings.Size = new Size(21, 25);
+            pbSettings.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbSettings.TabIndex = 78;
+            pbSettings.TabStop = false;
+            // 
+            // pbRandom
+            // 
+            pbRandom.ErrorImage = null;
+            pbRandom.Image = (Image)resources.GetObject("pbRandom.Image");
+            pbRandom.InitialImage = null;
+            pbRandom.Location = new Point(149, 311);
+            pbRandom.Margin = new Padding(4, 5, 4, 5);
+            pbRandom.Name = "pbRandom";
+            pbRandom.Size = new Size(21, 25);
+            pbRandom.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbRandom.TabIndex = 79;
+            pbRandom.TabStop = false;
+            // 
             // ForestFireController
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pbRandom);
+            Controls.Add(pbSettings);
+            Controls.Add(pbGrid);
             Controls.Add(btnImportGrid);
             Controls.Add(btnRandomGrid);
             Controls.Add(btnInitGrid);
@@ -265,11 +324,14 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "ForestFireController";
-            Size = new Size(190, 350);
+            Size = new Size(190, 349);
             ((System.ComponentModel.ISupportInitialize)nudFireChance).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTreeChance).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudColumns).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudRows).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbSettings).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbRandom).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -297,5 +359,11 @@
         private Button btnImportGrid;
         private Button btnRandomGrid;
         private Button btnInitGrid;
+        private PictureBox pbGrid;
+        private PictureBox pbSettings;
+        private PictureBox pbRandom;
+        private ToolTip ttGrid;
+        private ToolTip ttSettings;
+        private ToolTip ttRandom;
     }
 }
